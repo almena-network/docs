@@ -8,6 +8,58 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 yarn
 ```
 
+## Docker
+
+This project can be built and run using Docker and Docker Compose.
+
+### Prerequisites
+
+- Docker Engine 20.10 or later
+- Docker Compose 2.0 or later
+
+### Build and Run with Docker Compose
+
+Build and start the container:
+
+```bash
+docker-compose up --build
+```
+
+The site will be available at `http://localhost:3000`.
+
+Run in detached mode (background):
+
+```bash
+docker-compose up -d --build
+```
+
+Stop the container:
+
+```bash
+docker-compose down
+```
+
+### Build and Run with Docker
+
+Build the Docker image:
+
+```bash
+docker build -t almena-id-docs .
+```
+
+Run the container:
+
+```bash
+docker run -d -p 3000:3000 --name almena-id-docs almena-id-docs
+```
+
+Stop and remove the container:
+
+```bash
+docker stop almena-id-docs
+docker rm almena-id-docs
+```
+
 ## Local Development
 
 ```bash
