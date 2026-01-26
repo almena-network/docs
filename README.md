@@ -5,7 +5,7 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 ## Installation
 
 ```bash
-yarn
+yarn install
 ```
 
 ## Local Development
@@ -48,7 +48,6 @@ GIT_USER=<Your GitHub username> yarn deploy
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
 
-
 ## Docker
 
 This project can be built and run using Docker and Docker Compose.
@@ -60,48 +59,22 @@ This project can be built and run using Docker and Docker Compose.
 
 ### Build and Run with Docker Compose
 
-Build and start the container:
-
-```bash
-docker-compose up --build
-```
-
-The site will be available at `http://localhost:3000`.
-
 Run in detached mode (background):
 
 ```bash
 docker-compose up -d --build
 ```
 
+The site will be available at `http://localhost:3000`.
+
 Stop the container:
 
 ```bash
-docker-compose down
-```
-
-### Build and Run with Docker
-
-Build the Docker image:
-
-```bash
-docker build -t almena-id-docs .
-```
-
-Run the container:
-
-```bash
-docker run -d -p 3000:3000 --name almena-id-docs almena-id-docs
-```
-
-Stop and remove the container:
-
-```bash
-docker stop almena-id-docs
-docker rm almena-id-docs
+docker-compose stop
 ```
 
 ## Dependencies
 
 - [https://docusaurus.io/](https://docusaurus.io/)
 - [https://undraw.co/](https://undraw.co/)
+- [https://www.docker.com/](https://www.docker.com/)

@@ -15,7 +15,7 @@ export default function NotFound(): ReactNode {
             <p>We could not find what you were looking for.</p>
             <p>
               <Link to="/">
-                Return to Getting Started
+                Return to Home
               </Link>
             </p>
           </div>
