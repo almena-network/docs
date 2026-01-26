@@ -71,9 +71,21 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'userSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'User Guide',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'developerSidebar',
+          position: 'left',
+          label: 'Developer Guide',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'allSidebar',
+          position: 'left',
+          label: 'Changelog',
         },
         {
           href: 'https://github.com/almena-id',
@@ -86,11 +98,20 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'User',
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/getting-started/overview',
+              to: '/docs/getting-started-user/overview',
+            },
+          ],
+        },
+        {
+          title: 'Developer',
+          items: [
+            {
+              label: 'Getting Started',
+              to: '/docs/getting-started-developer/overview',
             },
           ],
         },
