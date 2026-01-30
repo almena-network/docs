@@ -73,17 +73,17 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'userSidebar',
           position: 'left',
-          label: 'User Guide',
+          label: 'For Users',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'developerSidebar',
+          sidebarId: 'integratorSidebar',
           position: 'left',
-          label: 'Developer Guide',
+          label: 'For Integrators',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'allSidebar',
+          sidebarId: 'changelogSidebar',
           position: 'left',
           label: 'Changelog',
         },
@@ -98,20 +98,28 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'User',
+          title: 'For Users',
           items: [
             {
               label: 'Getting Started',
               to: '/docs/getting-started-user/overview',
             },
+            {
+              label: 'User Guide',
+              to: '/docs/user-guide/intro',
+            },
           ],
         },
         {
-          title: 'Developer',
+          title: 'For Integrators',
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/getting-started-developer/overview',
+              to: '/docs/getting-started-integrator/intro',
+            },
+            {
+              label: 'API Reference',
+              to: '/docs/api-reference/endpoints/health',
             },
           ],
         },

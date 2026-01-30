@@ -1,80 +1,133 @@
-# Website
+# Almena ID Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Public documentation for Almena ID - a decentralized identity platform.
 
-## Installation
+## Documentation Purpose
+
+This documentation is for:
+- **Users**: Learn how to use Almena ID
+- **Integrators**: Learn how to integrate Almena ID into your applications
+
+This documentation is **NOT** for:
+- Internal development setup (see module READMEs)
+- Contributing to Almena ID codebase
+- Internal architecture details
+
+## Structure
+
+See [DOCUMENTATION_STRUCTURE.md](./DOCUMENTATION_STRUCTURE.md) for a complete overview of the documentation organization.
+
+### For Users
+Documentation on how to **use** Almena ID:
+- Getting started with your identity wallet
+- Managing your DID and keys
+- Security best practices
+- Troubleshooting
+
+### For Integrators
+Documentation on how to **integrate** Almena ID:
+- API reference and endpoints
+- Authentication patterns
+- Integration examples
+- SDK documentation
+- Best practices
+
+## Local Development
+
+### Prerequisites
+- Node.js >= 20.0.0
+- Yarn
+
+### Installation
 
 ```bash
 yarn install
 ```
 
-## Local Development
+### Start Development Server
 
 ```bash
 yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Documentation will be available at `http://localhost:3001`
 
-## Build
+### Build
 
 ```bash
 yarn build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Serve
-
-```bash
-yarn serve
-```
-
-This command serves the static content from the `build` directory using a local server.
-
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Static files will be generated in the `build/` directory.
 
 ## Docker
 
-This project can be built and run using Docker and Docker Compose.
-
-### Prerequisites
-
-- Docker Engine 20.10 or later
-- Docker Compose 2.0 or later
-
-### Build and Run with Docker Compose
-
-Run in detached mode (background):
+### Build Image
 
 ```bash
-docker-compose up -d --build
+docker build -t almena-docs .
 ```
 
-The site will be available at `http://localhost:3000`.
-
-Stop the container:
+### Run Container
 
 ```bash
-docker-compose stop
+docker compose up
 ```
 
-## Dependencies
+Documentation will be available at `http://localhost:3001`
 
-- [https://docusaurus.io/](https://docusaurus.io/)
-- [https://undraw.co/](https://undraw.co/)
-- [https://www.docker.com/](https://www.docker.com/)
+## Documentation Guidelines
+
+### Language
+- **All documentation MUST be in English**
+- No exceptions
+
+### Content Focus
+- **Users**: How to USE features (non-technical)
+- **Integrators**: How to INTEGRATE (technical, but not internal)
+- **Never**: Internal implementation details or development setup
+
+### Structure
+- Keep pages focused and concise (under 500 lines)
+- Use subfolders to organize related content
+- Cross-link related pages
+- Include code examples that work
+
+### When to Update
+Update documentation when:
+- Adding new user-facing features
+- Adding new API endpoints
+- Changing how features work
+- Adding integration patterns
+
+### Critical Rule
+**ONLY document what is actually implemented and working.**
+
+Never document planned features, future APIs, or functionality that doesn't exist yet (unless clearly marked in a separate "Coming Soon" section).
+
+## Contributing
+
+To contribute documentation improvements:
+1. Make changes in `docs/` folder
+2. Test locally with `yarn start`
+3. Ensure all links work
+4. Submit pull request
+
+## Technology
+
+- **Framework**: Docusaurus 3.x
+- **Language**: TypeScript + MDX
+- **Styling**: CSS
+- **Deployment**: Static site (can deploy anywhere)
+
+## Links
+
+- **Live Documentation**: https://docs.almena.id
+- **Main Project**: https://github.com/almena-id/almena-id
+- **Website**: https://almena.id
+
+## Support
+
+For documentation issues:
+- Email: docs@almena.id
+- GitHub Issues: https://github.com/almena-id/docs/issues
