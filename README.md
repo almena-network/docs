@@ -1,64 +1,121 @@
-# Almena ID Documentation
+# Documentation - Almena ID
 
-Public documentation for Almena ID - a decentralized identity platform.
+Docusaurus documentation site for Almena ID platform.
 
-## Documentation Purpose
+## Prerequisites
 
-This documentation is for:
-- **Users**: Learn how to use Almena ID
-- **Integrators**: Learn how to integrate Almena ID into your applications
+### Required
 
-This documentation is **NOT** for:
-- Internal development setup (see module READMEs)
-- Contributing to Almena ID codebase
-- Internal architecture details
-
-## Structure
-
-See [DOCUMENTATION_STRUCTURE.md](./DOCUMENTATION_STRUCTURE.md) for a complete overview of the documentation organization.
-
-### For Users
-Documentation on how to **use** Almena ID:
-- Getting started with your identity wallet
-- Managing your DID and keys
-- Security best practices
-- Troubleshooting
-
-### For Integrators
-Documentation on how to **integrate** Almena ID:
-- API reference and endpoints
-- Authentication patterns
-- Integration examples
-- SDK documentation
-- Best practices
-
-## Local Development
-
-### Prerequisites
-- Node.js >= 20.0.0
-- Yarn
+- **Node.js**: >= 20.0.0
+- **yarn**: Latest version
+- **Docker**: Optional (for containerized deployment)
 
 ### Installation
+
+```bash
+# Install Node.js (if not installed)
+# macOS: brew install node@20
+# Linux: curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
+# Install yarn
+npm install -g yarn
+
+# Verify
+node --version    # v20.0.0+
+yarn --version    # Latest
+```
+
+## Setup
+
+### Install Dependencies
 
 ```bash
 yarn install
 ```
 
-### Start Development Server
+## Running the Documentation
+
+### Option 1: With yarn (Development)
 
 ```bash
+# Start development server
 yarn start
+
+# Access at http://localhost:3001
 ```
 
-Documentation will be available at `http://localhost:3001`
-
-### Build
+### Option 2: With Docker
 
 ```bash
-yarn build
+# Build and start
+docker compose up -d
+
+# View logs
+docker compose logs -f
+
+# Stop
+docker compose down
 ```
 
-Static files will be generated in the `build/` directory.
+## Build
+
+```bash
+# Production build
+yarn build
+
+# Preview production build
+yarn serve
+```
+
+## Development Commands
+
+```bash
+yarn start        # Start dev server (hot reload) on port 3001
+yarn build        # Production build
+yarn serve        # Serve production build on port 3001
+yarn clear        # Clear cache
+```
+
+## Project Structure
+
+```
+docs/
+├── docs/                      # Markdown documentation
+│   ├── user-guide/           # End-user documentation
+│   ├── integrator-guide/     # Integration documentation
+│   ├── api-reference/        # API documentation
+│   └── getting-started-*/    # Getting started guides
+├── src/                      # React components
+├── static/                   # Static assets
+├── docusaurus.config.ts      # Docusaurus configuration
+└── sidebars.ts              # Navigation structure
+```
+
+## Documentation Structure
+
+See [DOCUMENTATION_STRUCTURE.md](./DOCUMENTATION_STRUCTURE.md) for complete structure overview.
+
+### Audience Separation
+
+- **User Documentation**: How to use Almena ID
+- **Integrator Documentation**: How to integrate Almena ID into applications
+
+## Important Rules
+
+### ⚠️ Only Document What Exists
+
+- **NEVER** document features that aren't implemented
+- Mark future features clearly as "Coming Soon"
+- Documentation must reflect current codebase state
+
+### Language
+
+- **All documentation MUST be in English**
+- No exceptions
+
+## Environment Variables
+
+None required. All documentation is static content.
 
 ## Docker
 
@@ -71,63 +128,45 @@ docker build -t almena-docs .
 ### Run Container
 
 ```bash
-docker compose up
+docker run -p 3001:3001 almena-docs
 ```
 
-Documentation will be available at `http://localhost:3001`
+### With Docker Compose
 
-## Documentation Guidelines
+```bash
+docker compose up -d
+```
 
-### Language
-- **All documentation MUST be in English**
-- No exceptions
+## Technology Stack
 
-### Content Focus
-- **Users**: How to USE features (non-technical)
-- **Integrators**: How to INTEGRATE (technical, but not internal)
-- **Never**: Internal implementation details or development setup
+- **Framework**: Docusaurus 3
+- **Language**: TypeScript, MDX
+- **Build Tool**: Webpack
+- **Package Manager**: yarn
 
-### Structure
-- Keep pages focused and concise (under 500 lines)
-- Use subfolders to organize related content
-- Cross-link related pages
-- Include code examples that work
+## Troubleshooting
 
-### When to Update
-Update documentation when:
-- Adding new user-facing features
-- Adding new API endpoints
-- Changing how features work
-- Adding integration patterns
+### Port 3001 in use
 
-### Critical Rule
-**ONLY document what is actually implemented and working.**
+```bash
+# Run on different port
+yarn start --port 3002
+```
 
-Never document planned features, future APIs, or functionality that doesn't exist yet (unless clearly marked in a separate "Coming Soon" section).
+### Build errors
 
-## Contributing
+```bash
+# Clear cache and rebuild
+yarn clear
+yarn build
+```
 
-To contribute documentation improvements:
-1. Make changes in `docs/` folder
-2. Test locally with `yarn start`
-3. Ensure all links work
-4. Submit pull request
+### Broken links warnings
 
-## Technology
-
-- **Framework**: Docusaurus 3.x
-- **Language**: TypeScript + MDX
-- **Styling**: CSS
-- **Deployment**: Static site (can deploy anywhere)
-
-## Links
-
-- **Live Documentation**: https://docs.almena.id
-- **Main Project**: https://github.com/almena-id/almena-id
-- **Website**: https://almena.id
+All markdown links must reference existing files. Check console output for specific broken links.
 
 ## Support
 
-For documentation issues:
-- Email: docs@almena.id
-- GitHub Issues: https://github.com/almena-id/docs/issues
+For detailed information, see:
+- [Main Project README](../README.md)
+- [Docusaurus Documentation](https://docusaurus.io/)
