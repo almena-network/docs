@@ -7,7 +7,7 @@ Docusaurus documentation site for Almena ID platform.
 ### Required
 
 - **Node.js**: >= 20.0.0
-- **yarn**: Latest version
+- **pnpm**: Latest version
 - **Docker**: Optional (for containerized deployment)
 
 ### Installation
@@ -17,12 +17,12 @@ Docusaurus documentation site for Almena ID platform.
 # macOS: brew install node@20
 # Linux: curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 
-# Install yarn
-npm install -g yarn
+# Install pnpm
+npm install -g pnpm
 
 # Verify
 node --version    # v20.0.0+
-yarn --version    # Latest
+pnpm --version    # Latest
 ```
 
 ## Setup
@@ -30,16 +30,16 @@ yarn --version    # Latest
 ### Install Dependencies
 
 ```bash
-yarn install
+pnpm install
 ```
 
 ## Running the Documentation
 
-### Option 1: With yarn (Development)
+### Option 1: With pnpm (Development)
 
 ```bash
 # Start development server
-yarn start
+pnpm start
 
 # Access at http://localhost:3001
 ```
@@ -61,19 +61,19 @@ docker compose down
 
 ```bash
 # Production build
-yarn build
+pnpm build
 
 # Preview production build
-yarn serve
+pnpm serve
 ```
 
 ## Development Commands
 
 ```bash
-yarn start        # Start dev server (hot reload) on port 3001
-yarn build        # Production build
-yarn serve        # Serve production build on port 3001
-yarn clear        # Clear cache
+pnpm start        # Start dev server (hot reload) on port 3001
+pnpm build        # Production build
+pnpm serve        # Serve production build on port 3001
+pnpm clear        # Clear cache
 ```
 
 ## Project Structure
@@ -142,7 +142,7 @@ docker compose up -d
 - **Framework**: Docusaurus 3
 - **Language**: TypeScript, MDX
 - **Build Tool**: Webpack
-- **Package Manager**: yarn
+- **Package Manager**: pnpm
 
 ## Troubleshooting
 
@@ -150,15 +150,15 @@ docker compose up -d
 
 ```bash
 # Run on different port
-yarn start --port 3002
+pnpm start --port 3002
 ```
 
 ### Build errors
 
 ```bash
 # Clear cache and rebuild
-yarn clear
-yarn build
+pnpm clear
+pnpm build
 ```
 
 ### Broken links warnings
