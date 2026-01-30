@@ -457,7 +457,7 @@ NODE_ENV=production
 ### Docker Deployment
 
 ```dockerfile
-FROM node:20-alpine
+FROM node:24.13-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production

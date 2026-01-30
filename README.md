@@ -14,14 +14,14 @@ Docusaurus documentation site for Almena ID platform.
 
 ```bash
 # Install Node.js (if not installed)
-# macOS: brew install node@20
+# macOS: brew install node@24
 # Linux: curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 
 # Install pnpm
 npm install -g pnpm
 
 # Verify
-node --version    # v20.0.0+
+node --version    # v24.0.0+
 pnpm --version    # Latest
 ```
 
@@ -67,7 +67,42 @@ pnpm build
 pnpm serve
 ```
 
-## Development Commands
+## Task Runner
+
+This module uses [Task](https://taskfile.dev/) for automation. Run `task --list` to see all available commands.
+
+### Quick Reference
+
+```bash
+task install              # Install dependencies
+task dev                  # Start Docusaurus dev server
+task build                # Production build
+task serve                # Serve production build locally
+task clean                # Clean cache and build artifacts
+```
+
+### All Available Tasks
+
+| Task | Description |
+|------|-------------|
+| `task install` | Install dependencies with pnpm |
+| `task install:frozen` | Install with frozen lockfile |
+| `task dev` | Start Docusaurus development server |
+| `task start` | Start development server (alias) |
+| `task build` | Build documentation for production |
+| `task serve` | Serve production build locally |
+| `task typecheck` | Run TypeScript type checking |
+| `task swizzle` | Swizzle Docusaurus components |
+| `task write-translations` | Generate translation files |
+| `task write-heading-ids` | Generate heading IDs for MDX files |
+| `task docker:build` | Build Docker image |
+| `task docker:up` | Start with Docker Compose |
+| `task docker:down` | Stop Docker Compose services |
+| `task docker:logs` | View Docker Compose logs |
+| `task clean` | Clean Docusaurus cache and build |
+| `task clean:all` | Clean everything including node_modules |
+
+## Development Commands (Manual)
 
 ```bash
 pnpm start        # Start dev server (hot reload) on port 3001

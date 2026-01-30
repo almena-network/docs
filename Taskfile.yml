@@ -1,0 +1,126 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  MODULE_NAME: docs
+  PORT: 3001
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  # ============================================================================
+  # Installation
+  # ============================================================================
+  install:
+    desc: Install dependencies with pnpm
+    cmds:
+      - pnpm install
+
+  install:frozen:
+    desc: Install dependencies with frozen lockfile
+    cmds:
+      - pnpm install --frozen-lockfile
+
+  # ============================================================================
+  # Development
+  # ============================================================================
+  dev:
+    desc: Start Docusaurus development server
+    cmds:
+      - pnpm start
+
+  start:
+    desc: Start Docusaurus development server (alias)
+    cmds:
+      - task: dev
+
+  # ============================================================================
+  # Build
+  # ============================================================================
+  build:
+    desc: Build documentation for production
+    cmds:
+      - pnpm build
+
+  serve:
+    desc: Serve production build locally
+    cmds:
+      - pnpm serve
+
+  # ============================================================================
+  # Type Checking
+  # ============================================================================
+  typecheck:
+    desc: Run TypeScript type checking
+    cmds:
+      - pnpm typecheck
+
+  # ============================================================================
+  # Docusaurus Commands
+  # ============================================================================
+  swizzle:
+    desc: Swizzle Docusaurus components
+    cmds:
+      - pnpm swizzle
+
+  write-translations:
+    desc: Generate translation files
+    cmds:
+      - pnpm write-translations
+
+  write-heading-ids:
+    desc: Generate heading IDs for MDX files
+    cmds:
+      - pnpm write-heading-ids
+
+  # ============================================================================
+  # Docker
+  # ============================================================================
+  docker:build:
+    desc: Build Docker image
+    cmds:
+      - docker build -t almena-docs .
+
+  docker:up:
+    desc: Start with Docker Compose
+    cmds:
+      - docker compose up -d
+
+  docker:down:
+    desc: Stop Docker Compose services
+    cmds:
+      - docker compose down
+
+  docker:logs:
+    desc: View Docker Compose logs
+    cmds:
+      - docker compose logs -f
+
+  # ============================================================================
+  # Clean
+  # ============================================================================
+  clean:
+    desc: Clean Docusaurus cache and build
+    cmds:
+      - pnpm clear
+      - rm -rf build
+      - rm -rf .docusaurus
+
+  clean:all:
+    desc: Clean everything including node_modules
+    cmds:
+      - task: clean
+      - rm -rf node_modules
+
+  # ============================================================================
+  # Utilities
+  # ============================================================================
+  check:
+    desc: Run all checks (typecheck, build)
+    cmds:
+      - task: typecheck
+      - task: build
