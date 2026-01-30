@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         'user-guide/intro',
+        'user-guide/browser-compatibility',
         {
           type: 'category',
           label: 'Your Wallet',
