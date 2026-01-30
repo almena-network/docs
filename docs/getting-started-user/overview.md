@@ -8,17 +8,32 @@ Almena ID is a decentralized identity platform that gives you complete control o
 
 ## Prerequisites
 
-- A modern web browser (Chrome, Firefox, Edge, or Safari)
+- A supported web browser: **Chrome** (or Chromium-based) or **Firefox**
 - The Almena ID browser extension installed
+
+See [Browser Compatibility](../user-guide/browser-compatibility.md) for detailed requirements.
 
 ## Installation
 
 ### Browser Extension
 
-1. Visit the Chrome Web Store or Firefox Add-ons (links will be provided)
-2. Click "Add to Browser"
-3. Confirm the installation
-4. The Almena ID icon will appear in your browser toolbar
+**Supported Browsers**: Chrome (and Chromium-based browsers) or Firefox
+
+#### For Chrome/Chromium:
+1. Visit the [Chrome Web Store](https://chrome.google.com/webstore)
+2. Search for "Almena ID" or click the install link from the login page
+3. Click "Add to Chrome"
+4. Confirm the installation
+5. The Almena ID icon will appear in your browser toolbar
+
+#### For Firefox:
+1. Visit [Firefox Add-ons](https://addons.mozilla.org/firefox/)
+2. Search for "Almena ID" or click the install link from the login page
+3. Click "Add to Firefox"
+4. Confirm the installation
+5. The Almena ID icon will appear in your browser toolbar
+
+**Automatic Detection**: When you visit the Almena ID login page, the system automatically detects your browser and redirects you to the correct store.
 
 ### Web Application
 

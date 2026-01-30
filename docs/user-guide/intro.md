@@ -9,6 +9,7 @@ Welcome to the Almena ID User Guide. This comprehensive guide will help you unde
 ## What You'll Learn
 
 ### Getting Started
+- Browser compatibility and requirements
 - How to install Almena ID
 - Creating your first identity
 - Understanding your DID and keys
@@ -33,6 +34,7 @@ Welcome to the Almena ID User Guide. This comprehensive guide will help you unde
 
 ## Quick Links
 
+- [Browser Compatibility →](./browser-compatibility.md)
 - [Wallet Basics →](./wallet/dashboard.md)
 - [Security Guide →](./security/password-best-practices.md)
 - [Settings →](./settings/language.md)
