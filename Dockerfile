@@ -34,8 +34,8 @@ COPY --from=builder /app/build ./build
 COPY --from=builder /app/docusaurus.config.ts ./
 COPY --from=builder /app/sidebars.ts ./
 
-# Expose port 3000 (default Docusaurus serve port)
-EXPOSE 3000
+# Expose port 3001
+EXPOSE 3001
 
-# Serve the built site
-CMD ["yarn", "serve", "--host", "0.0.0.0", "--port", "3000"]
+# Serve the built site on port 3001
+CMD ["yarn", "serve", "--host", "0.0.0.0", "--port", "3001"]
