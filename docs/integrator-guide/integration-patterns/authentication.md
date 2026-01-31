@@ -114,7 +114,7 @@ app.post('/auth/challenge', async (req, res) => {
 ```
 
 **User Signs in Wallet**:
-The user opens their Almena ID wallet and signs the challenge. This happens client-side in the browser extension.
+The user opens their Almena ID wallet and signs the challenge. This happens client-side in the wallet application.
 
 ### Step 4: Verify Signature
 
@@ -273,7 +273,7 @@ async function login(did) {
   });
   const { challenge } = await challengeResp.json();
   
-  // Request user to sign in wallet (this would interact with extension)
+  // Request user to sign in wallet (this would interact with wallet app)
   const signature = await requestWalletSignature(challenge);
   
   // Verify signature

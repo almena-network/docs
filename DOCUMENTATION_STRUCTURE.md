@@ -173,7 +173,7 @@ Removed from public docs:
 - Internal workflows
 
 These belong in:
-- Module READMEs (backend, frontend, extension)
+- Module READMEs (backend, frontend, wallet)
 - Internal wiki/docs
 - CONTRIBUTING.md
 

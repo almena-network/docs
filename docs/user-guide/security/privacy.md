@@ -29,9 +29,9 @@ Almena ID is built with privacy as a core principle:
 
 ## What Data is Stored
 
-### Locally (In Your Browser)
+### Locally (On Your Device)
 
-**Stored in browser local storage**:
+**Stored in local storage**:
 - ✅ Encrypted private key
 - ✅ Public key (not sensitive)
 - ✅ DID (public identifier)
@@ -64,11 +64,11 @@ When backend APIs are implemented, the server may store:
 Your private key is encrypted with:
 - **Algorithm**: AES-256
 - **Key**: Derived from your password
-- **Storage**: Browser local storage
+- **Storage**: Device local storage
 
 This means:
 - Without your password, the encrypted key is useless
-- Even if someone accesses your browser storage, they can't use your key
+- Even if someone accesses your device storage, they can't use your key
 
 ### In Transit
 
@@ -94,37 +94,29 @@ No one can access:
 - ❌ Your password (never stored anywhere)
 - ❌ Your recovery phrase (never stored)
 
-## Browser Privacy
+## Device Privacy
 
-### Browser Storage
+### Device Storage
 
 Your data is isolated by:
-- **Browser**: Can't access other browsers' data
-- **Profile**: Separate from other browser profiles
-- **Origin**: Isolated from other websites
-
-### Incognito/Private Mode
-
-**Warning**: Using incognito mode means:
-- Your data is cleared when you close the window
-- You'll need to recover your identity each time
-
-**Recommendation**: Use regular browser mode for Almena ID.
+- **Device**: Can't access other devices' data
+- **Application**: Separate from other applications
+- **User**: Isolated from other users on shared devices
 
 ## Network Privacy
 
-### Extension Permissions
+### Wallet Permissions
 
-The Almena ID extension:
+The Almena ID wallet:
 - ❌ Doesn't read your browsing history
-- ❌ Doesn't monitor web pages
-- ❌ Doesn't track your activity
+- ❌ Doesn't monitor your activities
+- ❌ Doesn't track your usage
 - ✅ Only runs when you open it
 
 ### Internet Connection
 
 Currently:
-- Extension works entirely offline
+- Wallet works entirely offline
 - No internet connection needed
 - Future API features will require internet
 
@@ -134,7 +126,7 @@ Currently:
 
 When you log out:
 - Session is cleared
-- Encrypted data remains in browser storage
+- Encrypted data remains in device storage
 - Can log back in with your password
 
 ### Complete Deletion
@@ -142,9 +134,8 @@ When you log out:
 To completely remove your data:
 
 1. Log out of Almena ID
-2. Open browser settings
-3. Go to Extension settings
-4. Clear data for Almena ID extension
+2. Uninstall the application
+3. Or clear application data through device settings
 
 **⚠️ Warning**: This cannot be undone without your recovery phrase.
 
@@ -184,7 +175,7 @@ Almena ID does not:
 ### ✅ Do
 
 - Use Almena ID on trusted devices only
-- Keep your browser updated
+- Keep your device updated
 - Use device passwords/biometrics
 - Log out on shared computers
 
@@ -195,22 +186,26 @@ Almena ID does not:
 - Screenshot your dashboard
 - Share your DID on untrusted platforms
 
-## Browser Security
+## Device Security
 
-### Recommended Browsers
+### Desktop
 
 Almena ID works on:
-- ✅ Chrome (good privacy options)
-- ✅ Firefox (strong privacy focus)
-- ✅ Edge (built on Chromium)
-- ✅ Brave (privacy-focused)
+- ✅ Windows (with device encryption recommended)
+- ✅ macOS (with FileVault recommended)
+- ✅ Linux (with disk encryption recommended)
 
-### Browser Extensions
+### Mobile
 
-Be careful with other browser extensions:
-- Some extensions can read page content
-- Malicious extensions could compromise security
-- Only install extensions from trusted sources
+- ✅ Android (with device encryption)
+- ✅ iOS (encrypted by default)
+
+### Security Tips
+
+Be careful with:
+- Other applications that might access storage
+- Malicious software
+- Only install applications from trusted sources
 
 ## Future Privacy Features
 
@@ -226,9 +221,9 @@ Planned privacy enhancements:
 
 No. Your private key never leaves your device and is always encrypted.
 
-### Is my browsing tracked?
+### Is my activity tracked?
 
-No. The extension doesn't monitor your browsing activity.
+No. The wallet doesn't monitor your activity.
 
 ### Can I be anonymous?
 

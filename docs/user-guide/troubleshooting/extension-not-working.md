@@ -2,43 +2,42 @@
 sidebar_position: 1
 ---
 
-# Extension Not Working
+# Wallet Not Working
 
-Solutions for when the Almena ID extension isn't responding or functioning correctly.
+Solutions for when the Almena ID wallet isn't responding or functioning correctly.
 
 ## Common Issues
 
-### Extension Won't Open
+### Wallet Won't Open
 
 **Symptoms**:
-- Clicking the extension icon does nothing
-- Side panel doesn't appear
-- Extension icon is grayed out
+- Clicking the app icon does nothing
+- App window doesn't appear
+- App icon is grayed out or unresponsive
 
 **Solutions**:
 
-1. **Refresh the Extension**
-   - Close the side panel
-   - Click the extension icon again
-   - Wait a few seconds for it to load
+1. **Restart the Application**
+   - Close the wallet completely
+   - Wait a few seconds
+   - Open it again
 
-2. **Restart Browser**
-   - Close all browser windows
-   - Reopen browser
-   - Try opening the extension again
+2. **Restart Your Device**
+   - Close all applications
+   - Restart your computer or mobile device
+   - Try opening the wallet again
 
-3. **Check Browser Console**
-   - Press F12 to open DevTools
-   - Click "Console" tab
-   - Look for error messages related to Almena ID
+3. **Check for Updates**
+   - Make sure you have the latest version installed
+   - Update through your app store or download the latest version
 
-4. **Reinstall Extension**
-   - Remove the extension
-   - Restart browser
-   - Install extension again
-   - Your data remains safe (unless you clear browser storage)
+4. **Reinstall the Wallet**
+   - Uninstall the application
+   - Restart your device
+   - Install the wallet again
+   - Your data remains safe if you have your recovery phrase
 
-### Extension Appears Frozen
+### Wallet Appears Frozen
 
 **Symptoms**:
 - Interface won't respond to clicks
@@ -47,19 +46,33 @@ Solutions for when the Almena ID extension isn't responding or functioning corre
 
 **Solutions**:
 
-1. **Refresh the Side Panel**
-   - Close and reopen the side panel
-   - Try again
+1. **Force Close and Reopen**
+   - Force close the application
+   - Wait a few seconds
+   - Open it again
 
-2. **Clear Browser Cache**
-   - Browser Settings → Privacy → Clear browsing data
-   - Select "Cached images and files"
-   - Clear data
-   - Restart browser
+2. **Clear Application Cache** (Desktop)
+   - Close the wallet
+   - Navigate to application data folder
+   - Delete cache files
+   - Restart the wallet
 
-3. **Check for Browser Updates**
-   - Update to latest browser version
-   - Restart browser
+3. **Check System Resources**
+   - Close other applications to free up memory
+   - Check if your device has enough storage space
+   - Restart your device if needed
+
+### Mobile-Specific Issues
+
+**Android**:
+- Check if battery optimization is disabling the app
+- Ensure the app has necessary permissions
+- Clear app cache in Settings → Apps → Almena ID → Clear Cache
+
+**iOS**:
+- Force close and reopen the app
+- Check for iOS updates
+- Reinstall if issues persist
 
 ## Next Steps
 

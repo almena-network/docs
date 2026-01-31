@@ -20,17 +20,17 @@ Yes, Almena ID is free for users.
 
 ## How is my data stored?
 
-All your data is stored locally in your browser:
+All your data is stored locally on your device:
 - Encrypted with your password
 - Never sent to our servers
 - Only accessible by you
-- Deleted when you delete the extension
+- Deleted when you uninstall the wallet
 
 ## Can I use Almena ID on multiple devices?
 
 Yes! Use your 12-word recovery phrase to set up your identity on other devices:
 
-1. Install extension on new device
+1. Install Almena ID on the new device
 2. Choose "Recover Account"
 3. Enter your recovery phrase
 4. Create a password for that device
@@ -45,24 +45,16 @@ Your same DID will be available on all devices.
 
 The wallet works offline, but connecting to services requires internet.
 
-## Which browsers are supported?
+## Which platforms are supported?
 
-- ✅ Google Chrome
-- ✅ Mozilla Firefox
-- ✅ Microsoft Edge
-- ✅ Brave
-- ✅ Any Chromium-based browser
+### Desktop
+- ✅ Windows 10+
+- ✅ macOS 10.13+
+- ✅ Linux (Ubuntu, Debian, Fedora, etc.)
 
-Safari support coming soon.
-
-## Can I use it on mobile?
-
-Mobile browser extension support depends on the browser:
-- **Firefox Mobile**: Supported
-- **Chrome Mobile**: Limited extension support
-- **Safari Mobile**: Coming soon
-
-Native mobile apps are planned for the future.
+### Mobile
+- ✅ Android 8.0+
+- ✅ iOS 13.0+
 
 ## What is a DID?
 
@@ -173,24 +165,17 @@ Yes! Send suggestions to:
 - Email: feedback@almena.id
 - Or through our community channels (coming soon)
 
-## How do I update the extension?
+## How do I update the wallet?
 
-Browser extensions update automatically. You can also manually update:
-1. Browser → Extensions → Manage Extensions
-2. Find Almena ID
-3. Click "Update" if available
+### Desktop
+Updates are automatic when available, or you can download the latest version from the official website.
+
+### Mobile
+Updates are delivered through your app store (Google Play or App Store).
 
 ## What's new in the latest version?
 
 Check the [Changelog](../changelog/overview.md) for latest updates and features.
-
-## Is there a desktop app?
-
-Not yet. Currently available as:
-- Browser extension
-- Web application
-
-Desktop apps may come in future versions.
 
 ## Can businesses use Almena ID?
 
@@ -219,8 +204,8 @@ Follow @almenaid for announcements.
 Email: bugs@almena.id
 
 Include:
-- Browser and version
-- Operating system
+- Platform and version (Windows, macOS, Linux, Android, iOS)
+- Operating system version
 - Steps to reproduce
 - Screenshots (no passwords/phrases!)
 

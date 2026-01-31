@@ -63,10 +63,9 @@ The following remain in their original form:
 ### Language Not Changing
 
 If the language doesn't update:
-1. Refresh the extension (close and reopen side panel)
-2. Restart your browser
+1. Close and reopen Almena ID
+2. Restart the application
 3. Try selecting the language again
-4. Check browser console for errors
 
 ### Missing Translation
 
@@ -85,7 +84,7 @@ Contact us:
 ## Language and Privacy
 
 Your language preference:
-- ✅ Is stored locally in your browser
+- ✅ Is stored locally on your device
 - ✅ Is not sent to any server
 - ✅ Does not identify you personally
 

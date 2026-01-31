@@ -72,7 +72,7 @@ To logout securely:
 2. Select "Logout"
 3. Confirm your choice
 
-**Note**: Logging out clears your session but your encrypted data remains safe in browser storage.
+**Note**: Logging out clears your session but your encrypted data remains safe in local storage.
 
 ## Next Steps
 

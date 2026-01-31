@@ -9,7 +9,7 @@ Learn how to create your decentralized identity with Almena ID.
 ## Before You Start
 
 Make sure you have:
-- Almena ID browser extension installed
+- Almena ID wallet installed on your device
 - A pen and paper to write down your recovery phrase
 - A safe place to store your recovery phrase
 
@@ -17,7 +17,7 @@ Make sure you have:
 
 ### Step 1: Open Almena ID
 
-Click the Almena ID icon in your browser toolbar to open the extension.
+Open the Almena ID wallet application on your device.
 
 ### Step 2: Choose "Create New Account"
 

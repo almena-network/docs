@@ -8,32 +8,27 @@ Almena ID is a decentralized identity platform that gives you complete control o
 
 ## Prerequisites
 
-- A supported web browser: **Chrome** (or Chromium-based) or **Firefox**
-- The Almena ID browser extension installed
+- Almena ID wallet installed on your device
 
-See [Browser Compatibility](../user-guide/browser-compatibility.md) for detailed requirements.
+See [Platform Compatibility](../user-guide/browser-compatibility.md) for detailed requirements.
 
 ## Installation
 
-### Browser Extension
+### Desktop (Windows, macOS, Linux)
 
-**Supported Browsers**: Chrome (and Chromium-based browsers) or Firefox
+1. Download the Almena ID installer from the official website
+2. Run the installer for your operating system
+3. Follow the installation wizard
+4. Launch Almena ID from your applications
 
-#### For Chrome/Chromium:
-1. Visit the [Chrome Web Store](https://chrome.google.com/webstore)
-2. Search for "Almena ID" or click the install link from the login page
-3. Click "Add to Chrome"
-4. Confirm the installation
-5. The Almena ID icon will appear in your browser toolbar
+### Mobile (Android, iOS)
 
-#### For Firefox:
-1. Visit [Firefox Add-ons](https://addons.mozilla.org/firefox/)
-2. Search for "Almena ID" or click the install link from the login page
-3. Click "Add to Firefox"
-4. Confirm the installation
-5. The Almena ID icon will appear in your browser toolbar
+1. Visit your app store (Google Play or App Store)
+2. Search for "Almena ID"
+3. Install the application
+4. Open the app
 
-**Automatic Detection**: When you visit the Almena ID login page, the system automatically detects your browser and redirects you to the correct store.
+See [Platform Compatibility](../user-guide/browser-compatibility.md) for detailed installation instructions.
 
 ### Web Application
 
@@ -70,7 +65,7 @@ Once set up, you'll have:
 
 - **DID (Decentralized Identifier)**: Your unique identity on the platform (format: `did:almena:...`)
 - **Public Key**: Your public cryptographic key for verification
-- **Private Key**: Encrypted and stored securely in your browser
+- **Private Key**: Encrypted and stored securely on your device
 
 ## Language Support
 

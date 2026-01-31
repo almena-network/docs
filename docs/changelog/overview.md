@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-#### Browser Extension
+#### Cross-Platform Wallet (Tauri 2.0)
 - Create new decentralized identity with password protection
 - Generate 12-word recovery phrase (BIP39 standard)
 - Derive cryptographic keys using BIP32/BIP44 (path: `m/44'/0'/0'/0/0`)
@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Secure logout with data clearing
 - Onboarding flow for new users
 - Account recovery flow
+- Support for Windows, macOS, Linux, Android, and iOS
 
 #### Backend API
 - FastAPI REST API setup

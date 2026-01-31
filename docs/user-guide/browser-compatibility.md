@@ -2,96 +2,97 @@
 sidebar_position: 2
 ---
 
-# Browser Compatibility
+# Platform Compatibility
 
-Almena ID extension is available for specific browsers. This guide explains which browsers are supported and how to install the extension.
+Almena ID wallet is available for multiple platforms. This guide explains which platforms are supported and how to install the wallet.
 
-## Supported Browsers
+## Supported Platforms
 
-### ✅ Chrome
+### Desktop
+
+#### ✅ Windows
 - **Status**: Fully Supported
-- **Minimum Version**: Chrome 88+
-- **Installation**: [Chrome Web Store](https://chrome.google.com/webstore)
+- **Minimum Version**: Windows 10 or higher
+- **Architecture**: x64
 
-The extension works on Google Chrome and all Chromium-based browsers, including:
-- Google Chrome
-- Chromium
-- Brave Browser
-- Microsoft Edge (Chromium version)
-- Vivaldi
-- Opera (Chromium version)
-
-### ✅ Firefox
+#### ✅ macOS
 - **Status**: Fully Supported
-- **Minimum Version**: Firefox 91+
-- **Installation**: [Firefox Add-ons](https://addons.mozilla.org/firefox/)
+- **Minimum Version**: macOS 10.13 or higher
+- **Architecture**: x64, Apple Silicon (M1/M2/M3)
 
-## Unsupported Browsers
+#### ✅ Linux
+- **Status**: Fully Supported
+- **Distributions**: Ubuntu 18.04+, Debian 10+, Fedora 32+, and most modern distributions
+- **Architecture**: x64
 
-The following browsers are **not currently supported**:
+### Mobile
 
-### ❌ Safari
-Safari extensions require a different architecture and are not supported at this time.
+#### ✅ Android
+- **Status**: Fully Supported
+- **Minimum Version**: Android 8.0 (API level 26) or higher
 
-### ❌ Edge (Standalone)
-The standalone version of Microsoft Edge (pre-Chromium) is not supported. Please use the Chromium-based version of Edge, which is fully compatible.
-
-### ❌ Opera (Standalone)
-The standalone version of Opera (pre-Chromium) is not supported. Please use the Chromium-based version of Opera, which is compatible through Chrome Web Store.
-
-## Automatic Detection
-
-When you visit the Almena ID login page, the system automatically detects your browser and directs you to the appropriate extension store:
-
-- **Chrome users**: Redirected to Chrome Web Store
-- **Firefox users**: Redirected to Firefox Add-ons
-- **Other browsers**: Redirected to Chrome Web Store (for Chromium-based browsers)
-
-## System Requirements
-
-### For Chrome/Chromium
-- Chrome 88 or higher
-- Operating Systems:
-  - Windows 10 or higher
-  - macOS 10.13 or higher
-  - Linux (Ubuntu 18.04+, Debian 10+, Fedora 32+)
-
-### For Firefox
-- Firefox 91 or higher
-- Operating Systems:
-  - Windows 10 or higher
-  - macOS 10.12 or higher
-  - Linux (most distributions)
+#### ✅ iOS
+- **Status**: Fully Supported
+- **Minimum Version**: iOS 13.0 or higher
 
 ## Installation Instructions
 
-### Chrome
-1. Visit the [Almena ID login page](/)
-2. Click "Login with Almena ID"
-3. If the extension is not installed, click "Install Extension"
-4. You'll be redirected to Chrome Web Store
-5. Click "Add to Chrome"
-6. Confirm the installation
+### Windows
+1. Download the Almena ID installer (.msi or .exe) from the official website
+2. Run the installer
+3. Follow the installation wizard
+4. Launch Almena ID from Start Menu
 
-### Firefox
-1. Visit the [Almena ID login page](/)
-2. Click "Login with Almena ID"
-3. If the extension is not installed, click "Install Extension"
-4. You'll be redirected to Firefox Add-ons
-5. Click "Add to Firefox"
-6. Confirm the installation
+### macOS
+1. Download the Almena ID installer (.dmg) from the official website
+2. Open the DMG file
+3. Drag Almena ID to Applications folder
+4. Launch from Applications or Spotlight
+
+### Linux
+1. Download the appropriate package for your distribution:
+   - `.deb` for Debian/Ubuntu
+   - `.rpm` for Fedora/RHEL
+   - `.AppImage` for universal compatibility
+2. Install using your package manager or run the AppImage directly
+3. Launch from your application menu
+
+### Android
+1. Open Google Play Store
+2. Search for "Almena ID"
+3. Tap "Install"
+4. Open the app after installation
+
+### iOS
+1. Open App Store
+2. Search for "Almena ID"
+3. Tap "Get" to install
+4. Open the app after installation
+
+## System Requirements
+
+### Desktop
+- **RAM**: 4GB minimum, 8GB recommended
+- **Storage**: 100MB free space
+- **Display**: 1280x720 minimum resolution
+
+### Mobile
+- **Storage**: 50MB free space
+- **Internet**: Required for initial setup and synchronization
 
 ## Troubleshooting
 
-### Extension Not Working?
-- Make sure you're using a supported browser version
-- Try disabling other extensions that might conflict
-- Clear browser cache and restart
-- See [Extension Not Working](./troubleshooting/extension-not-working.md) for more help
+### Wallet Won't Start?
+- Make sure you meet the minimum system requirements
+- Try restarting your device
+- Reinstall the application
+- See [Wallet Not Working](./troubleshooting/extension-not-working.md) for more help
 
-### Wrong Store Redirect?
-If you're using a Chromium-based browser (Brave, Vivaldi, etc.) and get redirected to Chrome Web Store, this is expected behavior. Chrome Web Store extensions work on all Chromium-based browsers.
+### Performance Issues?
+- Close other applications to free up memory
+- Update to the latest version
+- Restart the application
 
 ## Future Support
 
-We're evaluating support for additional browsers. If you'd like to see Almena ID on a specific browser, contact us at support@almena.id.
+We're continuously improving platform support. If you'd like to see Almena ID on a specific platform or have compatibility issues, contact us at support@almena.id.

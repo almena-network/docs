@@ -11,14 +11,14 @@ Learn how to recover your identity using your 12-word recovery phrase.
 Recover your identity when:
 - You've forgotten your password
 - You're setting up on a new device
-- You've reinstalled your browser
-- You've cleared browser data
+- You've reinstalled the Almena ID wallet
+- You've cleared application data
 
 ## Before You Start
 
 You'll need:
 - Your 12-word recovery phrase (in the correct order)
-- Access to the Almena ID extension
+- Almena ID wallet installed on your device
 
 **Without your recovery phrase, recovery is impossible.**
 
@@ -26,7 +26,7 @@ You'll need:
 
 ### Step 1: Open Almena ID
 
-Click the Almena ID icon in your browser toolbar.
+Open the Almena ID wallet application on your device.
 
 ### Step 2: Choose "Recover Account"
 
@@ -52,7 +52,7 @@ Create a new password for this device:
 - Include letters, numbers, and special characters
 - Can be different from your previous password
 
-**Note**: This new password only applies to this device/browser. Your identity (DID) remains the same.
+**Note**: This new password only applies to this device. Your identity (DID) remains the same.
 
 ### Step 5: Recovery Complete!
 
@@ -75,7 +75,7 @@ When you recover your identity:
 
 ❌ **Not Restored**:
 - Your old password (you create a new one)
-- Browser-specific settings (you'll need to reconfigure)
+- Device-specific settings (you'll need to reconfigure)
 - Language preferences (reset to default)
 
 ## Using Multiple Devices
@@ -102,14 +102,14 @@ If you see this error:
 ### "Recovery Failed"
 
 Possible causes:
-- Browser storage issues
-- Extension problems
+- Storage issues
+- Application problems
 - Network connectivity (shouldn't affect recovery, but may cause UI issues)
 
 **Solution**:
-1. Close and reopen the extension
+1. Close and reopen the wallet
 2. Try recovery again
-3. Restart your browser if needed
+3. Restart your device if needed
 
 ### Lost Recovery Phrase
 

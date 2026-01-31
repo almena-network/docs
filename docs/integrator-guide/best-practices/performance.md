@@ -197,15 +197,15 @@ async function getUserByDID(did) {
 
 ## Client-Side Optimization
 
-### Lazy Load Extension
+### Lazy Load SDK
 
 ```javascript
 // Only load when needed
-async function getAlmenaExtension() {
-  if (!window.almenaExtension) {
-    window.almenaExtension = await import('./almena-sdk');
+async function getAlmenaSDK() {
+  if (!window.almenaSDK) {
+    window.almenaSDK = await import('./almena-sdk');
   }
-  return window.almenaExtension;
+  return window.almenaSDK;
 }
 ```
 

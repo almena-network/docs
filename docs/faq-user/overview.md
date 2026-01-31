@@ -10,22 +10,22 @@ Almena ID is a decentralized identity wallet that gives you complete control ove
 
 ### Is Almena ID free?
 
-Yes, the Almena ID browser extension and basic identity management is free to use.
+Yes, the Almena ID wallet and basic identity management is free to use.
 
-### Which browsers are supported?
+### Which platforms are supported?
 
-Almena ID works on:
-- Chrome
-- Firefox  
-- Edge
-- Safari
-- Any Chromium-based browser
+Almena ID is available on:
+- Windows
+- macOS
+- Linux
+- Android
+- iOS
 
 ## Account Creation
 
 ### How do I create an account?
 
-1. Install the Almena ID browser extension
+1. Install the Almena ID wallet on your device
 2. Click "Create New Account"
 3. Create a strong password
 4. Save your 12-word recovery phrase
@@ -73,7 +73,7 @@ Yes. Almena ID uses:
 
 ### Where is my data stored?
 
-Your encrypted private key, public key, and DID are stored locally in your browser storage. Your password and recovery phrase are NEVER stored anywhere.
+Your encrypted private key, public key, and DID are stored locally on your device. Your password and recovery phrase are NEVER stored anywhere.
 
 ### Can someone hack my identity?
 
@@ -140,26 +140,25 @@ Share your DID. It's safe to share publicly - it's like a username or email addr
 
 ## Troubleshooting
 
-### The extension isn't working
+### The wallet isn't working
 
 Try these steps:
-1. Refresh the extension (close and reopen)
-2. Check browser console for errors (F12)
-3. Restart your browser
-4. Reinstall the extension
+1. Close and reopen the wallet
+2. Restart your device
+3. Reinstall the application
 
 ### I can't see my DID
 
 Make sure:
 1. You're logged in
 2. Your wallet was created successfully
-3. Check browser console for errors
+3. Wait a few seconds for data to load
 
 ### Language isn't changing
 
-1. Refresh the extension
+1. Restart the wallet
 2. Verify your selection was saved
-3. Restart the browser
+3. Restart the application
 
 ## Privacy
 
@@ -169,11 +168,11 @@ None. We don't collect any personal data, analytics, or tracking information.
 
 ### Can you see my identity information?
 
-No. Your identity information is stored locally in your browser and encrypted with your password. We have no access to it.
+No. Your identity information is stored locally on your device and encrypted with your password. We have no access to it.
 
-### Is my browsing tracked?
+### Is my activity tracked?
 
-No. The Almena ID extension doesn't track your browsing or collect any data about your activities.
+No. The Almena ID wallet doesn't track your activity or collect any data about your usage.
 
 ## Technical Questions
 
@@ -191,7 +190,7 @@ Almena ID uses these battle-tested standards for security.
 Your private key is:
 1. Generated from your recovery phrase
 2. Encrypted with AES-256 using your password
-3. Stored in your browser's local storage
+3. Stored in your device's local storage
 4. Never transmitted to any server
 
 ### Can I export my private key?
@@ -223,11 +222,11 @@ Check out:
 
 ### How do I delete my account?
 
-Your identity is decentralized and exists only in your browser. To "delete" it:
+Your identity is decentralized and exists only on your device. To "delete" it:
 1. Log out
-2. Clear your browser data for the Almena ID extension
+2. Uninstall the Almena ID wallet
 
-Note: This only removes it from your browser. Your DID still exists on any blockchain or systems where it was recorded.
+Note: This only removes it from your device. Your DID still exists on any blockchain or systems where it was recorded.
 
 ### How do I change my password?
 

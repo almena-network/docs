@@ -103,57 +103,51 @@ Unfortunately, without your recovery phrase, there's no way to recover your acco
 
 ### Too Many Failed Attempts
 
-Some browsers may slow down after many failed password attempts.
+The application may slow down after many failed password attempts.
 
 **Solutions**:
 1. Wait 15 minutes
-2. Close browser completely
+2. Close the wallet completely
 3. Reopen and try again
-4. If still locked, restart computer
+4. If still locked, restart device
 
-## Extension Not Responding
+## Wallet Not Responding
 
-If the extension isn't responding to login attempts:
+If the wallet isn't responding to login attempts:
 
-1. **Refresh Extension**
-   - Close side panel
+1. **Restart Application**
+   - Close Almena ID completely
    - Reopen it
    - Try again
 
-2. **Restart Browser**
-   - Close all browser windows
-   - Reopen browser
+2. **Restart Device**
+   - If problem persists
+   - Restart your device
    - Try logging in
 
-3. **Check Browser Console**
-   - Press F12
-   - Look for error messages
-   - Report errors to support
+3. **Reinstall if Needed**
+   - Uninstall Almena ID
+   - Reinstall
+   - Recover with recovery phrase
 
-## Browser Issues
+## Different Device
 
-### Different Browser
+### Using a New Device
 
-If you created your identity in Chrome but now using Firefox:
+If you set up your identity on one device but now using another:
 
-**Note**: Each browser stores data separately. You need to recover your identity in the new browser using your recovery phrase.
+**Note**: Each device stores data separately. You need to recover your identity on the new device using your recovery phrase.
 
-1. Install extension in new browser
+1. Install Almena ID on new device
 2. Click "Recover Account"
 3. Enter recovery phrase
-4. Create password for this browser
-
-### Private/Incognito Mode
-
-**Note**: Almena ID doesn't work in private/incognito mode because it needs to store encrypted data.
-
-**Solution**: Use normal browser mode.
+4. Create password for this device
 
 ## Data Not Found
 
 ### "No wallet found" Error
 
-This means no identity is set up in this browser.
+This means no identity is set up on this device.
 
 **Solutions**:
 - If first time: Create new account
@@ -186,7 +180,7 @@ This means no identity is set up in this browser.
 
 2. **Contact Support**
    - Email: support@almena.id
-   - Include: Browser, OS, error message (not passwords!)
+   - Include: Platform, OS version, error message (not passwords!)
 
 3. **FAQ**
    - [User FAQ →](../../faq-user/overview.md)

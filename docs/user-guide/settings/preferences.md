@@ -179,40 +179,39 @@ If settings get misconfigured:
 ## Settings Data Storage
 
 All settings are stored:
-- Locally in your browser
+- Locally on your device
 - Encrypted with your password
 - Never sent to servers
-- Specific to each browser/device
+- Specific to each device
 
 ## Troubleshooting Settings
 
 ### Settings Not Saving
 
 **Solutions**:
-1. Check browser storage permissions
-2. Clear browser cache
-3. Restart browser
+1. Check storage permissions
+2. Clear application cache
+3. Restart the application
 4. Try again
 
 ### Settings Reset After Restart
 
 **Possible causes**:
-- Browser in private/incognito mode (doesn't save data)
-- Browser clearing data on exit
+- Storage issue on device
+- Application clearing data
 - Storage quota exceeded
 
 **Solutions**:
-- Use normal browser mode
-- Check browser privacy settings
+- Check device storage space
 - Free up storage space
+- Reinstall application if needed
 
 ### Can't Access Settings
 
 **Solutions**:
 1. Ensure you're logged in
-2. Refresh extension
-3. Restart browser
-4. Recover identity if needed
+2. Restart the application
+3. Recover identity if needed
 
 ## Tips
 

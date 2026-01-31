@@ -16,15 +16,15 @@ Solutions for issues with DID and key display.
 
 ### Solutions
 
-1. **Refresh the Extension**
-   - Close the side panel
-   - Click the Almena ID icon again
+1. **Refresh the Wallet**
+   - Close the wallet application
+   - Reopen Almena ID
    - Wait for it to load
 
-2. **Restart Browser**
-   - Close all browser windows
-   - Reopen browser
-   - Open Almena ID extension
+2. **Restart Application**
+   - Close Almena ID completely
+   - Restart your device if needed
+   - Open Almena ID wallet
 
 3. **Check if Logged In**
    - You might have been logged out
@@ -49,18 +49,18 @@ Solutions for issues with DID and key display.
 **Solutions**:
 
 1. **Grant Clipboard Permission**
-   - Browser may be blocking clipboard access
+   - Your device may be blocking clipboard access
    - Look for permission prompt
    - Click "Allow"
 
 2. **Manual Copy**
-   - Select the DID text with mouse
-   - Right-click → Copy
-   - Or use Ctrl+C (Windows) / Cmd+C (Mac)
+   - Select the DID text manually
+   - Use copy from context menu
+   - Or use Ctrl+C (Windows/Linux) / Cmd+C (Mac)
 
-3. **Try Different Browser**
-   - Some browsers restrict clipboard
-   - Try in Chrome or Firefox
+3. **Restart Application**
+   - Close and reopen Almena ID
+   - Try copying again
 
 ## DID Format Issues
 
@@ -102,8 +102,8 @@ Shortened: did:almena:a1b2...1234
 ### Public Key Not Showing
 
 **Same solutions as DID not showing**:
-1. Refresh extension
-2. Restart browser
+1. Refresh wallet
+2. Restart application
 3. Check if logged in
 4. Recover identity if needed
 
@@ -129,19 +129,14 @@ Public keys are longer than DIDs:
    - Give it 10-15 seconds
    - May be loading from storage
 
-2. **Check Browser Console**
-   - Press F12
-   - Look for errors
-   - May show what's wrong
+2. **Clear Application Cache**
+   - Close the wallet
+   - Clear app cache through system settings
+   - Reopen wallet
 
-3. **Clear Cache**
-   - Browser settings
-   - Clear cache and cookies for extension
-   - Reopen extension
-
-4. **Reinstall Extension**
-   - Remove extension
-   - Restart browser
+3. **Reinstall Wallet**
+   - Uninstall Almena ID
+   - Restart device
    - Install again
    - Recover with phrase
 
@@ -170,7 +165,7 @@ Recovery phrase should restore same DID.
 - Or created new identity instead of recovering
 - Check that you used correct 12 words
 
-## Browser Storage Issues
+## Storage Issues
 
 ### Storage Full or Corrupted
 
@@ -181,20 +176,20 @@ Recovery phrase should restore same DID.
 
 **Solutions**:
 
-1. **Check Storage Quota**
-   - Browser may be out of storage
-   - Clear browser data
-   - Free up space
+1. **Check Storage Space**
+   - Device may be out of storage
+   - Free up space on your device
 
-2. **Check Extension Permissions**
-   - Extension needs storage permission
-   - Browser settings → Extensions
-   - Verify Almena ID has storage permission
+2. **Clear Application Data**
+   - Go to device settings
+   - Find Almena ID in apps
+   - Clear cache (not data!)
+   - Try again
 
-3. **Try Different Profile**
-   - Create new browser profile
-   - Install extension there
-   - Recover identity
+3. **Reinstall Application**
+   - Uninstall Almena ID
+   - Reinstall from store/download
+   - Recover identity with phrase
 
 ## Visual Glitches
 
@@ -207,17 +202,16 @@ Recovery phrase should restore same DID.
 
 **Solutions**:
 
-1. **Zoom Level**
-   - Reset browser zoom to 100%
-   - Ctrl+0 (Windows) / Cmd+0 (Mac)
+1. **Screen Size**
+   - Try different window size (desktop)
+   - Rotate device (mobile)
 
-2. **Window Size**
-   - Resize browser window
-   - Try full screen
+2. **Update Application**
+   - Ensure you have latest version
+   - Update if available
 
-3. **Update Browser**
-   - Ensure latest browser version
-   - Update if needed
+3. **Restart Device**
+   - Sometimes a restart fixes display issues
 
 ## Reporting Issues
 
@@ -226,11 +220,11 @@ Recovery phrase should restore same DID.
 Contact support with:
 
 **Include**:
-- Browser name and version
-- Operating system
+- Platform (Windows, macOS, Linux, Android, iOS)
+- Application version
 - Screenshot of issue
 - Steps to reproduce
-- Error messages from console (F12)
+- Error messages
 
 **Don't include**:
 - Your password
@@ -246,18 +240,16 @@ Contact support with:
 ### Avoid Display Issues
 
 ✅ **Do**:
-- Keep browser updated
+- Keep app updated
 - Grant necessary permissions
-- Use supported browsers (Chrome, Firefox, Edge)
-- Restart browser occasionally
+- Restart app occasionally
 
 ❌ **Don't**:
-- Use too many extensions (can conflict)
 - Block storage permissions
-- Use very old browser versions
+- Use very old device versions
 
 ## Related Help
 
-- [Extension Not Working →](./extension-not-working.md)
+- [Wallet Not Working →](./extension-not-working.md)
 - [Can't Login →](./cant-login.md)
 - [Dashboard Guide →](../wallet/dashboard.md)

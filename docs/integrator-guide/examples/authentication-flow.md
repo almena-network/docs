@@ -302,7 +302,7 @@ async function loginWithAlmenaID() {
     const { challenge } = await auth.requestChallenge(did);
     
     // 3. Request user to sign challenge in their wallet
-    // This would interact with the Almena ID extension
+    // This would interact with the Almena ID wallet
     const signature = await requestWalletSignature(challenge);
     
     // 4. Verify signature
