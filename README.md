@@ -143,10 +143,94 @@ See [DOCUMENTATION_STRUCTURE.md](./DOCUMENTATION_STRUCTURE.md) for complete stru
 - Mark future features clearly as "Coming Soon"
 - Documentation must reflect current codebase state
 
-### Language
+### Languages
 
-- **All documentation MUST be in English**
-- No exceptions
+- **All documentation MUST be available in English AND Spanish**
+- English is the default/source language (`docs/`)
+- Spanish translations live in `i18n/es/docusaurus-plugin-content-docs/current/`
+- Both versions must be kept in sync
+
+## Internationalization (i18n)
+
+### Supported Languages
+
+- **English** (default): `docs/`
+- **Spanish**: `i18n/es/docusaurus-plugin-content-docs/current/`
+
+### Working with Translations
+
+#### 1. Write Content in English First
+
+Always create or update content in English first in the `docs/` directory.
+
+#### 2. Translate to Spanish
+
+Copy the file structure to the Spanish directory and translate:
+
+```bash
+# Example: Translating a user guide file
+# English source: docs/user-guide/wallet/dashboard.md
+# Spanish target: i18n/es/docusaurus-plugin-content-docs/current/user-guide/wallet/dashboard.md
+
+# Create the directory structure
+mkdir -p i18n/es/docusaurus-plugin-content-docs/current/user-guide/wallet/
+
+# Copy and translate
+cp docs/user-guide/wallet/dashboard.md \
+   i18n/es/docusaurus-plugin-content-docs/current/user-guide/wallet/dashboard.md
+
+# Edit the Spanish file with translations
+```
+
+#### 3. Update JSON Translation Files
+
+When adding new navbar items, footer links, or sidebar categories, update:
+- `i18n/es/docusaurus-theme-classic/navbar.json`
+- `i18n/es/docusaurus-theme-classic/footer.json`
+- `i18n/es/docusaurus-plugin-content-docs/current.json`
+
+#### 4. Regenerate Translation Files (if needed)
+
+If structure changes significantly:
+
+```bash
+pnpm docusaurus write-translations --locale es
+```
+
+### Development with Translations
+
+#### Start dev server in Spanish
+
+```bash
+pnpm start -- --locale es
+```
+
+#### Build both languages
+
+```bash
+pnpm build
+```
+
+This builds both English and Spanish versions.
+
+### Translation Guidelines
+
+1. **Maintain structure**: Keep the same file structure in both languages
+2. **Code examples**: Keep code in English, translate comments
+3. **Technical terms**: Some terms like "DID", "API", "SDK" remain in English
+4. **URLs and links**: Update internal links to point to Spanish versions when applicable
+5. **Keep in sync**: When updating English docs, update Spanish immediately
+
+### Checking Translations
+
+```bash
+# Build and check for broken links in both languages
+pnpm build
+
+# Serve and check Spanish version
+pnpm serve
+# Then navigate to /es/ in your browser
+```
 
 ## Environment Variables
 

@@ -15,42 +15,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SDK for Python
 - Additional authentication methods
 
-## [0.1.0] - 2024-01-XX
+## [0.1.0] - 2026-02-01
 
 ### Added
 
-#### Cross-Platform Wallet (Tauri 2.0)
+#### Cross-Platform Wallet (Tauri 2.0 + Svelte 5)
+
+**Identity Creation & Management**
 - Create new decentralized identity with password protection
 - Generate 12-word recovery phrase (BIP39 standard)
-- Derive cryptographic keys using BIP32/BIP44 (path: `m/44'/0'/0'/0/0`)
-- Generate Decentralized Identifier (DID) from public key
-- Encrypt private keys with AES-256 using user password
+- Derive Ed25519 cryptographic keypair from BIP39 mnemonic
+- Generate Decentralized Identifier (DID) format: `did:almena:{identifier}`
+- Secure storage: Private key in device keychain, public key in Tauri Store
 - Recover identity from existing 12-word recovery phrase
-- Dashboard displaying DID and public key
-- Copy DID and public key to clipboard
-- Multi-language support: English, Spanish, French, German, Italian
-- Language selection in settings
-- Secure logout with data clearing
-- Onboarding flow for new users
-- Account recovery flow
-- Support for Windows, macOS, Linux, Android, and iOS
+- Cross-device identity recovery (same DID on multiple devices)
+- Password hashing with Argon2 (stored for session management)
 
-#### Backend API
-- FastAPI REST API setup
-- Health check endpoint (`GET /health`)
-- Root information endpoint (`GET /`)
-- CORS middleware configuration
+**Wallet Interface**
+- Welcome screen with Create/Recover options
+- Multi-step onboarding flow (password → recovery phrase → success)
+- Dashboard displaying DID with copy functionality
+- Sidebar navigation menu (Home, Identity, Credentials, Security, Settings, Logout)
+- Collapsible sidebar on mobile/tablet with hamburger button
+- Consistent header and footer across all screens
+- Responsive design for mobile, tablet, and desktop
+
+**Security Features**
+- Auto-lock after 5 minutes of inactivity
+- Unlock screen with password re-authentication
+- Biometric authentication (Touch ID on macOS)
+- Secure logout with confirmation dialog
+- Password validation (minimum 8 characters)
+- BIP39 phrase validation
+- Activity monitoring (mouse, keyboard, touch events)
+
+**Storage & Cryptography**
+- Private keys stored in native keychain:
+  - macOS/iOS: Keychain
+  - Windows: Credential Manager
+  - Linux: Secret Service
+  - Android: Keystore
+- Public keys and DID stored in Tauri Store
+- Password hashing with Argon2
+- No sensitive data in logs
+
+**Languages**
+- Multi-language support: English and Spanish
+- Auto-detect host system language (defaults to English)
+- Translations for all UI elements
+
+**Platform Support**
+- Windows (desktop)
+- macOS (desktop)
+- Linux (desktop)
+- Android (mobile/tablet) - ready for deployment
+- iOS (mobile/tablet) - ready for deployment
+
+#### Backend API (FastAPI)
+- REST API setup with FastAPI
+- Health check endpoint (`GET /api/v1/health`)
+- Root information endpoint (`GET /api/v1/`)
+- CORS middleware configuration for frontend
 - Docker containerization
 - Docker Compose setup with PostgreSQL
+- Hexagonal architecture (DDD) structure
+- SQLAlchemy async ORM integration
 
-#### Frontend
-- Next.js 16 application setup
-- React 19 integration
-- TypeScript configuration
+#### Frontend (Next.js)
+- Landing page with features and use cases
+- Login page (placeholder)
+- Dashboard layout with sidebar navigation
+- Multi-language support: English and Spanish (next-intl)
+- Responsive design (mobile, tablet, desktop)
+- TypeScript with strict type checking
 - Tailwind CSS styling
-- Multi-language support with next-intl
 - Docker containerization
-- Health check endpoint
+- Component library: Header, Footer, DashboardLayout
+- Health check endpoint for monitoring
 
 #### Documentation
 - User getting started guide
@@ -75,10 +116,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 - No logging of sensitive data (private keys, passwords, mnemonics)
-- Client-side encryption only
+- Client-side only identity management
 - No server-side storage of sensitive keys
-- BIP39/BIP32/BIP44 cryptographic standards
-- AES-256 encryption for stored keys
+- BIP39 standard for recovery phrases
+- Ed25519 cryptographic keypairs
+- Argon2 password hashing
+- Native keychain storage for private keys
+- Auto-lock after inactivity (5 minutes)
+- Biometric authentication support (macOS Touch ID)
+- Secure session management
 
 ## Version History
 

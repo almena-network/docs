@@ -9,12 +9,12 @@ Check if the Almena ID API is running and responding.
 ## Endpoint
 
 ```http
-GET /health
+GET /api/v1/health
 ```
 
 **Base URL**: `https://api.almena.id`
 
-**Full URL**: `https://api.almena.id/health`
+**Full URL**: `https://api.almena.id/api/v1/health`
 
 ## Request
 
@@ -54,14 +54,14 @@ None.
 ### cURL
 
 ```bash
-curl https://api.almena.id/health
+curl https://api.almena.id/api/v1/health
 ```
 
 ### JavaScript (Fetch)
 
 ```javascript
 const checkHealth = async () => {
-  const response = await fetch('https://api.almena.id/health');
+  const response = await fetch('https://api.almena.id/api/v1/health');
   const data = await response.json();
   console.log(data.status); // "ok"
   return data;
@@ -76,7 +76,7 @@ checkHealth();
 const axios = require('axios');
 
 const checkHealth = async () => {
-  const response = await axios.get('https://api.almena.id/health');
+  const response = await axios.get('https://api.almena.id/api/v1/health');
   console.log(response.data.status); // "ok"
   return response.data;
 };
@@ -90,7 +90,7 @@ checkHealth();
 import requests
 
 def check_health():
-    response = requests.get('https://api.almena.id/health')
+    response = requests.get('https://api.almena.id/api/v1/health')
     data = response.json()
     print(data['status'])  # "ok"
     return data
@@ -105,7 +105,7 @@ import httpx
 
 async def check_health():
     async with httpx.AsyncClient() as client:
-        response = await client.get('https://api.almena.id/health')
+        response = await client.get('https://api.almena.id/api/v1/health')
         data = response.json()
         print(data['status'])  # "ok"
         return data
@@ -123,7 +123,7 @@ Use this endpoint to monitor API availability:
 // Check every 30 seconds
 setInterval(async () => {
   try {
-    const response = await fetch('https://api.almena.id/health');
+    const response = await fetch('https://api.almena.id/api/v1/health');
     if (response.ok) {
       console.log('API is healthy');
     } else {
@@ -143,7 +143,7 @@ Include in your application's health check:
 app.get('/health', async (req, res) => {
   try {
     // Check Almena API
-    const almenaHealth = await fetch('https://api.almena.id/health');
+    const almenaHealth = await fetch('https://api.almena.id/api/v1/health');
     const almenaData = await almenaHealth.json();
     
     if (almenaData.status === 'ok') {

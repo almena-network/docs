@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "Almena ID",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Logo de Almena",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.For Users": {
+    "message": "Para Usuarios",
+    "description": "Navbar item with label For Users"
+  },
+  "item.label.For Integrators": {
+    "message": "Para Integradores",
+    "description": "Navbar item with label For Integrators"
+  },
+  "item.label.Changelog": {
+    "message": "Registro de Cambios",
+    "description": "Navbar item with label Changelog"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

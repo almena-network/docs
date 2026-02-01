@@ -28,40 +28,59 @@ You'll need:
 
 Open the Almena ID wallet application on your device.
 
-### Step 2: Choose "Recover Account"
+### Step 2: Choose "Recover Identity"
 
-On the welcome screen, click the **"Recover Account"** button.
+On the welcome screen, click the **"Recover Identity"** button.
 
-### Step 3: Enter Your Recovery Phrase
+### Step 3: Create a New Password
 
-1. You'll see 12 input fields
-2. Enter each word of your recovery phrase **in order**
-3. The words must match exactly (case doesn't matter)
-4. Click "Next" when all words are entered
+Create a password for this device:
+- Minimum 8 characters
+- Can be different from your previous password
+- Specific to this device only
+
+**Note**: This password only applies to this device. Your identity (DID) will remain the same across all devices.
+
+Enter the password twice to confirm it matches.
+
+### Step 4: Enter Your Recovery Phrase
+
+You'll see a large text area where you can:
+
+1. **Paste your recovery phrase**: Click "Paste from clipboard" to automatically fill all 12 words
+2. **Type manually**: Enter your 12 words separated by spaces
+
+**Instructions displayed**:
+- Words must be separated by spaces
+- You need exactly 12 words
+- Word counter shows progress (e.g., "11/12 words")
+
+The **"Recover Identity"** button only activates when you have exactly 12 words entered.
 
 **Common Issues**:
 - Make sure words are spelled correctly
-- Verify you're entering them in the right order
-- Check for extra spaces
-- Ensure you're using the recovery phrase for this identity
+- Words should be separated by single spaces
+- No extra spaces at the beginning or end
+- Ensure you're using the correct recovery phrase
 
-### Step 4: Create a New Password
+### Step 5: Identity Restoration
 
-Create a new password for this device:
-- Minimum 8 characters
-- Include letters, numbers, and special characters
-- Can be different from your previous password
+When you click "Recover Identity":
+1. The app validates your recovery phrase (BIP39 validation)
+2. If invalid, you'll see an error message
+3. If valid, the app shows "Restoring identity..." with a spinner
+4. Your cryptographic keys are regenerated from the recovery phrase
+5. Keys are stored securely (same as creation)
 
-**Note**: This new password only applies to this device. Your identity (DID) remains the same.
-
-### Step 5: Recovery Complete!
+### Step 6: Recovery Complete!
 
 Your identity is now restored with:
 - The **same DID** as before
 - The **same public key**
+- The **same private key** (regenerated)
 - A new password for this device
 
-You'll see your familiar dashboard with your DID.
+You'll see your dashboard with your DID displayed.
 
 ## What Gets Restored
 

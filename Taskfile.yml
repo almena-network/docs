@@ -38,6 +38,16 @@ tasks:
     cmds:
       - task: dev
 
+  dev:es:
+    desc: Start development server in Spanish
+    cmds:
+      - pnpm start -- --locale es
+
+  start:es:
+    desc: Start development server in Spanish (alias)
+    cmds:
+      - task: dev:es
+
   # ============================================================================
   # Build
   # ============================================================================
@@ -68,14 +78,38 @@ tasks:
       - pnpm swizzle
 
   write-translations:
-    desc: Generate translation files
+    desc: Generate translation files for Spanish
     cmds:
-      - pnpm write-translations
+      - pnpm docusaurus write-translations --locale es
+
+  write-translations:locale:
+    desc: Generate translation files for a specific locale
+    vars:
+      LOCALE: '{{.LOCALE | default "es"}}'
+    cmds:
+      - pnpm docusaurus write-translations --locale {{.LOCALE}}
 
   write-heading-ids:
     desc: Generate heading IDs for MDX files
     cmds:
       - pnpm write-heading-ids
+
+  # ============================================================================
+  # i18n (Internationalization)
+  # ============================================================================
+  i18n:status:
+    desc: Check translation status
+    cmds:
+      - echo "English docs (source):"
+      - find docs -name "*.md" -o -name "*.mdx" | wc -l
+      - echo "Spanish docs (translated):"
+      - find i18n/es/docusaurus-plugin-content-docs/current -name "*.md" -o -name "*.mdx" 2>/dev/null | wc -l || echo "0"
+
+  i18n:serve:
+    desc: Serve production build (both languages available)
+    cmds:
+      - task: build
+      - pnpm serve
 
   # ============================================================================
   # Docker

@@ -9,12 +9,12 @@ Get information about the Almena ID API.
 ## Endpoint
 
 ```http
-GET /
+GET /api/v1/
 ```
 
 **Base URL**: `https://api.almena.id`
 
-**Full URL**: `https://api.almena.id/`
+**Full URL**: `https://api.almena.id/api/v1/`
 
 ## Request
 
@@ -39,9 +39,8 @@ None.
 **Response Body**:
 ```json
 {
-  "name": "Almena ID API",
-  "version": "1.0.0",
-  "description": "Decentralized identity platform API"
+  "message": "Welcome to Almena Portal API",
+  "status": "running"
 }
 ```
 
@@ -49,26 +48,25 @@ None.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `name` | string | API name |
-| `version` | string | Current API version |
-| `description` | string | Brief API description |
+| `message` | string | Welcome message |
+| `status` | string | API status. Value: `"running"` when operational |
 
 ## Examples
 
 ### cURL
 
 ```bash
-curl https://api.almena.id/
+curl https://api.almena.id/api/v1/
 ```
 
 ### JavaScript (Fetch)
 
 ```javascript
 const getAPIInfo = async () => {
-  const response = await fetch('https://api.almena.id/');
+  const response = await fetch('https://api.almena.id/api/v1/');
   const data = await response.json();
-  console.log(data.name);    // "Almena ID API"
-  console.log(data.version); // "1.0.0"
+  console.log(data.message); // "Welcome to Almena Portal API"
+  console.log(data.status);  // "running"
   return data;
 };
 
@@ -81,9 +79,10 @@ getAPIInfo();
 import requests
 
 def get_api_info():
-    response = requests.get('https://api.almena.id/')
+    response = requests.get('https://api.almena.id/api/v1/')
     data = response.json()
-    print(f"{data['name']} v{data['version']}")
+    print(data['message'])  # "Welcome to Almena Portal API"
+    print(data['status'])   # "running"
     return data
 
 get_api_info()
@@ -92,9 +91,9 @@ get_api_info()
 ## Use Cases
 
 Use this endpoint to:
-- Verify API version before making requests
-- Display API information in your application
-- Check compatibility with expected version
+- Verify API is reachable and running
+- Display welcome message in your application
+- Confirm API base URL is correct
 
 ## Related Endpoints
 

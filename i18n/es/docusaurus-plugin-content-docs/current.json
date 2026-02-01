@@ -1,0 +1,90 @@
+{
+  "version.label": {
+    "message": "Actual",
+    "description": "The label for version current"
+  },
+  "sidebar.userSidebar.category.Getting Started": {
+    "message": "Primeros Pasos",
+    "description": "The label for category 'Getting Started' in sidebar 'userSidebar'"
+  },
+  "sidebar.userSidebar.category.User Guide": {
+    "message": "Guía de Usuario",
+    "description": "The label for category 'User Guide' in sidebar 'userSidebar'"
+  },
+  "sidebar.userSidebar.category.Your Wallet": {
+    "message": "Tu Wallet",
+    "description": "The label for category 'Your Wallet' in sidebar 'userSidebar'"
+  },
+  "sidebar.userSidebar.category.Security & Privacy": {
+    "message": "Seguridad y Privacidad",
+    "description": "The label for category 'Security & Privacy' in sidebar 'userSidebar'"
+  },
+  "sidebar.userSidebar.category.Settings": {
+    "message": "Configuración",
+    "description": "The label for category 'Settings' in sidebar 'userSidebar'"
+  },
+  "sidebar.userSidebar.category.Troubleshooting": {
+    "message": "Solución de Problemas",
+    "description": "The label for category 'Troubleshooting' in sidebar 'userSidebar'"
+  },
+  "sidebar.userSidebar.category.Tutorials": {
+    "message": "Tutoriales",
+    "description": "The label for category 'Tutorials' in sidebar 'userSidebar'"
+  },
+  "sidebar.userSidebar.category.FAQ": {
+    "message": "Preguntas Frecuentes",
+    "description": "The label for category 'FAQ' in sidebar 'userSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Getting Started": {
+    "message": "Primeros Pasos",
+    "description": "The label for category 'Getting Started' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Integration Guide": {
+    "message": "Guía de Integración",
+    "description": "The label for category 'Integration Guide' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Integration Patterns": {
+    "message": "Patrones de Integración",
+    "description": "The label for category 'Integration Patterns' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Best Practices": {
+    "message": "Mejores Prácticas",
+    "description": "The label for category 'Best Practices' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Code Examples": {
+    "message": "Ejemplos de Código",
+    "description": "The label for category 'Code Examples' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.API Reference": {
+    "message": "Referencia de API",
+    "description": "The label for category 'API Reference' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Endpoints": {
+    "message": "Endpoints",
+    "description": "The label for category 'Endpoints' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Authentication": {
+    "message": "Autenticación",
+    "description": "The label for category 'Authentication' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Errors": {
+    "message": "Errores",
+    "description": "The label for category 'Errors' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.SDK Reference": {
+    "message": "Referencia del SDK",
+    "description": "The label for category 'SDK Reference' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.Tutorials": {
+    "message": "Tutoriales",
+    "description": "The label for category 'Tutorials' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.integratorSidebar.category.FAQ": {
+    "message": "Preguntas Frecuentes",
+    "description": "The label for category 'FAQ' in sidebar 'integratorSidebar'"
+  },
+  "sidebar.changelogSidebar.category.Changelog": {
+    "message": "Registro de Cambios",
+    "description": "The label for category 'Changelog' in sidebar 'changelogSidebar'"
+  }
+}
