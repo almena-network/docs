@@ -5,6 +5,8 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
+import { Analytics } from "@vercel/analytics/next"
+
 
 import styles from "./index.module.css";
 
@@ -41,6 +43,7 @@ export default function Home(): ReactNode {
       <main>
         <HomepageFeatures />
       </main>
+      <Analytics />
     </Layout>
   );
 }
