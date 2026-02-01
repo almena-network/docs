@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
 import Heading from "@theme/Heading";
+import Translate, { translate } from "@docusaurus/Translate";
 import styles from "./styles.module.css";
 
 type FeatureItem = {
@@ -11,36 +12,45 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Autonomy and Total Control (User Sovereignty)",
+    title: translate({
+      id: "homepage.features.autonomy.title",
+      message: "Autonomy and Total Control (User Sovereignty)",
+    }),
     Svg: require("@site/static/img/undraw_authentication_1evl.svg").default,
     description: (
-      <>
+      <Translate id="homepage.features.autonomy.description">
         In the traditional model, if a social network decides to close your
         account, you lose your identity within that ecosystem. On a
         decentralized platform, your identity exists independently of any
         service.
-      </>
+      </Translate>
     ),
   },
   {
-    title: "Verifiable Credentials and DIDs",
+    title: translate({
+      id: "homepage.features.credentials.title",
+      message: "Verifiable Credentials and DIDs",
+    }),
     Svg: require("@site/static/img/undraw_connected-world_anke.svg").default,
     description: (
-      <>
+      <Translate id="homepage.features.credentials.description">
         This is the technical engine that builds trust without the need for
         central databases. It is based on two key components: DIDs
         (Decentralized Identifiers) and Verifiable Credentials (VCs)
-      </>
+      </Translate>
     ),
   },
   {
-    title: "Interoperability Based on Open Standards",
+    title: translate({
+      id: "homepage.features.interoperability.title",
+      message: "Interoperability Based on Open Standards",
+    }),
     Svg: require("@site/static/img/undraw_document-ready_o5d5.svg").default,
     description: (
-      <>
+      <Translate id="homepage.features.interoperability.description">
         For decentralized identity to be useful, it cannot depend on a single
         company or proprietary technology.
-      </>
+      </Translate>
     ),
   },
 ];

@@ -5,8 +5,8 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
 import { Analytics } from '@vercel/analytics/react';
-
 
 import styles from "./index.module.css";
 
@@ -18,13 +18,15 @@ function HomepageHeader() {
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">
+          <Translate id="homepage.tagline">Decentralized Identifiers</Translate>
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/"
+            to="/docs/getting-started-user/overview"
           >
-            Get Started
+            <Translate id="homepage.getStarted">Get Started</Translate>
           </Link>
         </div>
       </div>
@@ -37,7 +39,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="Decentralized identity platform that gives you complete control over your digital identity"
     >
       <HomepageHeader />
       <main>

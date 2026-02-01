@@ -325,5 +325,41 @@
   "theme.tags.tagsPageTitle": {
     "message": "Etiquetas",
     "description": "The title of the tag list page"
+  },
+  "homepage.features.autonomy.title": {
+    "message": "Autonomía y Control Total (Soberanía del Usuario)",
+    "description": "Title for the autonomy feature on the homepage"
+  },
+  "homepage.features.autonomy.description": {
+    "message": "En el modelo tradicional, si una red social decide cerrar tu cuenta, pierdes tu identidad dentro de ese ecosistema. En una plataforma descentralizada, tu identidad existe independientemente de cualquier servicio.",
+    "description": "Description for the autonomy feature on the homepage"
+  },
+  "homepage.features.credentials.title": {
+    "message": "Credenciales Verificables y DIDs",
+    "description": "Title for the credentials feature on the homepage"
+  },
+  "homepage.features.credentials.description": {
+    "message": "Este es el motor técnico que construye confianza sin necesidad de bases de datos centrales. Se basa en dos componentes clave: DIDs (Identificadores Descentralizados) y Credenciales Verificables (VCs)",
+    "description": "Description for the credentials feature on the homepage"
+  },
+  "homepage.features.interoperability.title": {
+    "message": "Interoperabilidad Basada en Estándares Abiertos",
+    "description": "Title for the interoperability feature on the homepage"
+  },
+  "homepage.features.interoperability.description": {
+    "message": "Para que la identidad descentralizada sea útil, no puede depender de una sola empresa o tecnología propietaria.",
+    "description": "Description for the interoperability feature on the homepage"
+  },
+  "homepage.getStarted": {
+    "message": "Comenzar",
+    "description": "Get Started button on homepage"
+  },
+  "homepage.tagline": {
+    "message": "Identificadores Descentralizados",
+    "description": "Homepage tagline"
+  },
+  "theme.docs.sidebar.filterResults": {
+    "message": "Filtrar resultados",
+    "description": "Filter results label"
   }
 }
