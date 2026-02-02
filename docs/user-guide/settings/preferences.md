@@ -147,13 +147,6 @@ For developers testing integrations:
 
 **Note**: Regular users don't need this.
 
-### Backup & Sync (Coming Soon)
-
-Future feature to:
-- Backup encrypted data
-- Sync across devices
-- Restore from backup
-
 ## Resetting Settings
 
 ### Reset to Defaults
