@@ -167,8 +167,6 @@ For older versions, please upgrade to the latest release.
 
 ## Contributing
 
-See [Integrator FAQ](../faq-integrator/api.md) for how to integrate with Almena ID.
-
 When adding features, always update this changelog with:
 - What was added/changed/fixed
 - Any breaking changes

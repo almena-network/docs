@@ -1,11 +1,7 @@
 {
-  "link.title.For Users": {
-    "message": "Para Usuarios",
-    "description": "The title of the footer links column with title=For Users in the footer"
-  },
-  "link.title.For Integrators": {
-    "message": "Para Integradores",
-    "description": "The title of the footer links column with title=For Integrators in the footer"
+  "link.title.Documentation": {
+    "message": "Documentación",
+    "description": "The title of the footer links column with title=Documentation in the footer"
   },
   "link.title.More": {
     "message": "Más",
@@ -13,15 +9,23 @@
   },
   "link.item.label.Getting Started": {
     "message": "Primeros Pasos",
-    "description": "The label of footer link with label=Getting Started linking to /docs/getting-started-integrator/intro"
+    "description": "The label of footer link with label=Getting Started linking to /docs/getting-started-user/overview"
   },
   "link.item.label.User Guide": {
     "message": "Guía de Usuario",
     "description": "The label of footer link with label=User Guide linking to /docs/user-guide/intro"
   },
-  "link.item.label.API Reference": {
-    "message": "Referencia API",
-    "description": "The label of footer link with label=API Reference linking to /docs/api-reference/endpoints/health"
+  "link.item.label.Tutorials": {
+    "message": "Tutoriales",
+    "description": "The label of footer link with label=Tutorials linking to /docs/tutorials-user/overview"
+  },
+  "link.item.label.FAQ": {
+    "message": "Preguntas Frecuentes",
+    "description": "The label of footer link with label=FAQ linking to /docs/faq-user/overview"
+  },
+  "link.item.label.Changelog": {
+    "message": "Registro de Cambios",
+    "description": "The label of footer link with label=Changelog linking to /docs/changelog/overview"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",

@@ -184,7 +184,7 @@ Consulta el [Registro de Cambios](../changelog/overview.md) para las últimas ac
 - Verificación de identidad
 - Emisión de credenciales
 
-Consulta [Guía del Integrador](../getting-started-integrator/intro.md) para detalles.
+Para detalles de integración, por favor contáctanos en integrations@almena.id
 
 ## ¿Quién creó Almena ID?
 

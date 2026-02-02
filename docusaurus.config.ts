@@ -84,12 +84,6 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'integratorSidebar',
-          position: 'left',
-          label: 'For Integrators',
-        },
-        {
-          type: 'docSidebar',
           sidebarId: 'changelogSidebar',
           position: 'left',
           label: 'Changelog',
@@ -109,7 +103,7 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'For Users',
+          title: 'Documentation',
           items: [
             {
               label: 'Getting Started',
@@ -119,24 +113,23 @@ const config: Config = {
               label: 'User Guide',
               to: '/docs/user-guide/intro',
             },
-          ],
-        },
-        {
-          title: 'For Integrators',
-          items: [
             {
-              label: 'Getting Started',
-              to: '/docs/getting-started-integrator/intro',
+              label: 'Tutorials',
+              to: '/docs/tutorials-user/overview',
             },
             {
-              label: 'API Reference',
-              to: '/docs/api-reference/endpoints/health',
+              label: 'FAQ',
+              to: '/docs/faq-user/overview',
             },
           ],
         },
         {
           title: 'More',
           items: [
+            {
+              label: 'Changelog',
+              to: '/docs/changelog/overview',
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/almena-id',

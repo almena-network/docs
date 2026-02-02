@@ -167,8 +167,6 @@ Para versiones anteriores, por favor actualiza a la última versión.
 
 ## Contribuir
 
-Consulta [FAQ del Integrador](../faq-integrator/api.md) para cómo integrar con Almena ID.
-
 Al agregar características, siempre actualiza este registro de cambios con:
 - Lo que se agregó/cambió/corrigió
 - Cualquier cambio incompatible

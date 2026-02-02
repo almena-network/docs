@@ -184,7 +184,7 @@ Yes! Businesses can integrate Almena ID for:
 - Identity verification
 - Credential issuance
 
-See [Integrator Guide](../getting-started-integrator/intro.md) for details.
+For integration details, please contact us at integrations@almena.id
 
 ## Who created Almena ID?
 
