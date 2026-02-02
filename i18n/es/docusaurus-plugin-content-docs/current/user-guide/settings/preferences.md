@@ -147,13 +147,6 @@ Para desarrolladores probando integraciones:
 
 **Nota**: Los usuarios regulares no necesitan esto.
 
-### Respaldo y Sincronización (Próximamente)
-
-Función futura para:
-- Respaldar datos encriptados
-- Sincronizar entre dispositivos
-- Restaurar desde respaldo
-
 ## Restablecer Configuración
 
 ### Restablecer a Valores Predeterminados
