@@ -124,15 +124,29 @@ tasks:
     cmds:
       - docker compose up -d
 
-  docker:down:
-    desc: Stop Docker Compose services
+  docker:stop:
+    desc: Stop Docker containers (keep volumes and networks)
     cmds:
-      - docker compose down
+      - docker compose stop
+      - echo "✅ Containers stopped"
+
+  docker:down:
+    desc: Stop and remove containers, volumes, and networks
+    cmds:
+      - docker compose down -v --remove-orphans
+      - echo "✅ Containers, volumes, and networks removed"
 
   docker:logs:
     desc: View Docker Compose logs
     cmds:
       - docker compose logs -f
+
+  docker:image:rm:
+    desc: Remove Docker images
+    cmds:
+      - docker rmi almena-docs 2>/dev/null || true
+      - docker rmi $(docker images -q -f "dangling=true" -f "label=com.docker.compose.project=docs") 2>/dev/null || true
+      - echo "✅ Docker images removed"
 
   # ============================================================================
   # Clean
