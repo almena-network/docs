@@ -10,6 +10,8 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+    profiles:
+      - docs
     ports:
       - "${DOCS_PORT:-3001}:3001"
     networks:
