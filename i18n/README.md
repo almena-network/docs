@@ -133,7 +133,6 @@ Keep these in English:
 - ⏳ API Reference (all pages)
 - ⏳ Tutorials (all pages)
 - ⏳ FAQ (all pages)
-- ⏳ Changelog
 
 ## Maintenance
 

@@ -134,12 +134,12 @@ Each identity is completely separate.
 
 ## How do I delete my identity?
 
-1. Go to Settings
-2. Click "Delete Account"
-3. Confirm deletion
-4. All data is removed
+Your identity exists only on your device. To remove it:
 
-**Note**: This only deletes from this device. If you have it on other devices, delete from those too. Save your recovery phrase if you might want to restore later.
+1. Log out from the wallet (this clears all local data including keys, messages, contacts, and configuration)
+2. Uninstall the application
+
+**Note**: If you have your identity on other devices, remove it from those too. Save your recovery phrase if you might want to restore later.
 
 ## What is the orange color for?
 
@@ -151,11 +151,9 @@ Source code availability details will be announced. Check our website for update
 
 ## What languages are supported?
 
-- 🇬🇧 English
-- 🇪🇸 Spanish (Español)
-- 🇫🇷 French (Français)
-- 🇩🇪 German (Deutsch)
-- 🇮🇹 Italian (Italiano)
+**Wallet**: English and Spanish
+
+**Web Application**: English, Spanish, French, German, and Italian
 
 More languages coming soon!
 
@@ -165,6 +163,48 @@ Yes! Send suggestions to:
 - Email: feedback@almena.id
 - Or through our community channels (coming soon)
 
+## Messaging
+
+### How do I send encrypted messages?
+
+1. Open the Messages section from the sidebar
+2. Start a new conversation by entering a contact's DID
+3. Type your message and send
+
+All messages are encrypted end-to-end using DIDComm V2.
+
+### Are my messages stored on a server?
+
+No. Messages are stored only on your device. No server has access to the content of your messages.
+
+### What happens to messages when I log out?
+
+All chat data (messages and contacts) is deleted from the device when you log out. This is a security feature to protect your privacy.
+
+## Blockchain Anchoring
+
+### What is blockchain anchoring?
+
+Anchoring registers your DID on the Almena blockchain, making it publicly verifiable. Anyone can confirm your identity is legitimate by querying the blockchain.
+
+### Is anchoring required?
+
+No. Anchoring is optional. Your wallet works fully without it, but anchoring strengthens trust in your identity.
+
+### Does anchoring cost anything?
+
+No. DID anchoring on the Almena blockchain is free. Transaction fees are subsidized by the network.
+
+## Web Application
+
+### Is there a web application?
+
+Yes. Almena ID includes a web application you can access from any browser. You log in using your wallet - no separate account or password is needed.
+
+### How do I log in to the web app?
+
+Click the login button on the web app. Your wallet will receive an authentication request that you can approve or reject. The request expires after 5 minutes.
+
 ## How do I update the wallet?
 
 ### Desktop
@@ -172,10 +212,6 @@ Updates are automatic when available, or you can download the latest version fro
 
 ### Mobile
 Updates are delivered through your app store (Google Play or App Store).
-
-## What's new in the latest version?
-
-Check the [Changelog](../changelog/overview.md) for latest updates and features.
 
 ## Can businesses use Almena ID?
 

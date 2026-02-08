@@ -134,12 +134,12 @@ Cada identidad es completamente separada.
 
 ## ¿Cómo elimino mi identidad?
 
-1. Ve a Configuración
-2. Haz clic en "Eliminar Cuenta"
-3. Confirma la eliminación
-4. Todos los datos se eliminan
+Tu identidad existe solo en tu dispositivo. Para eliminarla:
 
-**Nota**: Esto solo elimina de este dispositivo. Si lo tienes en otros dispositivos, elimínalo de esos también. Guarda tu frase de recuperación si podrías querer restaurarla más tarde.
+1. Cierra sesión en el wallet (esto elimina todos los datos locales incluyendo claves, mensajes, contactos y configuración)
+2. Desinstala la aplicación
+
+**Nota**: Si tienes tu identidad en otros dispositivos, elimínala de esos también. Guarda tu frase de recuperación si podrías querer restaurarla más tarde.
 
 ## ¿Para qué es el color naranja?
 
@@ -151,11 +151,9 @@ Los detalles de disponibilidad del código fuente se anunciarán. Consulta nuest
 
 ## ¿Qué idiomas son compatibles?
 
-- 🇬🇧 Inglés
-- 🇪🇸 Español (Español)
-- 🇫🇷 Francés (Français)
-- 🇩🇪 Alemán (Deutsch)
-- 🇮🇹 Italiano (Italiano)
+**Wallet**: Inglés y Español
+
+**Aplicación Web**: Inglés, Español, Francés, Alemán e Italiano
 
 ¡Más idiomas próximamente!
 
@@ -165,6 +163,48 @@ Los detalles de disponibilidad del código fuente se anunciarán. Consulta nuest
 - Email: feedback@almena.id
 - O a través de nuestros canales comunitarios (próximamente)
 
+## Mensajería
+
+### ¿Cómo envío mensajes cifrados?
+
+1. Abre la sección de Mensajes desde la barra lateral
+2. Inicia una nueva conversación ingresando el DID del contacto
+3. Escribe tu mensaje y envíalo
+
+Todos los mensajes están cifrados de extremo a extremo usando DIDComm V2.
+
+### ¿Se almacenan mis mensajes en un servidor?
+
+No. Los mensajes se almacenan solo en tu dispositivo. Ningún servidor tiene acceso al contenido de tus mensajes.
+
+### ¿Qué pasa con los mensajes cuando cierro sesión?
+
+Todos los datos de chat (mensajes y contactos) se eliminan del dispositivo al cerrar sesión. Esta es una función de seguridad para proteger tu privacidad.
+
+## Anclaje en Blockchain
+
+### ¿Qué es el anclaje en blockchain?
+
+El anclaje registra tu DID en la blockchain de Almena, haciéndolo públicamente verificable. Cualquiera puede confirmar que tu identidad es legítima consultando la blockchain.
+
+### ¿Es obligatorio el anclaje?
+
+No. El anclaje es opcional. Tu wallet funciona completamente sin él, pero el anclaje fortalece la confianza en tu identidad.
+
+### ¿El anclaje tiene algún costo?
+
+No. El anclaje de DID en la blockchain de Almena es gratuito. Las comisiones de transacción son subsidiadas por la red.
+
+## Aplicación Web
+
+### ¿Hay una aplicación web?
+
+Sí. Almena ID incluye una aplicación web a la que puedes acceder desde cualquier navegador. Inicias sesión usando tu wallet - no necesitas una cuenta ni contraseña separada.
+
+### ¿Cómo inicio sesión en la aplicación web?
+
+Haz clic en el botón de inicio de sesión en la aplicación web. Tu wallet recibirá una solicitud de autenticación que puedes aprobar o rechazar. La solicitud expira después de 5 minutos.
+
 ## ¿Cómo actualizo la billetera?
 
 ### Escritorio
@@ -172,10 +212,6 @@ Las actualizaciones son automáticas cuando están disponibles, o puedes descarg
 
 ### Móvil
 Las actualizaciones se entregan a través de tu tienda de aplicaciones (Google Play o App Store).
-
-## ¿Qué hay de nuevo en la última versión?
-
-Consulta el [Registro de Cambios](../changelog/overview.md) para las últimas actualizaciones y características.
 
 ## ¿Pueden las empresas usar Almena ID?
 

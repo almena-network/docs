@@ -119,7 +119,52 @@ No. Tu DID se deriva matemáticamente de tu clave pública. Para obtener un nuev
 
 ### ¿Cómo comparto mi identidad con otros?
 
-Comparte tu DID. Es seguro compartirlo públicamente: es como un nombre de usuario o dirección de correo electrónico. Otros pueden usarlo para verificar tu identidad o enviarte credenciales verificables.
+Comparte tu DID. Es seguro compartirlo públicamente: es como un nombre de usuario o dirección de correo electrónico. Otros pueden usarlo para verificar tu identidad o enviarte credenciales verificables. También puedes mostrar tu código QR de identidad desde la sección Identidad de tu wallet.
+
+## Mensajería
+
+### ¿Cómo envío un mensaje?
+
+1. Abre la sección Mensajes desde el menú lateral
+2. Haz clic en Nueva Conversación
+3. Introduce el DID del destinatario
+4. Escribe y pulsa Enter para enviar
+
+### ¿Los mensajes están cifrados?
+
+Sí. Todos los mensajes usan cifrado de extremo a extremo DIDComm V2. Solo tú y el destinatario pueden leerlos.
+
+### ¿Dónde se almacenan los mensajes?
+
+Los mensajes se almacenan localmente solo en tu dispositivo. Ningún servidor almacena el contenido de tus mensajes.
+
+### ¿Qué pasa con mis mensajes si cierro sesión?
+
+Todos los datos de chat (mensajes y contactos) se eliminan del dispositivo al cerrar sesión. Esto es por diseño por razones de seguridad.
+
+## Anclaje en Blockchain
+
+### ¿Qué es el anclaje en blockchain?
+
+El anclaje registra tu DID en la blockchain de Almena, haciéndolo verificable públicamente. Cualquiera puede confirmar que tu identidad es legítima consultando la blockchain.
+
+### ¿Tengo que anclar mi DID?
+
+No. El anclaje es opcional. Tu wallet funciona completamente sin él, pero el anclaje fortalece la confianza en tu identidad.
+
+### ¿El anclaje tiene coste?
+
+No. El anclaje de DID en la blockchain de Almena es gratuito. Las comisiones de transacción están subsidiadas por la red.
+
+## Aplicación Web
+
+### ¿Hay una aplicación web?
+
+Sí. Almena ID incluye una aplicación web a la que puedes acceder desde cualquier navegador. Inicias sesión usando tu wallet, no se necesita una cuenta separada.
+
+### ¿Cómo inicio sesión en la aplicación web?
+
+Haz clic en el botón "Almena ID" en la página de inicio de sesión. Tu wallet recibirá una solicitud de autenticación. Apruébala en tu wallet y se iniciará sesión automáticamente.
 
 ## Idioma y Preferencias
 

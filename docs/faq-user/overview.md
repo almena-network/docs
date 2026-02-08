@@ -119,7 +119,52 @@ No. Your DID is mathematically derived from your public key. To get a new DID, y
 
 ### How do I share my identity with others?
 
-Share your DID. It's safe to share publicly - it's like a username or email address. Others can use it to verify your identity or send you verifiable credentials.
+Share your DID. It's safe to share publicly - it's like a username or email address. Others can use it to verify your identity or send you verifiable credentials. You can also show your identity QR code from the Identity section of your wallet.
+
+## Messaging
+
+### How do I send a message?
+
+1. Open the Messages section from the sidebar
+2. Click New Conversation
+3. Enter the recipient's DID
+4. Start typing and press Enter to send
+
+### Are messages encrypted?
+
+Yes. All messages use DIDComm V2 end-to-end encryption. Only you and the recipient can read them.
+
+### Where are messages stored?
+
+Messages are stored locally on your device only. No server stores the content of your messages.
+
+### What happens to my messages if I log out?
+
+All chat data (messages and contacts) is deleted from the device when you log out. This is by design for security purposes.
+
+## Blockchain Anchoring
+
+### What is blockchain anchoring?
+
+Anchoring registers your DID on the Almena blockchain, making it publicly verifiable. Anyone can confirm your identity is legitimate by querying the blockchain.
+
+### Do I have to anchor my DID?
+
+No. Anchoring is optional. Your wallet works fully without it, but anchoring strengthens trust in your identity.
+
+### Does anchoring cost anything?
+
+No. DID anchoring on the Almena blockchain is free. Transaction fees are subsidized by the network.
+
+## Web Application
+
+### Is there a web app?
+
+Yes. Almena ID includes a web application you can access from any browser. You log in using your wallet - no separate account is needed.
+
+### How do I log in to the web app?
+
+Click the "Almena ID" button on the login page. Your wallet will receive an authentication request. Approve it in your wallet and you'll be logged in automatically.
 
 ## Language & Preferences
 

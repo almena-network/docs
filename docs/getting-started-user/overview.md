@@ -86,24 +86,37 @@ Once set up, you'll have:
 - **Public Key**: Your public cryptographic key for verification
 - **Private Key**: Encrypted and stored securely on your device
 
+## Web Application
+
+Almena ID also includes a web application you can access from any browser. The web app lets you:
+
+- Log in using your wallet (no passwords needed)
+- View your dashboard and DID
+- Check the status of the platform services
+- Change your interface language (5 languages supported)
+
+Learn more in the [Web Application guide](../user-guide/web-app/overview.md).
+
 ## Language Support
 
-Almena ID Wallet is available in multiple languages:
+Almena ID is available in multiple languages:
 
-- 🇬🇧 English (default)
-- 🇪🇸 Spanish
+- **Wallet**: English and Spanish
+- **Web Application**: English, Spanish, French, German, and Italian
 
-The app automatically detects your device's language and uses it if supported. Otherwise, it defaults to English.
+The wallet automatically detects your device's language and uses it if supported. Otherwise, it defaults to English.
 
 ## Security Features
 
-Almena ID Wallet includes multiple security layers:
+Almena ID includes multiple security layers:
 
 - **Password protection**: Required to set up and unlock your wallet
 - **Auto-lock**: Automatically locks after 5 minutes of inactivity
-- **Biometric unlock**: Use Touch ID / Face ID (macOS supported, others coming)
+- **Biometric unlock**: Use Touch ID (macOS supported, others coming soon)
 - **Secure storage**: Private keys stored in device's native keychain
-- **No network**: Everything happens locally on your device
+- **Blockchain anchoring**: Optionally register your DID on the Almena blockchain
+- **Encrypted messaging**: DIDComm V2 end-to-end encrypted messages
+- **No data sent to servers**: Identity operations are client-side only
 
 ## Security Notes
 
@@ -111,12 +124,15 @@ Almena ID Wallet includes multiple security layers:
 - **Your private key** is stored in your device's secure keychain
 - **Your recovery phrase** is the ONLY way to recover your identity across devices
 - **We cannot recover** your identity if you lose your recovery phrase
-- **No data sent to servers**: All operations are client-side only
+- **Messages** are encrypted end-to-end and stored only on your device
 
 ## Next Steps
 
 - [Dashboard Overview →](../user-guide/wallet/dashboard.md)
 - [Creating Your Identity (detailed) →](../user-guide/wallet/creating-identity.md)
+- [Send Encrypted Messages →](../user-guide/wallet/messaging.md)
+- [Blockchain Anchoring →](../user-guide/wallet/blockchain-anchoring.md)
+- [Web Application →](../user-guide/web-app/overview.md)
 - [Understanding Auto-Lock →](../user-guide/security/auto-lock.md)
 - [Setting Up Biometric →](../user-guide/security/biometric-authentication.md)
 

@@ -1,25 +1,78 @@
-# Registro de Cambios
-
-Todos los cambios notables en Almena ID serán documentados en este archivo.
-
-El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.0.html).
 
 ## [Sin Publicar]
 
 ### Planificado
-- Endpoints de API de verificación de identidad
-- Emisión y verificación de credenciales
-- Portal web frontend
-- SDK para JavaScript/TypeScript
-- SDK para Python
+- Emisión y gestión de credenciales verificables
+- Flujos de verificación de credenciales
 - Métodos de autenticación adicionales
+
+## [0.2.0] - 2026-02-08
+
+### Añadido
+
+#### Wallet - Mensajería Cifrada (DIDComm V2)
+- Enviar y recibir mensajes cifrados de extremo a extremo entre wallets
+- Lista de conversaciones con alias de contactos, vista previa del último mensaje y marcas de tiempo
+- Añadir contactos por DID con alias opcional
+- Validación de formato DID para nuevos contactos
+- Eliminar conversaciones individuales
+- Indicador de cifrado confirmando cifrado DIDComm V2
+- Almacenamiento de mensajes solo local (sin intervención de servidores)
+- Todos los datos de chat eliminados al cerrar sesión por seguridad
+
+#### Wallet - Código QR de Identidad
+- Código QR autogenerado que contiene tu DID
+- El código QR rota cada 30 segundos con token de seguridad
+- Temporizador mostrando tiempo restante antes de la actualización
+- Código QR en colores de marca Almena
+
+#### Wallet - Anclaje de DID en Blockchain
+- Anclar tu DID en la blockchain de Almena para verificabilidad pública
+- Anclaje gratuito (comisiones de transacción subsidiadas por la red)
+- Seguimiento del estado de anclaje (no anclado, anclando, anclado, fallido)
+- Visualización del hash de transacción tras anclaje exitoso
+- Mecanismo de reintento en caso de fallo
+- Disponible en la pantalla de éxito de creación de identidad
+
+#### Wallet - Autenticación Externa
+- Autenticarse con sitios web y aplicaciones externas usando tu wallet
+- Aprobar o rechazar solicitudes de autenticación
+- Visualización de detalles de solicitud (servicio, acción, DID, temporizador de expiración)
+- Firma de desafío criptográfico
+- Expiración automática de solicitudes no respondidas
+
+#### Wallet - Página de Seguridad
+- Configurar URL de API REST de blockchain
+- Validación de URL y confirmación de guardado
+- Restaurar configuración predeterminada
+
+#### Aplicación Web Frontend
+- Página de inicio con características de la plataforma y casos de uso
+- Inicio de sesión basado en DID con wallet (sin contraseñas para la aplicación web)
+- Flujo de autenticación con aprobación del wallet y tiempo límite de 5 minutos
+- Panel de control mostrando DID del usuario e indicador de perfil
+- Página de estado de API con monitoreo de salud en tiempo real y tiempos de respuesta
+- Página de configuración con selección de idioma
+- Soporte multiidioma: Inglés, Español, Francés, Alemán, Italiano
+- Diseño responsivo para móvil, tablet y escritorio
+
+#### Frontend - Flujo de Autenticación
+- Autenticación challenge-response vía wallet
+- Sondeo en tiempo real para aprobación del wallet (cada 2 segundos)
+- Múltiples estados de autenticación (inactivo, solicitando, esperando, éxito, error, tiempo agotado, rechazado)
+- Persistencia de sesión con localStorage
+- Rutas protegidas del panel de control con AuthGuard
+
+### Cambiado
+- Navegación lateral del panel de control actualizada con sección de Mensajes
+- Cerrar sesión ahora elimina todos los datos locales (claves, mensajes, contactos, configuración de blockchain)
+- Página de configuración simplificada para mostrar solo funciones implementadas (idioma, biométrica, info de bloqueo automático)
 
 ## [0.1.0] - 2026-02-01
 
 ### Añadido
 
-#### Billetera Multiplataforma (Tauri 2.0 + Svelte 5)
+#### Wallet Multiplataforma (Tauri 2.0 + Svelte 5)
 
 **Creación y Gestión de Identidad**
 - Crear nueva identidad descentralizada con protección por contraseña
@@ -31,9 +84,9 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Recuperación de identidad entre dispositivos (mismo DID en múltiples dispositivos)
 - Hash de contraseña con Argon2 (almacenado para gestión de sesión)
 
-**Interfaz de Billetera**
+**Interfaz de Wallet**
 - Pantalla de bienvenida con opciones Crear/Recuperar
-- Flujo de incorporación de múltiples pasos (contraseña → frase de recuperación → éxito)
+- Flujo de incorporación de múltiples pasos (contraseña, frase de recuperación, éxito)
 - Panel de control mostrando DID con funcionalidad de copiar
 - Menú de navegación lateral (Inicio, Identidad, Credenciales, Seguridad, Configuración, Cerrar Sesión)
 - Barra lateral colapsable en móvil/tablet con botón hamburguesa
@@ -50,72 +103,33 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Monitoreo de actividad (eventos de mouse, teclado, táctiles)
 
 **Almacenamiento y Criptografía**
-- Claves privadas almacenadas en llavero nativo:
-  - macOS/iOS: Keychain
-  - Windows: Credential Manager
-  - Linux: Secret Service
-  - Android: Keystore
+- Claves privadas almacenadas en llavero nativo (macOS Keychain, Windows Credential Manager, Linux Secret Service, Android Keystore)
 - Claves públicas y DID almacenados en Tauri Store
 - Hash de contraseña con Argon2
-- Sin datos sensibles en logs
 
 **Idiomas**
 - Soporte multiidioma: Inglés y Español
 - Detección automática del idioma del sistema host (por defecto Inglés)
-- Traducciones para todos los elementos de UI
 
 **Soporte de Plataformas**
-- Windows (escritorio)
-- macOS (escritorio)
-- Linux (escritorio)
-- Android (móvil/tablet) - listo para despliegue
-- iOS (móvil/tablet) - listo para despliegue
+- Windows, macOS, Linux (escritorio)
+- Android, iOS (móvil/tablet) - listo para despliegue
 
 #### API Backend (FastAPI)
 - Configuración de API REST con FastAPI
-- Endpoint de verificación de salud (`GET /api/v1/health`)
-- Endpoint de información raíz (`GET /api/v1/`)
-- Configuración de middleware CORS para frontend
-- Containerización Docker
-- Configuración de Docker Compose con PostgreSQL
+- Endpoint de verificación de salud
+- Configuración de middleware CORS
+- Containerización Docker con PostgreSQL
 - Estructura de arquitectura hexagonal (DDD)
 - Integración de ORM SQLAlchemy asíncrono
 
-#### Frontend (Next.js)
-- Página de inicio con características y casos de uso
-- Página de inicio de sesión (placeholder)
-- Diseño de panel de control con navegación lateral
-- Soporte multiidioma: Inglés y Español (next-intl)
-- Diseño responsivo (móvil, tablet, escritorio)
-- TypeScript con verificación estricta de tipos
-- Estilos Tailwind CSS
-- Containerización Docker
-- Biblioteca de componentes: Header, Footer, DashboardLayout
-- Endpoint de verificación de salud para monitoreo
-
 #### Documentación
 - Guía de inicio para usuarios
-- Guía completa del usuario
-- Guía de inicio para desarrolladores
-- Documentación de referencia de API
+- Guía completa del usuario (wallet, seguridad, configuración, solución de problemas)
 - FAQ de usuarios
-- FAQ de desarrolladores
-- Estructura de guía de integración
-- Resumen de arquitectura
-- Estructura de referencia del SDK
-- Estructuras de tutoriales
-
-#### Infraestructura
-- Estructura de monorepo
-- Reglas de desarrollo de Cursor AI
-- Flujo de trabajo Git con commits convencionales
-- Estándares de TypeScript en todos los proyectos
-- Guías de seguridad
-- Configuraciones Docker para todos los módulos
-- Sistema de documentación completo
+- Documentación bilingüe (Inglés y Español)
 
 ### Seguridad
-- Sin registro de datos sensibles (claves privadas, contraseñas, mnemotécnicas)
 - Gestión de identidad solo del lado del cliente
 - Sin almacenamiento del lado del servidor de claves sensibles
 - Estándar BIP39 para frases de recuperación
@@ -124,63 +138,6 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Almacenamiento de claves privadas en llavero nativo
 - Bloqueo automático después de inactividad (5 minutos)
 - Soporte de autenticación biométrica (Touch ID de macOS)
-- Gestión segura de sesiones
-
-## Historial de Versiones
-
-### Estrategia de Versionado
-
-Almena ID sigue el Versionado Semántico:
-
-- **MAYOR** versión (X.0.0): Cambios de API incompatibles
-- **MENOR** versión (0.X.0): Nuevas características, compatible hacia atrás
-- **PARCHE** versión (0.0.X): Correcciones de errores, compatible hacia atrás
-
-### Ciclo de Lanzamiento
-
-- **Lanzamientos de parche**: Según sea necesario para correcciones de errores
-- **Lanzamientos menores**: Lanzamientos de características mensuales
-- **Lanzamientos mayores**: Anuales o cuando haya cambios incompatibles
-
-## Guías de Actualización
-
-### Actualizando a 0.1.0
-
-Lanzamiento inicial - no se necesita actualización.
-
-## Avisos de Deprecación
-
-Ninguno aún.
-
-## Cambios Incompatibles
-
-### 0.1.0
-- Lanzamiento inicial - sin cambios incompatibles
-
-## Soporte
-
-- **Versión Actual**: 0.1.0
-- **Versiones Soportadas**: 0.1.x
-- **Período de Soporte**: 1 año desde el lanzamiento
-
-Para versiones anteriores, por favor actualiza a la última versión.
-
-## Contribuir
-
-Al agregar características, siempre actualiza este registro de cambios con:
-- Lo que se agregó/cambió/corrigió
-- Cualquier cambio incompatible
-- Guías de migración si es necesario
 
 ---
 
-## Cómo Leer Este Registro de Cambios
-
-- **[Sin Publicar]**: Características en desarrollo
-- **[Versión] - Fecha**: Versiones publicadas con fecha
-- **Añadido**: Nuevas características
-- **Cambiado**: Cambios a características existentes
-- **Deprecado**: Características a eliminar
-- **Eliminado**: Características eliminadas
-- **Corregido**: Correcciones de errores
-- **Seguridad**: Mejoras de seguridad

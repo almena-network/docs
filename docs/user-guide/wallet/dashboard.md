@@ -23,14 +23,15 @@ When you open Almena ID after authentication, you'll see your dashboard with:
 
 The sidebar provides navigation to all wallet sections:
 
-- 🏠 **Home**: Your main dashboard (shows your DID)
-- 👤 **Identity**: Identity management (placeholder)
-- 📄 **Credentials**: Manage verifiable credentials (placeholder)
-- 🔒 **Security**: Security and privacy settings (placeholder)
-- ⚙️ **Settings**: App preferences and biometric authentication
-- 🚪 **Logout**: Sign out of the wallet
+- **Home**: Your main dashboard (shows your DID)
+- **Identity**: View your [identity QR code](./identity-qr.md)
+- **Credentials**: Manage verifiable credentials (coming soon)
+- **Messages**: [Send and receive encrypted messages](./messaging.md)
+- **Security**: [Blockchain configuration](./blockchain-anchoring.md) and security settings
+- **Settings**: App preferences and biometric authentication
+- **Logout**: Sign out of the wallet
 
-**Mobile & Tablet**: The menu can be toggled with a hamburger button (☰) in the header
+**Mobile & Tablet**: The menu can be toggled with a hamburger button in the header
 **Desktop**: The menu is always visible on the left side
 
 ### Header & Footer
@@ -50,7 +51,7 @@ The sidebar provides navigation to all wallet sections:
 ### Navigating the Wallet
 
 **On Mobile/Tablet**:
-1. Tap the hamburger button (☰) in the top-left
+1. Tap the hamburger button in the top-left
 2. The menu slides in from the left
 3. Tap any menu item to navigate
 4. The menu closes automatically after selection
@@ -67,6 +68,9 @@ Your DID is safe to share publicly. Use it when:
 - Registering with services that support DIDs
 - Receiving verifiable credentials
 - Connecting with other users
+- Starting a [new conversation](./messaging.md)
+
+You can also share your identity by showing your [QR code](./identity-qr.md).
 
 **Remember**: Only share your DID, **never** your password or recovery phrase.
 
@@ -86,11 +90,11 @@ When locked:
 You can enable biometric authentication in **Settings**:
 
 **Supported**:
-- 🍎 **macOS**: Touch ID / Touch Bar
-- 🍎 **iOS**: Touch ID / Face ID
-- 📱 **Android**: Fingerprint / Face Unlock (coming soon)
-- 🪟 **Windows**: Windows Hello (coming soon)
-- 🐧 **Linux**: Not supported
+- **macOS**: Touch ID
+- **iOS**: Touch ID / Face ID (coming soon)
+- **Android**: Fingerprint / Face Unlock (coming soon)
+- **Windows**: Windows Hello (coming soon)
+- **Linux**: Not supported
 
 **To Enable**:
 1. Go to Settings from the sidebar menu
@@ -107,14 +111,17 @@ To logout securely:
 1. Click **"Logout"** in the sidebar menu
 2. A warning dialog appears
 3. Confirm your choice
-4. Your session ends and sensitive data is cleared from memory
-5. Private key remains safely stored in the device keychain
-6. You can log back in by entering your password or using recovery phrase
+4. Your session ends and all local data is cleared (private keys, chat messages, contacts, blockchain configuration)
+5. You return to the welcome screen
+6. You can set up again by entering your password or using your recovery phrase
 
-**Note**: Logging out does NOT delete your identity. It only ends your current session.
+**Important**: Logging out deletes all local data from the device, including messages and contacts. Your identity can always be recovered using your recovery phrase.
 
 ## Next Steps
 
+- [View your identity QR code →](./identity-qr.md)
+- [Send encrypted messages →](./messaging.md)
+- [Anchor your DID on blockchain →](./blockchain-anchoring.md)
+- [Authenticate with external services →](./authentication.md)
 - [Learn about security →](../security/password-best-practices.md)
 - [Configure settings →](../settings/language.md)
-- [Troubleshoot issues →](../troubleshooting/extension-not-working.md)

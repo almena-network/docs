@@ -83,12 +83,6 @@ const config: Config = {
           label: 'For Users',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'changelogSidebar',
-          position: 'left',
-          label: 'Changelog',
-        },
-        {
           type: 'localeDropdown',
           position: 'right',
         },
@@ -126,10 +120,6 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            {
-              label: 'Changelog',
-              to: '/docs/changelog/overview',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/almena-id',

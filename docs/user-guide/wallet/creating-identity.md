@@ -70,7 +70,19 @@ Your identity is now created with:
 - A **public key** (Ed25519, for verification)
 - A **private key** (Ed25519, stored securely in device keychain)
 
-You'll see your dashboard with your DID displayed.
+On the success screen you'll see your new DID displayed.
+
+### Step 6: Anchor on Blockchain (Optional)
+
+On the success screen, you can anchor your DID on the Almena blockchain to make it publicly verifiable:
+
+1. Click the **"Anchor on Blockchain"** button
+2. Wait for the transaction to be processed
+3. Once complete, the status changes to "Anchored" and a transaction hash is displayed
+
+Anchoring is free and optional. You can skip this step and do it later. Learn more in the [Blockchain Anchoring](./blockchain-anchoring.md) guide.
+
+Click **"Continue to Wallet"** to access your dashboard.
 
 ## What Happens Behind the Scenes
 

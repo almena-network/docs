@@ -23,10 +23,6 @@
     "message": "Preguntas Frecuentes",
     "description": "The label of footer link with label=FAQ linking to /docs/faq-user/overview"
   },
-  "link.item.label.Changelog": {
-    "message": "Registro de Cambios",
-    "description": "The label of footer link with label=Changelog linking to /docs/changelog/overview"
-  },
   "link.item.label.GitHub": {
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/almena-id"

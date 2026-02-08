@@ -16,9 +16,16 @@ Welcome to the Almena ID User Guide. This comprehensive guide will help you unde
 
 ### Using Your Wallet
 - Dashboard overview and navigation
-- Managing your identity
+- Identity QR code for sharing
+- Sending encrypted messages (DIDComm V2)
+- Blockchain anchoring for public verifiability
+- Authenticating with external services
 - Copying and sharing your DID
-- Using the sidebar menu
+
+### Web Application
+- Logging in with your wallet
+- Web dashboard and settings
+- API status monitoring
 
 ### Security & Privacy
 - Password best practices
@@ -28,8 +35,8 @@ Welcome to the Almena ID User Guide. This comprehensive guide will help you unde
 - Privacy features
 
 ### Settings
+- Language preferences
 - Enabling biometric authentication
-- Understanding app preferences
 
 ### Troubleshooting
 - Common issues and solutions
@@ -41,6 +48,10 @@ Welcome to the Almena ID User Guide. This comprehensive guide will help you unde
 - [Supported Platforms →](./supported-platforms.md)
 - [Creating Your Identity →](./wallet/creating-identity.md)
 - [Dashboard Guide →](./wallet/dashboard.md)
+- [Messaging →](./wallet/messaging.md)
+- [Blockchain Anchoring →](./wallet/blockchain-anchoring.md)
+- [External Authentication →](./wallet/authentication.md)
+- [Web Application →](./web-app/overview.md)
 - [Auto-Lock Security →](./security/auto-lock.md)
 - [Biometric Authentication →](./security/biometric-authentication.md)
 - [FAQ →](../faq-user/general.md)

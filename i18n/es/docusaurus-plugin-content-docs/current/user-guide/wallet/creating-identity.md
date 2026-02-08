@@ -70,7 +70,19 @@ Tu identidad ahora está creada con:
 - Una **clave pública** (Ed25519, para verificación)
 - Una **clave privada** (Ed25519, almacenada de forma segura en el keychain del dispositivo)
 
-Verás tu panel de control con tu DID mostrado.
+En la pantalla de éxito verás tu nuevo DID.
+
+### Paso 6: Anclar en Blockchain (Opcional)
+
+En la pantalla de éxito, puedes anclar tu DID en la blockchain de Almena para hacerlo verificable públicamente:
+
+1. Haz clic en el botón **"Anclar en Blockchain"**
+2. Espera a que la transacción sea procesada
+3. Una vez completado, el estado cambia a "Anclado" y se muestra un hash de transacción
+
+El anclaje es gratuito y opcional. Puedes omitir este paso y hacerlo más tarde. Aprende más en la guía de [Anclaje en Blockchain](./blockchain-anchoring.md).
+
+Haz clic en **"Continuar al Wallet"** para acceder a tu panel de control.
 
 ## Qué Sucede Detrás de Escena
 

@@ -11,10 +11,6 @@
     "message": "Para Usuarios",
     "description": "Navbar item with label For Users"
   },
-  "item.label.Changelog": {
-    "message": "Registro de Cambios",
-    "description": "Navbar item with label Changelog"
-  },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"

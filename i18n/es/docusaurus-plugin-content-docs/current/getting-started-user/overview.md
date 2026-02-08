@@ -82,24 +82,37 @@ Una vez configurado, tendrás:
 - **Clave Pública**: Tu clave criptográfica pública para verificación
 - **Clave Privada**: Almacenada de forma segura en el llavero de tu dispositivo
 
+## Aplicación Web
+
+Almena ID también incluye una aplicación web a la que puedes acceder desde cualquier navegador. La aplicación web te permite:
+
+- Iniciar sesión usando tu wallet (sin necesidad de contraseñas)
+- Ver tu panel de control y DID
+- Verificar el estado de los servicios de la plataforma
+- Cambiar el idioma de la interfaz (5 idiomas disponibles)
+
+Aprende más en la [guía de la Aplicación Web](../user-guide/web-app/overview.md).
+
 ## Soporte de Idiomas
 
-Almena ID Wallet está disponible en múltiples idiomas:
+Almena ID está disponible en múltiples idiomas:
 
-- 🇬🇧 Inglés (predeterminado)
-- 🇪🇸 Español
+- **Wallet**: Inglés y Español
+- **Aplicación Web**: Inglés, Español, Francés, Alemán e Italiano
 
-La aplicación detecta automáticamente el idioma de tu dispositivo y lo usa si está soportado. De lo contrario, usa inglés por defecto.
+El wallet detecta automáticamente el idioma de tu dispositivo y lo usa si está soportado. De lo contrario, usa inglés por defecto.
 
 ## Características de Seguridad
 
-Almena ID Wallet incluye múltiples capas de seguridad:
+Almena ID incluye múltiples capas de seguridad:
 
 - **Protección por contraseña**: Requerida para configurar y desbloquear tu wallet
 - **Bloqueo automático**: Se bloquea automáticamente después de 5 minutos de inactividad
-- **Desbloqueo biométrico**: Usa Touch ID / Face ID (macOS soportado, otros próximamente)
+- **Desbloqueo biométrico**: Usa Touch ID (macOS soportado, otros próximamente)
 - **Almacenamiento seguro**: Claves privadas almacenadas en el llavero nativo del dispositivo
-- **Sin red**: Todo sucede localmente en tu dispositivo
+- **Anclaje en blockchain**: Registra opcionalmente tu DID en la blockchain de Almena
+- **Mensajería cifrada**: Mensajes cifrados de extremo a extremo con DIDComm V2
+- **No se envían datos a servidores**: Las operaciones de identidad son solo del lado del cliente
 
 ## Notas de Seguridad
 
@@ -107,8 +120,19 @@ Almena ID Wallet incluye múltiples capas de seguridad:
 - **Tu clave privada** se almacena en el llavero seguro de tu dispositivo
 - **Tu frase de recuperación** es la ÚNICA forma de recuperar tu identidad entre dispositivos
 - **No podemos recuperar** tu identidad si pierdes tu frase de recuperación
-- **No se envían datos a servidores**: Todas las operaciones son solo del lado del cliente
+- **Los mensajes** están cifrados de extremo a extremo y se almacenan solo en tu dispositivo
+
+## Próximos Pasos
+
+- [Panel de Control →](../user-guide/wallet/dashboard.md)
+- [Crear Tu Identidad (detallado) →](../user-guide/wallet/creating-identity.md)
+- [Enviar Mensajes Cifrados →](../user-guide/wallet/messaging.md)
+- [Anclaje en Blockchain →](../user-guide/wallet/blockchain-anchoring.md)
+- [Aplicación Web →](../user-guide/web-app/overview.md)
+- [Bloqueo Automático →](../user-guide/security/auto-lock.md)
+- [Autenticación Biométrica →](../user-guide/security/biometric-authentication.md)
 
 ## ¿Necesitas Ayuda?
 
-Contacta soporte en support@almena.id
+- [Preguntas Frecuentes →](../faq-user/overview.md)
+- Contacta soporte en support@almena.id

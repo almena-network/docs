@@ -8,172 +8,59 @@ Personaliza tu experiencia con Almena ID.
 
 ## Resumen de Configuración
 
-Accede a la configuración haciendo clic en el icono de engranaje ⚙️ en tu panel de control.
+Accede a la configuración haciendo clic en **Configuración** en el menú lateral.
 
 ## Configuraciones Disponibles
 
 ### Idioma
 
 Cambia el idioma de la interfaz:
-- 🇬🇧 Inglés
-- 🇪🇸 Español
-- 🇫🇷 Francés
-- 🇩🇪 Alemán
-- 🇮🇹 Italiano
+
+- Inglés
+- Español
+- Francés (wallet: solo inglés y español)
+- Alemán (wallet: solo inglés y español)
+- Italiano (wallet: solo inglés y español)
 
 **Cómo cambiar**:
-1. Haz clic en Configuración ⚙️
-2. Haz clic en el menú desplegable de Idioma
-3. Selecciona tu idioma preferido
+1. Ve a Configuración
+2. Selecciona el menú desplegable de Idioma
+3. Elige tu idioma preferido
 4. La interfaz se actualiza inmediatamente
 
 [Aprende más sobre Configuración de Idioma →](./language.md)
 
-### Tema (Próximamente)
+### Autenticación Biométrica
 
-Las versiones futuras incluirán:
-- Modo claro
-- Modo oscuro
-- Automático (sigue el sistema)
+Habilita o deshabilita el desbloqueo biométrico para un acceso más rápido a tu wallet.
 
-### Notificaciones (Próximamente)
-
-Controla qué notificaciones recibes:
-- Solicitudes de autenticación
-- Ofertas de credenciales
-- Actualizaciones del sistema
-
-### Configuración de Privacidad (Próximamente)
-
-Controla tu privacidad:
-- Quién puede ver tu DID
-- Rastreo de actividad
-- Preferencias de análisis
-
-## Configuración de Cuenta
-
-### Cambiar Contraseña
-
-**Para cambiar tu contraseña**:
-
+**Cómo habilitar**:
 1. Ve a Configuración
-2. Haz clic en "Cambiar Contraseña"
-3. Ingresa la contraseña actual
-4. Ingresa la nueva contraseña
-5. Confirma la nueva contraseña
-6. Haz clic en "Actualizar Contraseña"
+2. Encuentra el interruptor "Autenticación Biométrica"
+3. Actívalo
+4. Autentícate con tu sensor biométrico cuando se te solicite
+5. Si tiene éxito, el desbloqueo biométrico está habilitado
 
-**Requisitos de Contraseña**:
-- Mínimo 8 caracteres
-- Mezcla de letras, números y símbolos recomendada
-- Diferente de la contraseña anterior
+**Cómo deshabilitar**:
+- Simplemente desactiva el interruptor
 
-**Nota**: Cambiar la contraseña re-encripta tus claves privadas. Tu DID permanece igual.
+Si tu dispositivo no soporta autenticación biométrica, la opción se mostrará como "No disponible".
 
-### Ver Frase de Recuperación
+**Plataformas compatibles**:
+- **macOS**: Touch ID
+- **iOS**: Touch ID / Face ID (próximamente)
+- **Android**: Huella dactilar / Desbloqueo facial (próximamente)
+- **Windows**: Windows Hello (próximamente)
+- **Linux**: No compatible
 
-**⚠️ Advertencia de Seguridad**: Solo visualiza la frase de recuperación en una ubicación segura y privada.
+### Bloqueo Automático
 
-**Para ver**:
-1. Ve a Configuración
-2. Haz clic en "Ver Frase de Recuperación"
-3. Ingresa tu contraseña
-4. Se muestra la frase de recuperación
-5. Escríbela si no lo hiciste antes
-
-**Nunca**:
-- Hagas captura de pantalla de la frase de recuperación
-- Envíes la frase de recuperación por correo electrónico
-- Compartas la frase de recuperación
-- La almacenes en notas sin encriptar
-
-### Exportar Datos (Próximamente)
-
-Exporta tus:
-- Datos de identidad
-- Credenciales
-- Historial de actividad
-
-### Eliminar Cuenta
-
-**⚠️ Advertencia**: ¡Esta acción es irreversible!
-
-**Para eliminar cuenta**:
-1. Ve a Configuración
-2. Desplázate hasta el final
-3. Haz clic en "Eliminar Cuenta"
-4. Confirma la eliminación
-5. Ingresa la contraseña
-6. Todos los datos locales se eliminan
-
-**Qué sucede**:
-- Todos los datos eliminados de este dispositivo
-- No se puede deshacer
-- DID ya no accesible (a menos que tengas la frase de recuperación)
-
-**Antes de eliminar**:
-- Guarda tu frase de recuperación (si quieres recuperar más tarde)
-- Exporta cualquier dato importante
-- Considera solo cerrar sesión en su lugar
-
-## Configuración de Visualización
-
-### Acortar Visualización de DID
-
-Algunas aplicaciones muestran DIDs acortados para legibilidad:
-
-```
-Completo:      did:almena:a1b2c3d4e5f6789012345678901234
-Acortado:      did:almena:a1b2...1234
-```
-
-Generalmente puedes hacer clic para ver el DID completo.
-
-### Formato de Hora (Próximamente)
-
-Elige cómo se muestran las fechas y horas:
-- Formato de 24 horas
-- Formato de 12 horas (AM/PM)
-- Formato de fecha (DD/MM/YYYY o MM/DD/YYYY)
-
-## Configuración Avanzada
-
-### Modo Desarrollador (Próximamente)
-
-Para desarrolladores probando integraciones:
-- Ver registros detallados
-- Depurar autenticación
-- Probar flujos de credenciales
-
-**Nota**: Los usuarios regulares no necesitan esto.
-
-## Restablecer Configuración
-
-### Restablecer a Valores Predeterminados
-
-Si la configuración se desconfigura:
-
-1. Ve a Configuración
-2. Haz clic en "Restablecer a Valores Predeterminados"
-3. Confirma el restablecimiento
-4. La configuración vuelve a los valores predeterminados
-
-**Qué se restablece**:
-- Idioma → Inglés
-- Tema → Predeterminado
-- Notificaciones → Todas activadas
-- Privacidad → Predeterminado
-
-**Qué permanece**:
-- Tu identidad
-- Tu contraseña
-- Tus datos
+El wallet se bloquea automáticamente después de **5 minutos de inactividad**. Esta configuración es fija actualmente y no se puede cambiar. La información se muestra en Configuración como referencia.
 
 ## Almacenamiento de Datos de Configuración
 
 Toda la configuración se almacena:
 - Localmente en tu dispositivo
-- Encriptada con tu contraseña
 - Nunca enviada a servidores
 - Específica para cada dispositivo
 
@@ -182,42 +69,16 @@ Toda la configuración se almacena:
 ### La Configuración No Se Guarda
 
 **Soluciones**:
-1. Verifica los permisos de almacenamiento
-2. Borra la caché de la aplicación
-3. Reinicia la aplicación
-4. Intenta nuevamente
-
-### La Configuración Se Restablece Después de Reiniciar
-
-**Posibles causas**:
-- Problema de almacenamiento en el dispositivo
-- La aplicación borra datos
-- Cuota de almacenamiento excedida
-
-**Soluciones**:
-- Verifica el espacio de almacenamiento del dispositivo
-- Libera espacio de almacenamiento
-- Reinstala la aplicación si es necesario
+1. Reinicia la aplicación
+2. Verifica el espacio de almacenamiento del dispositivo
+3. Intenta nuevamente
 
 ### No Puedo Acceder a la Configuración
 
 **Soluciones**:
-1. Asegúrate de estar iniciado sesión
+1. Asegúrate de estar conectado
 2. Reinicia la aplicación
 3. Recupera la identidad si es necesario
-
-## Consejos
-
-### Configuración Recomendada
-
-✅ **Haz**:
-- Establece el idioma con el que te sientas más cómodo
-- Mantén las notificaciones activadas para alertas de seguridad
-- Revisa regularmente la configuración de privacidad
-
-❌ **No Hagas**:
-- Compartas capturas de pantalla de tu configuración (puede revelar información personal)
-- Deshabilites notificaciones importantes de seguridad
 
 ## Ayuda Relacionada
 

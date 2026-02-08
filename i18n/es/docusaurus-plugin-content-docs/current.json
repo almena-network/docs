@@ -15,6 +15,10 @@
     "message": "Tu Wallet",
     "description": "The label for category 'Your Wallet' in sidebar 'userSidebar'"
   },
+  "sidebar.userSidebar.category.Web Application": {
+    "message": "Aplicación Web",
+    "description": "The label for category 'Web Application' in sidebar 'userSidebar'"
+  },
   "sidebar.userSidebar.category.Security & Privacy": {
     "message": "Seguridad y Privacidad",
     "description": "The label for category 'Security & Privacy' in sidebar 'userSidebar'"
@@ -34,9 +38,5 @@
   "sidebar.userSidebar.category.FAQ": {
     "message": "Preguntas Frecuentes",
     "description": "The label for category 'FAQ' in sidebar 'userSidebar'"
-  },
-  "sidebar.changelogSidebar.category.Changelog": {
-    "message": "Registro de Cambios",
-    "description": "The label for category 'Changelog' in sidebar 'changelogSidebar'"
   }
 }

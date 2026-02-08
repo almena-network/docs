@@ -14,11 +14,18 @@ Bienvenido a la Guía del Usuario de Almena ID. Esta guía completa te ayudará 
 - Crear tu primera identidad
 - Entender tu DID y claves
 
-### Usando tu Billetera
+### Usando tu Wallet
 - Resumen del panel de control y navegación
-- Gestionar tu identidad
+- Código QR de identidad para compartir
+- Enviar mensajes cifrados (DIDComm V2)
+- Anclaje en blockchain para verificabilidad pública
+- Autenticarse con servicios externos
 - Copiar y compartir tu DID
-- Usar el menú lateral
+
+### Aplicación Web
+- Iniciar sesión con tu wallet
+- Panel de control web y configuración
+- Monitoreo del estado de la API
 
 ### Seguridad y Privacidad
 - Mejores prácticas de contraseñas
@@ -28,8 +35,8 @@ Bienvenido a la Guía del Usuario de Almena ID. Esta guía completa te ayudará 
 - Funciones de privacidad
 
 ### Configuración
+- Preferencias de idioma
 - Habilitar autenticación biométrica
-- Entender las preferencias de la aplicación
 
 ### Solución de Problemas
 - Problemas comunes y soluciones
@@ -41,6 +48,10 @@ Bienvenido a la Guía del Usuario de Almena ID. Esta guía completa te ayudará 
 - [Plataformas Compatibles →](./supported-platforms.md)
 - [Crear tu Identidad →](./wallet/creating-identity.md)
 - [Guía del Panel de Control →](./wallet/dashboard.md)
+- [Mensajería →](./wallet/messaging.md)
+- [Anclaje en Blockchain →](./wallet/blockchain-anchoring.md)
+- [Autenticación Externa →](./wallet/authentication.md)
+- [Aplicación Web →](./web-app/overview.md)
 - [Seguridad de Bloqueo Automático →](./security/auto-lock.md)
 - [Autenticación Biométrica →](./security/biometric-authentication.md)
 - [Preguntas Frecuentes →](../faq-user/general.md)
