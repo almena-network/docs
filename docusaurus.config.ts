@@ -2,35 +2,25 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
   title: 'Almena ID',
   tagline: 'Decentralized Identifiers',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: 'https://docs.almena.id',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
   trailingSlash: true,
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'almena-id', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  organizationName: 'almena-id',
+  projectName: 'docs',
   deploymentBranch: 'gh-pages',
-
 
   onBrokenLinks: 'throw',
 
-  // Internationalization configuration
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
@@ -54,7 +44,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -64,7 +53,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
@@ -78,9 +66,21 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'userSidebar',
+          sidebarId: 'usersSidebar',
           position: 'left',
-          label: 'For Users',
+          label: 'Users',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'integratorsSidebar',
+          position: 'left',
+          label: 'Integrators',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'developersSidebar',
+          position: 'left',
+          label: 'Developers',
         },
         {
           type: 'localeDropdown',
@@ -100,20 +100,16 @@ const config: Config = {
           title: 'Documentation',
           items: [
             {
-              label: 'Getting Started',
-              to: '/docs/getting-started-user/overview',
+              label: 'Users',
+              to: '/docs/users',
             },
             {
-              label: 'User Guide',
-              to: '/docs/user-guide/intro',
+              label: 'Integrators',
+              to: '/docs/integrators',
             },
             {
-              label: 'Tutorials',
-              to: '/docs/tutorials-user/overview',
-            },
-            {
-              label: 'FAQ',
-              to: '/docs/faq-user/overview',
+              label: 'Developers',
+              to: '/docs/developers',
             },
           ],
         },
@@ -127,7 +123,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Almena ID. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

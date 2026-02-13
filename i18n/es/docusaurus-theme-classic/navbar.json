@@ -7,9 +7,17 @@
     "message": "Logo de Almena",
     "description": "The alt text of navbar logo"
   },
-  "item.label.For Users": {
-    "message": "Para Usuarios",
-    "description": "Navbar item with label For Users"
+  "item.label.Users": {
+    "message": "Usuarios",
+    "description": "Navbar item with label Users"
+  },
+  "item.label.Integrators": {
+    "message": "Integradores",
+    "description": "Navbar item with label Integrators"
+  },
+  "item.label.Developers": {
+    "message": "Desarrolladores",
+    "description": "Navbar item with label Developers"
   },
   "item.label.GitHub": {
     "message": "GitHub",
