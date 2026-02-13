@@ -6,83 +6,73 @@ sidebar_position: 22
 
 # UC-022: Create Organization
 
+:::note Reference Flow
+Corresponds to **Flow 1 — Identity Registration (Onboarding)** applied to entities, and **Flow 6 — Trust Framework Management** prerequisites.
+:::
+
 ## Description
 
-A user creates a new organization (entity) in the platform. An organization is a unified entity that can both **issue verifiable credentials** and **request verified information** from users. There is no distinction between "issuer" and "requestor" — every organization has both capabilities through two functional areas: an **issuance outbox** (for issuing credentials) and a **requests inbox/outbox** (for requesting and receiving verified information). When a user creates an organization, they automatically become its **owner** and are placed in an auto-created **Admin** group. The organization starts in `draft` status. A user can create and own multiple organizations.
+A user creates a new organization (entity) in the platform. An organization is a unified entity that can act as both **Issuer** (issue verifiable credentials) and **Requester** (request verified information from users). When a user creates an organization, they become its owner and the organization starts in `draft` status. The organization must follow the same identity registration flow as individual users: generating a DID and anchoring it on the blockchain. To operate as an Issuer, the organization must additionally be authorized in the trust framework ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework)).
 
 ## Actors
 
-- **End User (Creator)**: Person creating the organization from the portal dashboard
-- **Frontend (Portal)**: Next.js web application providing the organization creation form
-- **Backend API**: FastAPI service handling organization creation, owner assignment, and group initialization
+- **User (Creator)**: Person creating the organization — becomes the owner
+- **Blockchain**: Distributed network where the organization's DID will be anchored
 
 ## Preconditions
 
-- The user is authenticated in the portal ([UC-008](/docs/developers/use-cases/platform/uc-008-login-with-desktop-wallet) or [UC-009](/docs/developers/use-cases/platform/uc-009-login-with-mobile-wallet))
+- The user is authenticated in the platform ([UC-008](/docs/developers/use-cases/platform/uc-008-login-with-desktop-wallet) or [UC-009](/docs/developers/use-cases/platform/uc-009-login-with-mobile-wallet))
 - The user has a DID anchored on the blockchain ([UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain))
 
 ## Main Flow
 
-1. The user navigates to the organization management section: `/[locale]/dashboard/organizations`
+1. The user navigates to the organization management section
 2. The user clicks **Create New Organization**
-3. The portal displays the creation form with:
-   - Organization name (required)
-   - Description (required)
-4. The user fills in the name and description
-5. The user submits the form
-6. The backend creates the organization:
+3. The user fills in the organization details (name, description)
+4. The system creates the organization:
    - Generates a unique ID
-   - Sets the authenticated user as `owner_id`
+   - Sets the user as owner
    - Sets status to `draft`
-   - Auto-creates an **Admin** group (`is_admin: true`) — this group cannot be deleted
-   - Adds the owner as a member in the Admin group with role `admin`
-   - Sets `created_at` and `updated_at` timestamps
-7. The backend returns the created organization with all details
-8. The portal navigates to the organization edit page, where the owner can manage groups and add members ([UC-023](/docs/developers/use-cases/platform/uc-023-manage-organization-members))
+   - Auto-creates an **Admin** group with the owner as first member
+5. The organization generates a DID following the same identity registration flow ([UC-001](/docs/developers/use-cases/wallet/uc-001-create-identity))
+6. The organization's DID is anchored on the blockchain ([UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain)), making it publicly resolvable
+7. The owner can manage groups and add members ([UC-023](/docs/developers/use-cases/platform/uc-023-manage-organization-members))
+8. To operate as an Issuer, the organization must register in the trust framework ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework))
 
 ## Alternative Flows
 
 ### AF-1: Missing required fields
-- At step 5, the name or description is empty
-- The form shows validation errors on the empty fields
-- The submit button remains disabled until all required fields are filled
+- At step 3, the name or description is empty
+- The form shows validation errors
 
-### AF-2: Duplicate organization name
-- At step 6, the backend allows organizations with the same name (names are not unique constraints)
-- Each organization is uniquely identified by its ID, not its name
+### AF-2: DID anchoring fails
+- At step 6, the blockchain transaction fails
+- The organization remains in `draft` status and anchoring can be retried
 
 ### AF-3: User not authenticated
-- At step 6, the authentication token is invalid or expired
-- The backend returns HTTP 401 and the portal redirects to the login page
+- At step 4, the authentication is invalid
+- The user is redirected to login
 
 ## Postconditions
 
-- A new organization exists in the database with status `draft`
-- The creator is the organization's owner
-- An Admin group exists with the owner as its first member (role: `admin`)
-- The organization appears in the user's organization list
-- The organization can issue credentials ([UC-012](/docs/developers/use-cases/platform/uc-012-issue-verifiable-credential)) and request information ([UC-014](/docs/developers/use-cases/platform/uc-014-request-information-to-user)) once members are configured
-- The user's perspective switcher in the dashboard now includes the new organization ([UC-010](/docs/developers/use-cases/platform/uc-010-view-dashboard-by-perspective))
+- A new organization exists with its own DID
+- The creator is the organization's owner with an auto-created Admin group
+- The organization's DID Document is registered on the blockchain (publicly resolvable)
+- The organization can request information from users (Requester capability)
+- To issue credentials (Issuer capability), the organization must additionally register in the trust framework ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework))
 
 ## Modules Involved
 
 | Module | Role |
 |--------|------|
-| **frontend** | Organization creation form, validation, navigation to edit page |
-| **backend** | Organization entity creation, Admin group auto-creation, owner member assignment, persistence |
+| **frontend** | Organization creation form, validation, management UI |
+| **backend** | Organization creation, DID generation, Admin group auto-creation, persistence |
+| **blockchain** | Organization DID Document anchoring, public resolution |
 
 ## Technical Notes
 
-- **Unified entity model**: Organizations are not typed as "issuer" or "requestor". Every organization has dual capabilities: issuing credentials and requesting information. The distinction is functional (what action the member performs), not structural (what type the entity is)
-- **Two functional areas**: Each organization has an **issuance outbox** (credentials issued to users) and a **requests inbox/outbox** (information requests sent to users and presentations received back). Both areas are accessible from the organization's perspective in the dashboard
-- **Status lifecycle**: `draft` → `synced`. The `draft` status indicates the organization has not yet been registered on the blockchain. Syncing anchors the organization's DID on-chain
-- **Admin group**: Every organization has exactly one Admin group, auto-created and marked with `is_admin: true`. This group cannot be deleted but can be renamed. Members in the Admin group have full administrative privileges
-- **Owner role**: The owner is the user who created the organization. The owner has full control: edit details, manage groups, add/remove members, delete the organization. Ownership is tracked via `owner_id`
-- **API endpoints**:
-  - `POST /api/v1/organizations` — Create organization
-  - `GET /api/v1/organizations` — List organizations the current user belongs to
-  - `GET /api/v1/organizations/{id}` — Get organization details
-  - `PATCH /api/v1/organizations/{id}` — Update organization
-  - `DELETE /api/v1/organizations/{id}` — Delete organization (owner only)
-- **Migration from issuers**: The existing issuer entity model and API (`/api/v1/issuers`) will be refactored into the unified organization model. The data structure remains the same (name, description, did, status, owner_id, groups, members); the entity type distinction is removed
-- **Backend architecture**: Domain entity (`Organization`) → Repository interface → SQLAlchemy implementation → FastAPI router with Pydantic schemas. Follows clean architecture pattern defined in `backend-fastapi.mdc`
+- **Unified entity model**: Organizations are not typed as "issuer" or "requestor" — every organization has dual capabilities
+- **Identity flow**: Organizations follow the same DID generation and anchoring flow as individual users (Flow 1)
+- **Trust framework**: Operating as an Issuer requires authorization in the trust framework — this is a separate step after organization creation
+- **Status lifecycle**: `draft` → `synced` (after DID anchoring on blockchain)
+- **Standards**: W3C DID v1.0, eIDAS 2.0 (organizational wallets)

@@ -6,96 +6,91 @@ sidebar_position: 13
 
 # UC-013: Generate Verifiable Presentation
 
+:::note Reference Flow
+Corresponds to **Flow 3 — Verifiable Request and Presentation**, steps 2-6.
+:::
+
 :::info Functional Specification
 This use case defines intended behavior. Verifiable presentations are not yet implemented.
 :::
 
 ## Description
 
-From the Holder perspective, the user generates a verifiable presentation (VP) to respond to an information request from an organization. A VP is a wrapper that bundles one or more verifiable credentials (or selected claims from them) into a signed package that proves the holder controls the credentials and consents to share them. For example, a bank requests proof of the user's university degree — the user selects the relevant credential, the portal generates a VP signed with the user's DID key, and delivers it to the requesting organization.
+The Holder generates a verifiable presentation (VP) to respond to an information request from a Requester. The Holder reviews the request, grants consent (which is recorded on the blockchain), decrypts the relevant credentials from decentralized storage using their private key, constructs a VP containing only the specific claims requested (selective disclosure), and signs it with their private key. The VP is then sent to the Requester.
 
 ## Actors
 
-- **End User (Holder)**: Person generating the presentation from their credentials
-- **Frontend (Portal)**: Next.js web application providing the presentation generation UI
-- **Backend API**: FastAPI service constructing and signing the VP
-- **Wallet**: Signs the presentation with the holder's Ed25519 private key (via challenge-response)
-- **Organization (Requesting)**: Organization that will receive and verify the presentation
+- **Holder**: User generating the presentation from their credentials
+- **Requester**: Entity that sent the information request and will receive the VP
+- **Wallet**: Signs the presentation with the Holder's private key
+- **Blockchain**: Records the consent and provides DID resolution
+- **Storage Node**: Decentralized storage where the Holder's encrypted credentials are stored
 
 ## Preconditions
 
-- The user is authenticated and on the dashboard in **Holder perspective** ([UC-010](/docs/developers/use-cases/platform/uc-010-view-dashboard-by-perspective))
-- The user has at least one valid verifiable credential ([UC-011](/docs/developers/use-cases/platform/uc-011-view-verified-credentials))
-- An organization has requested information from the user ([UC-014](/docs/developers/use-cases/platform/uc-014-request-information-to-user)), or the user initiates a presentation proactively
+- The Holder has a DID registered on the blockchain ([UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain))
+- The Holder possesses valid credentials issued by authorized Issuers ([UC-012](/docs/developers/use-cases/platform/uc-012-issue-verifiable-credential))
+- A Requester has sent an information request to the Holder ([UC-014](/docs/developers/use-cases/platform/uc-014-request-information-to-user))
 
 ## Main Flow
 
-1. The user is on the Holder perspective and sees a pending information request from an organization, or navigates to generate a presentation manually
-2. The portal displays the request details:
-   - Requesting organization's name and DID
-   - Requested information (e.g., "proof of university degree", "professional certification")
-   - Request expiration time
-3. The portal shows the user's credentials that match the requested information
-4. The user selects which credentials (or specific claims within credentials) to include in the presentation
-5. The user reviews the data that will be shared and confirms
-6. The portal sends the selected credentials and request context to the backend
-7. The backend constructs the W3C Verifiable Presentation:
-   - Sets `@context`, `type: "VerifiablePresentation"`
-   - Sets `holder` to the user's DID
-   - Includes the selected verifiable credentials in `verifiableCredential`
-   - Includes the `challenge` (nonce from the organization's request) to bind the VP to the specific request
-8. The backend requests the user to sign the VP via the wallet (challenge-response flow):
-   - Sends a signing request to the wallet via deep link or HTTP
-   - The wallet signs the VP payload with the Ed25519 private key
-   - Returns the signature
-9. The backend attaches the proof (signature, verification method, created timestamp) to the VP
-10. The backend delivers the signed VP to the organization (via the platform or callback URL)
-11. The portal confirms delivery and shows the presentation summary to the user
+1. The Holder receives the request and the wallet displays what information is being requested and who is requesting it
+2. The Holder reviews the request and approves it via a cryptographic challenge-response — the consent is recorded on the blockchain
+3. The Holder decrypts the relevant credentials from decentralized storage using their private key
+4. The Holder constructs a Verifiable Presentation (VP) containing only the specific claims requested (selective disclosure), extracted from the corresponding credentials
+5. The VP is signed with the Holder's private key
+6. The signed VP is transmitted to the Requester
+7. The blockchain records the hash of the presentation operation as auditable evidence ([UC-028](/docs/developers/use-cases/platform/uc-028-record-audit-trail))
 
 ## Alternative Flows
 
 ### AF-1: No matching credentials
-- At step 3, the user has no credentials that satisfy the organization's request
-- The portal shows a message indicating which credentials are missing
-- The user cannot generate the presentation
+- At step 3, the Holder has no credentials that satisfy the Requester's request
+- The wallet shows a message indicating which credentials are missing
+- The Holder cannot generate the presentation
 
-### AF-2: User declines the request
-- At step 5, the user decides not to share the information
-- The user clicks "Decline" and the request is marked as rejected
-- The organization is notified of the rejection
+### AF-2: Holder declines the request
+- At step 2, the Holder decides not to share the information
+- The request is marked as declined and the Requester is notified
 
 ### AF-3: Selective disclosure
-- At step 4, the user chooses to share only specific claims from a credential rather than the full credential
-- The VP includes only the selected claims (if the credential format supports selective disclosure)
+- At step 4, the Holder chooses to share only specific claims from a credential rather than the full credential
+- The VP includes only the selected claims (minimum exposure principle)
 
 ### AF-4: Wallet signing fails
-- At step 8, the wallet is unreachable or the user cancels the signing
-- The presentation is not generated and the user can retry
+- At step 5, the wallet is unreachable or the Holder cancels the signing
+- The presentation is not generated and the Holder can retry
 
 ### AF-5: Request expired
-- At step 1, the organization's request has passed its expiration time
-- The portal shows the request as expired and the user cannot generate a presentation for it
+- At step 1, the Requester's request has passed its expiration time
+- The wallet shows the request as expired and the Holder cannot generate a presentation for it
+
+### AF-6: Credential decryption fails
+- At step 3, the credential cannot be decrypted from storage (corrupted data, storage unreachable)
+- The Holder is informed and can retry
 
 ## Postconditions
 
-- A signed verifiable presentation exists containing the selected credentials
-- The VP has been delivered to the requesting organization
-- The presentation is recorded in the user's history
-- The organization can now verify the presentation ([UC-015](/docs/developers/use-cases/platform/uc-015-verify-presentation))
+- The Requester has received the signed VP containing only the requested claims
+- The Holder has shared only the minimum information necessary (selective disclosure)
+- The consent is recorded on the blockchain without personal data
+- The entire operation is traced on the blockchain via hashes ([UC-028](/docs/developers/use-cases/platform/uc-028-record-audit-trail))
+- The Requester can now delegate verification to the Verifier ([UC-015](/docs/developers/use-cases/platform/uc-015-verify-presentation))
 
 ## Modules Involved
 
 | Module | Role |
 |--------|------|
-| **frontend** | Request display, credential selection UI, review and confirm, delivery confirmation |
-| **backend** | VP construction (W3C VP format), signing orchestration, delivery to organization |
-| **wallet** | Ed25519 signing of the VP payload (via challenge-response) |
-| **blockchain** | Holder DID resolution (for public key retrieval during verification) |
+| **wallet** | Request display, consent UI, credential decryption, VP signing |
+| **backend** | VP construction (W3C VP format), delivery to Requester |
+| **blockchain** | Consent registration, DID resolution, audit trail |
+| **storage** | Encrypted credential retrieval |
 
 ## Technical Notes
 
-- **VP format**: W3C Verifiable Presentations Data Model. JSON-LD wrapping one or more VCs with a holder proof
-- **Challenge binding**: The VP includes the organization's `challenge` (nonce) to prevent replay. The VP is valid only for the specific request it responds to
-- **Signing**: The holder's Ed25519 key signs the VP. This proves the holder consents to share the bundled credentials
-- **Selective disclosure**: Depends on credential format. Standard JSON-LD VCs include all claims. Future: BBS+ signatures could enable selective attribute disclosure
-- **Delivery**: Initially via the platform API. Future: DIDComm v2 through the mediator module for peer-to-peer delivery ([UC-018](/docs/developers/use-cases/wallet/uc-018-send-didcomm-message), [UC-021](/docs/developers/use-cases/mediator/uc-021-route-didcomm-message))
+- **VP format**: W3C Verifiable Presentations Data Model — JSON-LD wrapping one or more VCs with a Holder proof
+- **Challenge binding**: The VP includes the Requester's challenge (nonce) to prevent replay — the VP is valid only for the specific request it responds to
+- **Consent on-chain**: The Holder's consent is recorded on the blockchain as a hash — no personal data is stored on-chain
+- **Selective disclosure**: The VP contains only the specific claims requested, not the full credentials — this follows the minimum exposure principle
+- **Encryption**: Credentials are decrypted from storage only by the Holder's private key — they are never transmitted in cleartext
+- **Standards**: W3C VC Data Model 2.0, DIF Presentation Exchange, OID4VP, GDPR (explicit consent)

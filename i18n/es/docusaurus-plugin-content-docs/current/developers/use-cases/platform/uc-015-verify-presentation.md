@@ -6,112 +6,98 @@ sidebar_position: 15
 
 # UC-015: Verificar Presentación
 
+:::note Flujo de Referencia
+Corresponde al **Flujo 3 — Solicitud y Presentación Verificable**, pasos 7-12.
+:::
+
 :::info Especificación Funcional
 Este caso de uso define el comportamiento previsto. La verificación de presentaciones aún no está implementada.
 :::
 
 ## Descripción
 
-Desde la perspectiva Organización, un miembro de la organización verifica una presentación verificable (VP) recibida de un usuario. El proceso de verificación valida la firma del titular en la VP, la firma del emisor en cada credencial verificable incluida, el estado de revocación de las credenciales y la integridad de los datos. La verificación se realiza contra un nodo verificador que resuelve DIDs desde la blockchain y comprueba las pruebas criptográficas. Por ejemplo, un banco verifica que la credencial de título de un cliente fue genuinamente emitida por una universidad y no ha sido revocada.
+El Requester delega la verificación de una presentación verificable (VP) recibida al Verifier. El Verifier realiza la validación criptográfica completa: verifica la firma del Holder en la VP, verifica la firma de cada Issuer en las credenciales incluidas, comprueba el estado de las credenciales (activa/revocada/expirada) en la blockchain y verifica la legitimidad de cada Issuer a través del trust framework. El Verifier devuelve el resultado de la verificación al Requester.
 
 ## Actores
 
-- **Miembro de la Organización**: Persona actuando desde la perspectiva Organización, iniciando la verificación
-- **Frontend (Portal)**: Aplicación web Next.js que muestra los resultados de verificación
-- **Backend API**: Servicio FastAPI que orquesta el proceso de verificación
-- **Nodo Verificador**: Servicio que realiza la verificación criptográfica (validación de firmas, comprobaciones de revocación)
-- **Blockchain**: Blockchain de Almena que proporciona resolución de Documentos DID y registro de revocación
+- **Requester**: Entidad que recibió la VP y delega la verificación
+- **Verifier**: Componente o servicio que realiza la verificación criptográfica — comprueba firmas, integridad de datos, estado de revocación y legitimidad del Issuer vía el trust framework
+- **Blockchain**: Proporciona resolución de DIDs, estado de credenciales (registro de revocación) y trust framework (registro de Issuers autorizados)
 
 ## Precondiciones
 
-- El miembro de la organización está autenticado y en el dashboard en **perspectiva Organización** ([UC-010](/docs/developers/use-cases/platform/uc-010-view-dashboard-by-perspective))
-- Un usuario ha respondido a una solicitud de información con una presentación verificable ([UC-013](/docs/developers/use-cases/platform/uc-013-generate-verifiable-presentation))
-- La solicitud de información está en estado `FULFILLED` ([UC-014](/docs/developers/use-cases/platform/uc-014-request-information-to-user))
-- El nodo verificador está accesible
+- Un Holder ha respondido a una solicitud de información con una VP ([UC-013](/docs/developers/use-cases/platform/uc-013-generate-verifiable-presentation))
+- El servicio Verifier está accesible
+- La blockchain está operativa
 
 ## Flujo Principal
 
-1. El miembro de la organización ve una solicitud cumplida en la perspectiva Organización con una presentación verificable vinculada
-2. El miembro de la organización hace clic en **Verificar** sobre la presentación
-3. El portal envía la VP al backend para su verificación
-4. El backend envía la VP al nodo verificador
-5. El nodo verificador realiza las siguientes comprobaciones:
-
-### Verificación a nivel de VP (Titular)
-   - Resuelve el DID del titular desde la blockchain (o extrae la clave pública de la cadena DID para `did:almena:*`)
-   - Verifica la firma Ed25519 del titular en la VP
-   - Valida que el nonce de desafío coincide con la solicitud original
+1. El Requester recibe la VP y delega la verificación al Verifier
+2. El Verifier verifica la firma del Holder:
+   - Resuelve el DID del Holder en la blockchain para obtener la clave pública
+   - Verifica la firma del Holder en la VP
+   - Valida que el nonce de challenge coincide con la solicitud original
    - Comprueba que la VP no ha expirado
-
-### Verificación a nivel de VC (para cada credencial incluida)
-   - Resuelve el DID del emisor desde la blockchain
-   - Obtiene la clave pública del emisor del Documento DID
-   - Verifica la firma del emisor en la credencial
+3. Para cada credencial incluida, el Verifier:
+   - Resuelve el DID del Issuer en la blockchain para obtener la clave pública
+   - Verifica la firma del Issuer en la credencial
    - Valida que la credencial no ha expirado
-   - Comprueba el registro de revocación: consulta la blockchain para confirmar que la credencial no ha sido revocada
-   - Valida la conformidad con el esquema de credencial
-
-6. El nodo verificador devuelve el resultado de la verificación:
+   - Comprueba el registro de revocación en la blockchain para confirmar que la credencial no ha sido revocada
+4. El Verifier verifica la legitimidad de cada Issuer:
+   - Consulta el trust framework en la blockchain para confirmar que cada Issuer está autorizado para emitir el tipo de credencial presentada ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework))
+5. El Verifier devuelve el resultado de la verificación al Requester:
    - Estado general: `VALID`, `INVALID` o `PARTIAL`
-   - Resultados por credencial con estados de comprobación individuales
-   - Motivos de fallo (si los hay)
-7. El backend almacena el resultado de verificación vinculado a la solicitud original
-8. El portal muestra el resultado de verificación al miembro de la organización:
-   - Estado general con indicador visual (verde/rojo/amarillo)
-   - Desglose por credencial mostrando cada comprobación (firma, expiración, revocación)
-   - Las declaraciones/atributos verificados de las credenciales
-   - Marca temporal de la verificación
+   - Desglose por credencial con estados de comprobación individuales
+   - Detalle de cada verificación realizada
+6. La blockchain registra el hash de la operación de verificación como evidencia auditable ([UC-028](/docs/developers/use-cases/platform/uc-028-record-audit-trail))
 
 ## Flujos Alternativos
 
-### FA-1: Firma de la VP inválida
-- En el paso 5, la firma del titular no coincide
-- El nodo verificador devuelve `INVALID` con motivo "Fallo en la verificación de la firma del titular"
-- El portal muestra el fallo y la organización no puede confiar en los datos presentados
+### FA-1: Firma del Holder inválida
+- En el paso 2, la firma del Holder no coincide
+- El Verifier devuelve `INVALID` — los datos presentados no son confiables
 
 ### FA-2: Credencial revocada
-- En el paso 5, una de las credenciales incluidas ha sido revocada por su emisor
-- El nodo verificador devuelve `PARTIAL` o `INVALID` dependiendo de si todas las credenciales son requeridas
-- El portal resalta qué credencial fue revocada
+- En el paso 3, una de las credenciales incluidas ha sido revocada
+- El Verifier devuelve `PARTIAL` o `INVALID` según si todas las credenciales son requeridas
 
-### FA-3: DID del emisor no encontrado
-- En el paso 5, el DID del emisor no puede resolverse desde la blockchain
-- El nodo verificador devuelve `INVALID` con motivo "DID del emisor no resoluble"
-- Esto puede indicar que el DID del emisor nunca fue anclado o que la blockchain no está accesible
+### FA-3: DID del Issuer no encontrado
+- En el paso 3, el DID del Issuer no puede resolverse desde la blockchain
+- El Verifier devuelve `INVALID` — la credencial no puede validarse
 
-### FA-4: Nonce de desafío no coincide
-- En el paso 5, el nonce en la VP no coincide con el desafío de la solicitud
-- El nodo verificador devuelve `INVALID` con motivo "Desafío no coincide — posible repetición"
-- Esto indica que la VP puede haber sido reutilizada de una solicitud diferente
+### FA-4: Nonce de challenge no coincide
+- En el paso 2, el nonce en la VP no coincide con el challenge de la solicitud
+- El Verifier devuelve `INVALID` — posible ataque de repetición
 
 ### FA-5: Credencial expirada
-- En el paso 5, una credencial ha superado su fecha de expiración
-- El nodo verificador marca la credencial como expirada
-- El miembro de la organización es informado y puede decidir contextualmente si acepta la credencial expirada
+- En el paso 3, una credencial ha superado su fecha de expiración
+- El Verifier marca la credencial como expirada en el resultado
 
-### FA-6: Nodo verificador inaccesible
-- En el paso 4, el nodo verificador no está accesible
-- El portal muestra un error y el miembro de la organización puede reintentar más tarde
+### FA-6: Issuer no autorizado en el trust framework
+- En el paso 4, el Issuer no se encuentra en el trust framework o su autorización ha sido revocada
+- El Verifier devuelve `INVALID` — el Issuer no es legítimo para este tipo de credencial
+
+### FA-7: Verifier inaccesible
+- En el paso 1, el servicio Verifier no está accesible
+- El Requester puede reintentar más tarde
 
 ## Postcondiciones
 
-- El resultado de la verificación está almacenado y asociado con la solicitud de información original
-- El miembro de la organización tiene una evaluación clara de si la información presentada es confiable
-- El resultado de la verificación queda registrado en el historial de la organización
+- El Requester tiene una evaluación clara de si la información presentada es confiable
+- El resultado de la verificación incluye desglose por credencial de todas las comprobaciones realizadas
+- La operación de verificación está registrada en la blockchain como evidencia auditable
+- Todos los datos verificados sin exponer información personal on-chain
 
 ## Módulos Involucrados
 
 | Módulo | Rol |
 |--------|-----|
-| **frontend** | Activador de verificación, visualización de resultados con desglose por credencial, indicadores de estado |
-| **backend** | Orquestación de la verificación, almacenamiento de resultados, comunicación con el nodo verificador |
-| **blockchain** | Resolución de Documentos DID (DIDs del titular y del emisor), consultas al registro de revocación |
+| **backend** | Orquestación de la verificación, almacenamiento de resultados |
+| **blockchain** | Resolución de DID Documents (DIDs del Holder y del Issuer), consultas al registro de revocación, consultas al trust framework |
 
 ## Notas Técnicas
 
-- **Nodo verificador**: Un servicio dedicado (o módulo del backend) que realiza la verificación criptográfica real. Separar la lógica de verificación permite reutilizarla en diferentes contextos (API, CLI, etc.)
-- **Resolución de DID**: Para `did:almena:*`, la clave pública está embebida en la cadena del DID. Para DIDs anclados, se consulta el módulo DID de la blockchain para obtener el Documento DID completo con métodos de verificación
-- **Registro de revocación**: El módulo de credenciales de la blockchain mantiene un registro de revocación. Comprobar la revocación es una consulta a la blockchain, no una modificación
-- **Vinculación por desafío**: El nonce de desafío de la VP debe coincidir con el nonce de la solicitud original. Esto impide que un titular reenvíe una VP generada previamente para una solicitud diferente
-- **La verificación no es destructiva**: La VP y las credenciales permanecen sin cambios después de la verificación. El proceso solo lee y valida
-- **Pista de auditoría**: Cada resultado de verificación se almacena con marca temporal, permitiendo a la organización demostrar cuándo y cómo verificó la información
+- **Verifier como componente separado**: El Verifier es un servicio/componente dedicado que realiza la verificación criptográfica — separarlo del Requester asegura validación independiente
+- **Verificación del trust framework**: Esta es una comprobación nueva — el Verifier consulta el trust framework en blockchain para confirmar que cada Issuer está autorizado ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework), [UC-026](/docs/developers/use-cases/platform/uc-026-delegate-issuer-authorization))
+- **La verificación no es destructiva**: La VP y las credenciales permanecen sin cambios — el proceso solo lee y valida
+- **Estándares**: W3C VC Data Model 2.0, W3C Bitstring Status List, DIF Presentation Exchange

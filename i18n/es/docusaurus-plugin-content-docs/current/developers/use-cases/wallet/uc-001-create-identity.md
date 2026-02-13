@@ -6,88 +6,74 @@ sidebar_position: 1
 
 # UC-001: Crear Identidad
 
+:::note Flujo de Referencia
+Corresponde al **Flujo 1 — Registro de Identidad (Onboarding)**, pasos 1-2 y 5.
+:::
+
 ## Descripción
 
-El usuario crea una nueva identidad descentralizada desde la wallet. Este proceso genera un mnemónico BIP39, deriva claves criptográficas (Ed25519 para identidad, secp256k1 para blockchain), las almacena de forma segura en el keychain del sistema y produce un DID con el formato `did:almena:<public_key_hex>`. La identidad es utilizable inmediatamente sin interacción con la blockchain.
+El Holder crea una nueva identidad descentralizada. Este proceso genera un par de claves criptográficas (pública/privada) en el dispositivo local, produce un DID (Decentralized Identifier) siguiendo el estándar W3C DID y almacena la clave privada de forma segura. La clave privada nunca abandona el dispositivo. La identidad es utilizable inmediatamente sin interacción con la blockchain; el anclaje on-chain es un paso separado y opcional ([UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain)).
+
+Este mismo flujo de onboarding aplica para entidades (Issuers, Requesters). Para Issuers, el registro de identidad debe complementarse con la autorización en el trust framework ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework)).
 
 ## Actores
 
-- **Usuario Final**: Persona que crea su identidad a través de la UI de la wallet
-- **Wallet (Frontend)**: Aplicación Svelte que gestiona el flujo de UI y la orquestación
-- **Wallet (Rust Backend)**: Comandos Tauri que realizan las operaciones criptográficas y el almacenamiento seguro
-- **Keychain del Sistema**: Almacenamiento seguro a nivel de SO para claves privadas
+- **Holder**: Usuario que crea su identidad descentralizada
+- **Wallet**: Aplicación en el dispositivo del Holder que gestiona claves, DIDs y credenciales
+- **System Keychain**: Almacenamiento seguro a nivel de sistema operativo para claves privadas
 
 ## Precondiciones
 
-- La aplicación wallet está instalada y en ejecución
-- No existe ninguna identidad en la wallet (primer uso)
-- El keychain del sistema es accesible
+- El Holder dispone de un dispositivo con la aplicación wallet instalada
+- No existe ninguna identidad actualmente en el wallet (primer uso)
+- El system keychain es accesible
 
 ## Flujo Principal
 
-1. El usuario abre la wallet y ve la pantalla de bienvenida (`/`)
-2. El usuario selecciona **Crear Nueva Identidad**
-3. La wallet navega a la pantalla de creación de contraseña (`/create`)
-4. El usuario introduce una contraseña que cumple las reglas de validación:
-   - Mínimo 8 caracteres
-   - Al menos 1 letra mayúscula
-   - Al menos 1 letra minúscula
-   - Al menos 1 dígito
-   - Al menos 1 carácter especial (`!@#$%^&*(),.?":{}|<>`)
-5. El usuario confirma la contraseña
-6. La wallet hashea la contraseña usando Argon2 (comando Rust `hash_password`)
-7. El hash se almacena temporalmente en `sessionStorage`
-8. La wallet navega a la pantalla de frase de recuperación (`/create/recovery-phrase`)
-9. La wallet genera un mnemónico BIP39 de 12 palabras mediante `generateRecoveryPhrase(language)` usando `@scure/bip39` con la lista de palabras correspondiente (inglés o español)
-10. Las 12 palabras se muestran en una cuadrícula
-11. Un aviso instruye al usuario a respaldar la frase de forma segura
-12. El usuario copia la frase (acción obligatoria — habilita el botón Continuar)
-13. La wallet invoca el comando Rust `generate_and_store_identity`:
-    - Parsea el mnemónico BIP39 (auto-detecta el idioma)
-    - Genera la semilla BIP39 (passphrase vacía)
-    - Deriva el par de claves Ed25519: `SHA512(seed[0:32])` → clave secreta de 32 bytes
-    - Deriva la clave secp256k1 mediante la ruta BIP44 `m/44'/118'/0'/0/0`
-    - Almacena la clave privada Ed25519 en el keychain del sistema (servicio: `almena-id-wallet`, clave: `{did}`)
-    - Almacena la clave privada secp256k1 en el keychain del sistema (clave: `{did}:almena`)
-    - Devuelve el DID (`did:almena:<ed25519_public_key_hex>`) y la clave pública
-14. La wallet guarda los metadatos de identidad en el Tauri Store (`identity.json`): DID, clave pública, timestamp de creación, `anchorStatus: 'not_anchored'`
-15. El hash de contraseña se elimina de `sessionStorage`
-16. La sesión se desbloquea mediante `unlockSession()`
-17. La wallet navega a la pantalla de éxito (`/create/success`) mostrando el DID
-18. El usuario puede opcionalmente anclar el DID en la blockchain (ver [UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain)) o continuar directamente al dashboard
+1. El Holder abre el wallet y selecciona **Crear Nueva Identidad**
+2. El Holder crea una contraseña que cumple los requisitos de seguridad
+3. El wallet genera una frase de recuperación (mnemónico BIP39) y la muestra al Holder
+4. El Holder respalda la frase de recuperación de forma segura
+5. El wallet genera el par de claves criptográficas (pública/privada) en el dispositivo local
+6. El wallet deriva el DID a partir de la clave pública, siguiendo el estándar W3C DID: `did:almena:<clave_pública>`
+7. El wallet almacena la clave privada de forma segura en el system keychain — la clave privada nunca abandona el dispositivo
+8. El wallet persiste los metadatos de identidad localmente (DID, clave pública, fecha de creación)
+9. El Holder ve una pantalla de confirmación con su nuevo DID
+10. El Holder puede opcionalmente anclar el DID en la blockchain ([UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain)) o proceder directamente a usar el wallet
 
 ## Flujos Alternativos
 
 ### FA-1: Contraseñas no coinciden
-- En el paso 5, si la contraseña de confirmación no coincide, el formulario muestra un error y el usuario debe volver a introducir ambas contraseñas
+- En el paso 2, la contraseña de confirmación no coincide
+- El wallet muestra un error y el Holder debe reingresar ambas contraseñas
 
-### FA-2: La contraseña no cumple los requisitos
-- En el paso 4, el formulario valida en tiempo real y deshabilita el envío hasta que se cumplan todas las reglas
+### FA-2: Acceso al keychain denegado
+- En el paso 7, el system keychain no es accesible
+- La operación falla con un mensaje de error y la identidad no se crea
 
-### FA-3: Acceso al keychain denegado
-- En el paso 13, si el keychain del SO no es accesible, la operación falla con un mensaje de error y la identidad no se crea
+### FA-3: Frase de recuperación no respaldada
+- En el paso 4, el Holder debe confirmar que ha respaldado la frase antes de continuar
 
 ## Postcondiciones
 
-- Un nuevo par de claves Ed25519 existe en el keychain del sistema
-- Un nuevo par de claves secp256k1 existe en el keychain del sistema
-- Los metadatos de identidad están persistidos en el Tauri Store (`identity.json`)
-- El DID está generado y es utilizable localmente: `did:almena:<ed25519_public_key_hex>`
-- La sesión del usuario está desbloqueada
+- El Holder posee un DID generado siguiendo el estándar W3C DID
+- Un par de claves criptográficas existe almacenado de forma segura en el dispositivo
+- La clave privada está en el system keychain y nunca ha abandonado el dispositivo
+- El DID es utilizable localmente para firma y autenticación
 - No se ha realizado ninguna transacción en blockchain (el anclaje es un paso separado y opcional)
+- El Holder puede recibir credenciales y generar presentaciones verificables
 
 ## Módulos Involucrados
 
 | Módulo | Rol |
 |--------|-----|
-| **wallet** (frontend) | Flujo UI: bienvenida → contraseña → frase de recuperación → éxito |
-| **wallet** (Rust backend) | Hashing Argon2, parseo de mnemónico BIP39, derivación de claves Ed25519/secp256k1, almacenamiento en keychain |
+| **wallet** | Generación de claves, creación de DID, almacenamiento seguro, flujo de UI |
 
 ## Notas Técnicas
 
-- **Derivación de claves**: Dos derivaciones paralelas desde la misma semilla BIP39 — Ed25519 (identidad) y secp256k1 (firma blockchain mediante BIP44 `m/44'/118'/0'/0/0`)
-- **Formato DID**: `did:almena:<ed25519_public_key_hex>` (256 caracteres hexadecimales)
-- **Hashing de contraseña**: Argon2 con salt aleatorio, ejecutado en Rust por seguridad
-- **Idioma del mnemónico**: Soporta listas de palabras en inglés y español; idioma auto-detectado durante la validación
-- **Las claves privadas nunca salen del keychain del sistema** — todas las operaciones criptográficas se ejecutan en Rust
-- **No se requieren llamadas de red** — la creación de identidad es completamente offline
+- **Tipos de clave**: Ed25519 para operaciones de identidad, secp256k1 para transacciones blockchain — ambas derivadas de la misma semilla BIP39
+- **Formato DID**: `did:almena:<clave_pública_hex>` siguiendo W3C DID v1.0
+- **Frase de recuperación**: Mnemónico BIP39 de 12 palabras que permite la recuperación determinista de claves ([UC-002](/docs/developers/use-cases/wallet/uc-002-recover-identity))
+- **Offline-first**: La creación de identidad no requiere acceso a red
+- **Onboarding de entidades**: Las organizaciones (Issuers/Requesters) siguen este mismo flujo de identidad vía [UC-022](/docs/developers/use-cases/platform/uc-022-create-organization), luego se registran en el trust framework vía [UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework)
+- **Estándares**: W3C Decentralized Identifiers (DID) v1.0, requisitos de wallet eIDAS 2.0

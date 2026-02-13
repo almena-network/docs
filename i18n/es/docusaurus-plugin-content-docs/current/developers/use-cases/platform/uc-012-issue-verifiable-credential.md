@@ -6,92 +6,95 @@ sidebar_position: 12
 
 # UC-012: Emitir Credencial Verificable
 
+:::note Flujo de Referencia
+Corresponde al **Flujo 2 — Emisión de Credencial Verificable**.
+:::
+
 :::info Especificación Funcional
 Este caso de uso define el comportamiento previsto. La emisión de credenciales aún no está implementada.
 :::
 
 ## Descripción
 
-Desde la perspectiva Organización del dashboard, un miembro de la organización emite una credencial verificable (VC) a un usuario. Por ejemplo, una universidad emite una credencial de título a un graduado. El miembro selecciona el tipo de credencial, completa las declaraciones, establece el período de validez (con una fecha de expiración opcional), firma la credencial con la clave DID de la organización y la entrega al titular. La credencial cumple con el W3C Verifiable Credentials Data Model. Tras la emisión, la organización puede revocar la credencial si es necesario ([UC-016](/docs/developers/use-cases/platform/uc-016-revoke-verifiable-credential)).
+Un Issuer (organización) autorizado emite una credencial verificable (VC) a un Holder. El Issuer construye la credencial con los claims correspondientes, la firma con su clave privada, la cifra con la clave pública del Holder (obtenida resolviendo el DID del Holder en la blockchain) y la persiste en el almacenamiento descentralizado. El estado de la credencial (activa, con fecha de expiración) se registra en la blockchain. Solo el Holder puede descifrar la credencial con su clave privada. El Issuer retiene únicamente un identificador/hash para gestionar la revocación.
 
 ## Actores
 
-- **Miembro de la Organización**: Persona actuando desde la perspectiva Organización con permiso para emitir credenciales
-- **Titular (Usuario Destinatario)**: Persona que recibe la credencial
-- **Frontend (Portal)**: Aplicación web Next.js que proporciona la interfaz de emisión
-- **Backend API**: Servicio FastAPI que gestiona la creación, firma y entrega de credenciales
-- **Blockchain**: Blockchain de Almena para el anclaje opcional de credenciales o registro de revocación
+- **Issuer**: Organización autorizada que emite la credencial — debe estar registrada en el trust framework ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework))
+- **Holder**: Usuario que recibe la credencial
+- **Blockchain**: Red distribuida para resolución de DIDs y registro de estado de credenciales
+- **Nodo Storage**: Almacenamiento descentralizado donde se persiste la credencial cifrada
 
 ## Precondiciones
 
-- El miembro de la organización está autenticado y en el dashboard en **perspectiva Organización** ([UC-010](/docs/developers/use-cases/platform/uc-010-view-dashboard-by-perspective))
-- El miembro de la organización tiene permiso para emitir credenciales para su organización
-- La organización tiene un DID anclado en la blockchain ([UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain))
-- El titular destinatario tiene un DID registrado en la plataforma
+- El Issuer y el Holder tienen DIDs registrados en la blockchain ([UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain))
+- El Issuer está autorizado en el trust framework ([UC-025](/docs/developers/use-cases/platform/uc-025-register-issuer-in-trust-framework))
+- El Holder ha solicitado o aceptado recibir la credencial
 
 ## Flujo Principal
 
-1. El miembro de la organización navega a la sección de emisión de credenciales en la perspectiva Organización
-2. El miembro de la organización selecciona un tipo/esquema de credencial (ej., "Título Universitario", "Certificación Profesional")
-3. El portal muestra el formulario con los campos definidos por el esquema seleccionado
-4. El miembro de la organización introduce las declaraciones:
-   - DID del titular (buscado por nombre o DID)
-   - Atributos específicos de la credencial (ej., nombre del título, institución, fecha de graduación, distinciones)
-   - Período de validez:
-     - **Fecha de emisión**: Por defecto la fecha/hora actual, puede ajustarse
-     - **Fecha de expiración** (opcional): Si se establece, la credencial se invalida automáticamente después de esta fecha. Si se omite, la credencial no tiene expiración y permanece válida hasta que se revoque explícitamente ([UC-016](/docs/developers/use-cases/platform/uc-016-revoke-verifiable-credential))
-5. El miembro de la organización envía la credencial
-6. El backend construye la Credencial Verificable W3C:
-   - Establece `@context`, `type`, `issuer` (DID del emisor), `credentialSubject` (DID del titular + declaraciones)
-   - Establece `issuanceDate` y opcionalmente `expirationDate`
-   - Genera un ID de credencial único
-7. El backend firma la credencial usando la clave privada de la organización (clave Ed25519 asociada al DID de la organización)
-8. El backend almacena la credencial y la asocia con el DID del titular
-9. El backend notifica al titular (a través de la plataforma) que una nueva credencial está disponible
-10. El portal confirma la emisión con el ID de credencial y un resumen
+1. El Issuer construye la Credencial Verificable (VC) con:
+   - Los claims correspondientes (datos del Holder)
+   - Fecha de emisión
+   - Fecha de expiración (TTL) — opcional: si se omite, la credencial no tiene expiración
+   - Referencia al DID del Holder como `credentialSubject`
+   - Referencia al DID del Issuer como `issuer`
+2. El Issuer firma la VC con su clave privada — esta firma permite verificar la autenticidad e integridad de la credencial
+3. El Issuer resuelve el DID del Holder en la blockchain para obtener su clave pública
+4. El Issuer cifra la VC firmada con la clave pública del Holder — solo el Holder podrá descifrarla con su clave privada
+5. La credencial cifrada se persiste en el nodo de almacenamiento descentralizado — se genera un identificador/hash de referencia
+6. El Issuer registra el estado de la credencial en la blockchain:
+   - Identificador de la credencial
+   - DID del Issuer
+   - Estado inicial: **activa**
+   - Fecha de expiración (si se estableció)
+7. El Holder recibe una notificación de que tiene una nueva credencial disponible — su wallet almacena la referencia al storage y los metadatos
+8. La blockchain registra el hash de la operación de emisión como evidencia auditable ([UC-028](/docs/developers/use-cases/platform/uc-028-record-audit-trail))
 
 ## Flujos Alternativos
 
-### FA-1: DID del titular no encontrado
-- En el paso 4, el titular buscado no existe en la plataforma
-- El formulario muestra un error y el miembro no puede continuar hasta que se seleccione un titular válido
+### FA-1: DID del Holder no encontrado
+- En el paso 3, el DID del Holder no puede resolverse en la blockchain
+- La emisión no puede continuar — se informa al Issuer de que el Holder debe anclar su DID primero
 
-### FA-2: El miembro de la organización no tiene permiso
-- En el paso 5, el backend valida el rol del miembro dentro de la organización
-- Si el miembro no tiene permiso de emisión, la solicitud se rechaza con un error de autorización
+### FA-2: Issuer no autorizado
+- En el paso 1, el sistema verifica que el Issuer está autorizado en el trust framework
+- Si el Issuer no está autorizado o su autorización ha sido revocada, la emisión se rechaza
 
 ### FA-3: Fallo en la validación del esquema
-- En el paso 5, las declaraciones introducidas no cumplen con el esquema de credencial seleccionado
-- El formulario muestra errores de validación en los campos no conformes
+- En el paso 1, los claims no cumplen con el esquema de credencial
+- Se muestran errores de validación al Issuer que debe corregir los datos
 
-### FA-4: Fecha de expiración en el pasado
-- En el paso 4, el miembro introduce una fecha de expiración anterior a la fecha de emisión o en el pasado
-- El formulario muestra un error de validación en el campo de fecha de expiración
-- El miembro debe corregir la fecha antes de enviar
+### FA-4: Nodo de storage inaccesible
+- En el paso 5, el almacenamiento descentralizado no es accesible
+- La operación falla y el Issuer puede reintentar más tarde
+
+### FA-5: Fallo en la transacción blockchain
+- En el paso 6, la transacción blockchain para el registro de estado falla
+- La credencial no se considera emitida — el Issuer puede reintentar
 
 ## Postcondiciones
 
-- Existe una nueva credencial verificable, firmada por la organización, con estado `VALID`
-- Si se estableció una fecha de expiración, la credencial pasará automáticamente al estado `EXPIRED` después de esa fecha
-- La credencial está asociada al DID del titular y es accesible desde su perspectiva Titular ([UC-011](/docs/developers/use-cases/platform/uc-011-view-verified-credentials))
-- La emisión queda registrada en el historial de la organización
-- La organización puede revocar la credencial posteriormente si es necesario ([UC-016](/docs/developers/use-cases/platform/uc-016-revoke-verifiable-credential))
+- La credencial cifrada está en el almacenamiento descentralizado, accesible solo por el Holder (que puede descifrarla con su clave privada)
+- El estado de la credencial (activa, con fecha de expiración) está registrado en la blockchain
+- El Issuer retiene solo el identificador/hash de la credencial para gestión de revocación ([UC-016](/docs/developers/use-cases/platform/uc-016-revoke-verifiable-credential))
+- El hash de la operación de emisión está registrado en la blockchain como evidencia auditable
+- El Holder puede ver la credencial desde su perspectiva ([UC-011](/docs/developers/use-cases/platform/uc-011-view-verified-credentials))
 
 ## Módulos Involucrados
 
 | Módulo | Rol |
 |--------|-----|
-| **frontend** | Formulario de emisión de credenciales, selección de esquema, búsqueda de titular, interfaz de confirmación |
-| **backend** | Construcción de credenciales (formato W3C VC), firma, almacenamiento, notificación al titular |
-| **blockchain** | Resolución del DID de la organización (para obtención de claves), anclaje opcional de credenciales, registro de revocación |
+| **frontend** | Formulario de emisión de credenciales, selección de esquema, búsqueda de Holder, UI de confirmación |
+| **backend** | Construcción de la VC (formato W3C), firma, resolución de DID, cifrado, persistencia en storage |
+| **blockchain** | Resolución del DID del Holder (obtención de clave pública), registro de estado de credencial, pista de auditoría |
+| **storage** | Persistencia de credencial cifrada, generación de identificador de referencia |
 
 ## Notas Técnicas
 
-- **Formato de credencial**: W3C Verifiable Credentials Data Model 2.0. JSON-LD con prueba criptográfica
-- **Firma**: La clave Ed25519 de la organización firma la credencial. La clave está asociada al DID de la organización
-- **Esquema**: Las credenciales siguen esquemas predefinidos que definen atributos obligatorios y opcionales. Los esquemas son gestionados por la plataforma
-- **Período de validez**: El `issuanceDate` marca cuándo la credencial es válida. El `expirationDate` opcional marca cuándo deja de serlo. Una credencial sin fecha de expiración permanece válida indefinidamente (hasta ser revocada). Patrones típicos: las certificaciones profesionales expiran después de 1-5 años; los títulos académicos normalmente no tienen expiración
-- **Ciclo de vida del estado de credencial**: `VALID` → `EXPIRED` (automático, basado en `expirationDate`) o `VALID` → `REVOKED` (manual, vía [UC-016](/docs/developers/use-cases/platform/uc-016-revoke-verifiable-credential)). Expiración y revocación son independientes — una credencial puede estar tanto expirada como revocada
-- **Campo `credentialStatus`**: Cada credencial incluye un `credentialStatus` que apunta al registro de revocación en la blockchain, siguiendo la especificación W3C Bitstring Status List. Esto permite a los verificadores comprobar el estado de revocación en la cadena
-- **Entrega**: La credencial se almacena en el servidor y se pone a disposición del titular a través de la API. Futuro: entrega vía DIDComm a través del módulo mediador ([UC-021](/docs/developers/use-cases/mediator/uc-021-route-didcomm-message))
-- **Implementación actual**: La página de gestión de organizaciones (`/dashboard/organizations`) permite crear organizaciones y gestionar miembros. La interfaz de emisión de credenciales aún no existe
+- **Formato de credencial**: W3C Verifiable Credentials Data Model 2.0 con campo `credentialStatus` apuntando al registro de revocación en blockchain (W3C Bitstring Status List)
+- **Cifrado**: La VC se cifra con la clave pública del Holder antes de persistirse — esto asegura que solo el Holder puede acceder al contenido de la credencial
+- **Almacenamiento descentralizado**: Las credenciales se almacenan en el nodo de storage basado en IPFS, no en la base de datos del backend — el backend solo almacena metadatos y referencias
+- **Ciclo de vida del estado**: `ACTIVE` → `EXPIRED` (automático, basado en TTL) o `ACTIVE` → `REVOKED` (manual, vía [UC-016](/docs/developers/use-cases/platform/uc-016-revoke-verifiable-credential))
+- **Trazabilidad**: El hash de la operación de emisión se registra on-chain — ningún dato personal se almacena en la blockchain
+- **Estándares**: W3C VC Data Model 2.0, W3C Bitstring Status List, eIDAS 2.0, OID4VCI
