@@ -8,7 +8,7 @@ sidebar_position: 7
 
 ## Descripción
 
-Una aplicación externa escanea el código QR de identidad del usuario (mostrado en [UC-006](./uc-006-display-identity-qr-code.md)) e inicia un challenge de autenticación. La wallet recibe el challenge mediante un deep link (`almena://auth?challenge=...`), muestra una pantalla de consentimiento donde el usuario puede aprobar o rechazar, y si se aprueba, firma el challenge con la clave privada Ed25519 y envía la respuesta firmada a la URL de callback de la aplicación solicitante.
+Una aplicación externa escanea el código QR de identidad del usuario (mostrado en [UC-006](/docs/developers/use-cases/wallet/uc-006-display-identity-qr-code)) e inicia un challenge de autenticación. La wallet recibe el challenge mediante un deep link (`almena://auth?challenge=...`), muestra una pantalla de consentimiento donde el usuario puede aprobar o rechazar, y si se aprueba, firma el challenge con la clave privada Ed25519 y envía la respuesta firmada a la URL de callback de la aplicación solicitante.
 
 ## Actores
 
@@ -20,7 +20,7 @@ Una aplicación externa escanea el código QR de identidad del usuario (mostrado
 
 ## Precondiciones
 
-- El usuario tiene una identidad creada en la wallet ([UC-001](./uc-001-create-identity.md))
+- El usuario tiene una identidad creada en la wallet ([UC-001](/docs/developers/use-cases/wallet/uc-001-create-identity))
 - La wallet está en ejecución (primer plano o segundo plano)
 - El código QR de identidad ha sido escaneado por una aplicación externa
 - El `tauri-plugin-deep-link` está configurado para manejar URLs `almena://`
@@ -93,7 +93,7 @@ Una aplicación externa escanea el código QR de identidad del usuario (mostrado
 - El usuario solo puede descartar la pantalla
 
 ### FA-3: Deep link recibido con la wallet bloqueada
-- En el paso 6, si la sesión de la wallet está bloqueada, el usuario debe primero desbloquear (mediante contraseña o biometría, ver [UC-005](./uc-005-unlock-wallet-with-biometrics.md))
+- En el paso 6, si la sesión de la wallet está bloqueada, el usuario debe primero desbloquear (mediante contraseña o biometría, ver [UC-005](/docs/developers/use-cases/wallet/uc-005-unlock-wallet-with-biometrics))
 - Tras desbloquear, se muestra la solicitud de autenticación pendiente
 
 ### FA-4: Callback URL inaccesible
@@ -123,6 +123,6 @@ Una aplicación externa escanea el código QR de identidad del usuario (mostrado
 - **Protocolo de deep link**: `almena://auth?challenge=<base64url>` — manejado por `tauri-plugin-deep-link`
 - **Almacenamiento del challenge**: Una única solicitud pendiente almacenada en un `Mutex<Option<AuthRequest>>` en Rust. Un nuevo challenge sobrescribe cualquier pendiente existente
 - **Firma Ed25519**: El payload del challenge se firma como bytes crudos usando la clave privada Ed25519 del keychain del sistema. La firma y el payload se codifican en base64url en la respuesta
-- **Método de verificación**: La respuesta referencia `did#key-1` como método de verificación, coincidiendo con la clave en el DID Document (si está anclado, ver [UC-003](./uc-003-anchor-did-on-blockchain.md))
+- **Método de verificación**: La respuesta referencia `did#key-1` como método de verificación, coincidiendo con la clave en el DID Document (si está anclado, ver [UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain))
 - **Sin escaneo QR en la wallet**: La wallet NO escanea códigos QR. Solo los muestra. El escaneo lo realizan aplicaciones externas
 - **Flujo sin estado**: Cada autenticación es independiente. No se persisten sesiones ni tokens en la wallet después de enviar la respuesta

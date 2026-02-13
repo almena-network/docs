@@ -54,7 +54,7 @@ El usuario crea una nueva identidad descentralizada desde la wallet. Este proces
 15. El hash de contraseña se elimina de `sessionStorage`
 16. La sesión se desbloquea mediante `unlockSession()`
 17. La wallet navega a la pantalla de éxito (`/create/success`) mostrando el DID
-18. El usuario puede opcionalmente anclar el DID en la blockchain (ver [UC-003](./uc-003-anchor-did-on-blockchain.md)) o continuar directamente al dashboard
+18. El usuario puede opcionalmente anclar el DID en la blockchain (ver [UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain)) o continuar directamente al dashboard
 
 ## Flujos Alternativos
 

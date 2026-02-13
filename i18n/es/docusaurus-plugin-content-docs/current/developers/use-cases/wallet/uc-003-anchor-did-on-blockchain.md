@@ -20,7 +20,7 @@ El usuario ancla su DID en la blockchain de Almena. Esto registra el DID Documen
 
 ## Precondiciones
 
-- El usuario acaba de completar la creación de identidad ([UC-001](./uc-001-create-identity.md)) y está en la pantalla de éxito
+- El usuario acaba de completar la creación de identidad ([UC-001](/docs/developers/use-cases/wallet/uc-001-create-identity)) y está en la pantalla de éxito
 - El DID existe localmente con `anchorStatus: 'not_anchored'`
 - Las claves privadas Ed25519 y secp256k1 están almacenadas en el keychain del sistema
 - El nodo blockchain es accesible en la URL de API configurada (por defecto: `http://localhost:1317`)

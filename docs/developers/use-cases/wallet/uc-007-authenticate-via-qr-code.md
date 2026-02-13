@@ -8,7 +8,7 @@ sidebar_position: 7
 
 ## Description
 
-An external application scans the user's identity QR code (displayed in [UC-006](./uc-006-display-identity-qr-code.md)) and initiates an authentication challenge. The wallet receives the challenge via a deep link (`almena://auth?challenge=...`), displays a consent screen where the user can approve or reject, and if approved, signs the challenge with the Ed25519 private key and sends the signed response to the requesting application's callback URL.
+An external application scans the user's identity QR code (displayed in [UC-006](/docs/developers/use-cases/wallet/uc-006-display-identity-qr-code)) and initiates an authentication challenge. The wallet receives the challenge via a deep link (`almena://auth?challenge=...`), displays a consent screen where the user can approve or reject, and if approved, signs the challenge with the Ed25519 private key and sends the signed response to the requesting application's callback URL.
 
 ## Actors
 
@@ -20,7 +20,7 @@ An external application scans the user's identity QR code (displayed in [UC-006]
 
 ## Preconditions
 
-- The user has an identity created in the wallet ([UC-001](./uc-001-create-identity.md))
+- The user has an identity created in the wallet ([UC-001](/docs/developers/use-cases/wallet/uc-001-create-identity))
 - The wallet is running (foreground or background)
 - The identity QR code has been scanned by an external application
 - The `tauri-plugin-deep-link` is configured to handle `almena://` URLs
@@ -93,7 +93,7 @@ An external application scans the user's identity QR code (displayed in [UC-006]
 - The user can only dismiss the screen
 
 ### AF-3: Deep link received while wallet is locked
-- At step 6, if the wallet session is locked, the user must first unlock (via password or biometrics, see [UC-005](./uc-005-unlock-wallet-with-biometrics.md))
+- At step 6, if the wallet session is locked, the user must first unlock (via password or biometrics, see [UC-005](/docs/developers/use-cases/wallet/uc-005-unlock-wallet-with-biometrics))
 - After unlocking, the pending auth request is displayed
 
 ### AF-4: Callback URL unreachable
@@ -123,6 +123,6 @@ An external application scans the user's identity QR code (displayed in [UC-006]
 - **Deep link protocol**: `almena://auth?challenge=<base64url>` — handled by `tauri-plugin-deep-link`
 - **Challenge storage**: Single pending request stored in a Rust `Mutex<Option<AuthRequest>>`. A new challenge overwrites any existing pending one
 - **Ed25519 signing**: The challenge payload is signed as raw bytes using the Ed25519 private key from the system keychain. The signature and payload are base64url-encoded in the response
-- **Verification method**: The response references `did#key-1` as the verification method, matching the key in the DID Document (if anchored, see [UC-003](./uc-003-anchor-did-on-blockchain.md))
+- **Verification method**: The response references `did#key-1` as the verification method, matching the key in the DID Document (if anchored, see [UC-003](/docs/developers/use-cases/wallet/uc-003-anchor-did-on-blockchain))
 - **No QR scanning in wallet**: The wallet does NOT scan QR codes. It only displays them. Scanning is performed by external applications
 - **Stateless flow**: Each authentication is independent. No sessions or tokens are persisted in the wallet after the response is sent

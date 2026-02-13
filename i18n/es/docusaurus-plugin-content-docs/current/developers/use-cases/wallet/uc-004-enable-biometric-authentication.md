@@ -19,7 +19,7 @@ El usuario activa la autenticación biométrica (Touch ID / Face ID) desde los a
 
 ## Precondiciones
 
-- El usuario tiene una identidad creada en la wallet ([UC-001](./uc-001-create-identity.md))
+- El usuario tiene una identidad creada en la wallet ([UC-001](/docs/developers/use-cases/wallet/uc-001-create-identity))
 - El usuario está autenticado y en el dashboard
 - El dispositivo tiene hardware biométrico disponible (ej: sensor Touch ID en macOS)
 - La biometría está registrada en el SO (al menos una huella o rostro registrado)
@@ -74,7 +74,7 @@ El usuario activa la autenticación biométrica (Touch ID / Face ID) desde los a
 
 - `biometricEnabled: true` está persistido en el Tauri Store (`identity.json`)
 - El auth store refleja `biometricEnabled: true`
-- En los bloqueos posteriores de la wallet, la pantalla de bloqueo mostrará un botón "Usar Biometría" (ver [UC-005](./uc-005-unlock-wallet-with-biometrics.md))
+- En los bloqueos posteriores de la wallet, la pantalla de bloqueo mostrará un botón "Usar Biometría" (ver [UC-005](/docs/developers/use-cases/wallet/uc-005-unlock-wallet-with-biometrics))
 - La wallet no almacena plantillas biométricas ni secretos — el SO gestiona todos los datos biométricos
 
 ## Módulos Involucrados

@@ -17,7 +17,7 @@ The wallet displays a rotating QR code that represents the user's decentralized 
 
 ## Preconditions
 
-- The user has an identity created in the wallet ([UC-001](./uc-001-create-identity.md))
+- The user has an identity created in the wallet ([UC-001](/docs/developers/use-cases/wallet/uc-001-create-identity))
 - The user is authenticated and on the dashboard
 - The DID is available in the Tauri Store
 
@@ -77,7 +77,7 @@ The wallet displays a rotating QR code that represents the user's decentralized 
 
 - **No Rust/Tauri commands involved**: QR generation is entirely frontend-side using the `qrcode` npm package (v1.5.4)
 - **Token is NOT cryptographic**: The rotation token is a simple `btoa(did:timestamp)` truncated to 16 characters — it serves as a rotation identifier, not a signature
-- **No signing of the QR payload**: The QR itself is not cryptographically signed. Authentication happens in a separate challenge-response flow when the QR is scanned (see [UC-007](./uc-007-authenticate-via-qr-code.md))
+- **No signing of the QR payload**: The QR itself is not cryptographically signed. Authentication happens in a separate challenge-response flow when the QR is scanned (see [UC-007](/docs/developers/use-cases/wallet/uc-007-authenticate-via-qr-code))
 - **Rotation interval**: Defaults to 30 seconds, configurable via the environment variable `VITE_QR_ROTATION_INTERVAL_SECONDS`
 - **QR format**: JSON string, not binary or base64-wrapped
 - **Visual style**: Orange on dark background matches Almena brand identity

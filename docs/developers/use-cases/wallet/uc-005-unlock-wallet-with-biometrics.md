@@ -20,7 +20,7 @@ The user unlocks the wallet using biometric authentication (Touch ID / Face ID) 
 ## Preconditions
 
 - The user has an identity created in the wallet
-- Biometric authentication has been enabled ([UC-004](./uc-004-enable-biometric-authentication.md)) — `biometricEnabled: true` in the Tauri Store
+- Biometric authentication has been enabled ([UC-004](/docs/developers/use-cases/wallet/uc-004-enable-biometric-authentication)) — `biometricEnabled: true` in the Tauri Store
 - The wallet session is locked (due to inactivity timeout or manual lock)
 - The device has biometric hardware available and functional
 
