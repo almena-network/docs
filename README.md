@@ -8,7 +8,6 @@ Docusaurus documentation site for Almena ID platform.
 
 - **Node.js**: >= 20.0.0
 - **pnpm**: Latest version
-- **Docker**: Optional (for containerized deployment)
 
 ### Installation
 
@@ -35,26 +34,11 @@ pnpm install
 
 ## Running the Documentation
 
-### Option 1: With pnpm (Development)
-
 ```bash
 # Start development server
 pnpm start
 
 # Access at http://localhost:3001
-```
-
-### Option 2: With Docker
-
-```bash
-# Build and start
-docker compose up -d
-
-# View logs
-docker compose logs -f
-
-# Stop
-docker compose down
 ```
 
 ## Build
@@ -67,42 +51,7 @@ pnpm build
 pnpm serve
 ```
 
-## Task Runner
-
-This module uses [Task](https://taskfile.dev/) for automation. Run `task --list` to see all available commands.
-
-### Quick Reference
-
-```bash
-task install              # Install dependencies
-task dev                  # Start Docusaurus dev server
-task build                # Production build
-task serve                # Serve production build locally
-task clean                # Clean cache and build artifacts
-```
-
-### All Available Tasks
-
-| Task | Description |
-|------|-------------|
-| `task install` | Install dependencies with pnpm |
-| `task install:frozen` | Install with frozen lockfile |
-| `task dev` | Start Docusaurus development server |
-| `task start` | Start development server (alias) |
-| `task build` | Build documentation for production |
-| `task serve` | Serve production build locally |
-| `task typecheck` | Run TypeScript type checking |
-| `task swizzle` | Swizzle Docusaurus components |
-| `task write-translations` | Generate translation files |
-| `task write-heading-ids` | Generate heading IDs for MDX files |
-| `task docker:build` | Build Docker image |
-| `task docker:up` | Start with Docker Compose |
-| `task docker:down` | Stop Docker Compose services |
-| `task docker:logs` | View Docker Compose logs |
-| `task clean` | Clean Docusaurus cache and build |
-| `task clean:all` | Clean everything including node_modules |
-
-## Development Commands (Manual)
+## Development Commands
 
 ```bash
 pnpm start        # Start dev server (hot reload) on port 3001
@@ -230,30 +179,6 @@ pnpm build
 # Serve and check Spanish version
 pnpm serve
 # Then navigate to /es/ in your browser
-```
-
-## Environment Variables
-
-None required. All documentation is static content.
-
-## Docker
-
-### Build Image
-
-```bash
-docker build -t almena-docs .
-```
-
-### Run Container
-
-```bash
-docker run -p 3001:3001 almena-docs
-```
-
-### With Docker Compose
-
-```bash
-docker compose up -d
 ```
 
 ## Technology Stack
