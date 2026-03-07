@@ -1,0 +1,33 @@
+version: '3'
+
+# Docs — Almena Network documentation (Docusaurus)
+# Run: task (lists options) or task <name>
+
+vars:
+  PKG_MGR: pnpm
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+
+  install:
+    desc: Install dependencies
+    cmds:
+      - "{{.PKG_MGR}} install"
+
+  build:
+    desc: Build static site
+    cmds:
+      - "{{.PKG_MGR}} run build"
+
+  serve:
+    desc: Serve built site locally (port 3001)
+    cmds:
+      - "{{.PKG_MGR}} run serve"
+
+  clean:
+    desc: Remove build artifacts and cache
+    cmds:
+      - "{{.PKG_MGR}} run clear"
