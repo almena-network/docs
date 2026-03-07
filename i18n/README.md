@@ -1,6 +1,6 @@
 # Internationalization (i18n)
 
-This directory contains translations for the Almena ID documentation.
+This directory contains translations for the Almena Network documentation.
 
 ## Structure
 
@@ -133,7 +133,6 @@ Keep these in English:
 - ⏳ API Reference (all pages)
 - ⏳ Tutorials (all pages)
 - ⏳ FAQ (all pages)
-- ⏳ Changelog
 
 ## Maintenance
 

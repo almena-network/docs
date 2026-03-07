@@ -1,174 +1,33 @@
-# https://taskfile.dev
-
 version: '3'
 
+# Docs — Almena Network documentation (Docusaurus)
+# Run: task (lists options) or task <name>
+
 vars:
-  MODULE_NAME: docs
-  PORT: 3001
+  PKG_MGR: pnpm
 
 tasks:
   default:
-    desc: Show available tasks
+    desc: List available tasks
     cmds:
       - task --list
 
-  # ============================================================================
-  # Installation
-  # ============================================================================
   install:
-    desc: Install dependencies with pnpm
+    desc: Install dependencies
     cmds:
-      - pnpm install
+      - "{{.PKG_MGR}} install"
 
-  install:frozen:
-    desc: Install dependencies with frozen lockfile
-    cmds:
-      - pnpm install --frozen-lockfile
-
-  # ============================================================================
-  # Development
-  # ============================================================================
-  dev:
-    desc: Start Docusaurus development server
-    cmds:
-      - pnpm start
-
-  start:
-    desc: Start Docusaurus development server (alias)
-    cmds:
-      - task: dev
-
-  dev:es:
-    desc: Start development server in Spanish
-    cmds:
-      - pnpm start -- --locale es
-
-  start:es:
-    desc: Start development server in Spanish (alias)
-    cmds:
-      - task: dev:es
-
-  # ============================================================================
-  # Build
-  # ============================================================================
   build:
-    desc: Build documentation for production
+    desc: Build static site
     cmds:
-      - pnpm build
+      - "{{.PKG_MGR}} run build"
 
   serve:
-    desc: Serve production build locally
+    desc: Serve built site locally (port 3001)
     cmds:
-      - pnpm serve
+      - "{{.PKG_MGR}} run serve"
 
-  # ============================================================================
-  # Type Checking
-  # ============================================================================
-  typecheck:
-    desc: Run TypeScript type checking
-    cmds:
-      - pnpm typecheck
-
-  # ============================================================================
-  # Docusaurus Commands
-  # ============================================================================
-  swizzle:
-    desc: Swizzle Docusaurus components
-    cmds:
-      - pnpm swizzle
-
-  write-translations:
-    desc: Generate translation files for Spanish
-    cmds:
-      - pnpm docusaurus write-translations --locale es
-
-  write-translations:locale:
-    desc: Generate translation files for a specific locale
-    vars:
-      LOCALE: '{{.LOCALE | default "es"}}'
-    cmds:
-      - pnpm docusaurus write-translations --locale {{.LOCALE}}
-
-  write-heading-ids:
-    desc: Generate heading IDs for MDX files
-    cmds:
-      - pnpm write-heading-ids
-
-  # ============================================================================
-  # i18n (Internationalization)
-  # ============================================================================
-  i18n:status:
-    desc: Check translation status
-    cmds:
-      - echo "English docs (source):"
-      - find docs -name "*.md" -o -name "*.mdx" | wc -l
-      - echo "Spanish docs (translated):"
-      - find i18n/es/docusaurus-plugin-content-docs/current -name "*.md" -o -name "*.mdx" 2>/dev/null | wc -l || echo "0"
-
-  i18n:serve:
-    desc: Serve production build (both languages available)
-    cmds:
-      - task: build
-      - pnpm serve
-
-  # ============================================================================
-  # Docker
-  # ============================================================================
-  docker:build:
-    desc: Build Docker image
-    cmds:
-      - docker build -t almena-docs .
-
-  docker:up:
-    desc: Start with Docker Compose
-    cmds:
-      - docker compose up -d
-
-  docker:stop:
-    desc: Stop Docker containers (keep volumes and networks)
-    cmds:
-      - docker compose stop
-      - echo "✅ Containers stopped"
-
-  docker:down:
-    desc: Stop and remove containers, volumes, and networks
-    cmds:
-      - docker compose down -v --remove-orphans
-      - echo "✅ Containers, volumes, and networks removed"
-
-  docker:logs:
-    desc: View Docker Compose logs
-    cmds:
-      - docker compose logs -f
-
-  docker:image:rm:
-    desc: Remove Docker images
-    cmds:
-      - docker rmi almena-docs 2>/dev/null || true
-      - docker rmi $(docker images -q -f "dangling=true" -f "label=com.docker.compose.project=docs") 2>/dev/null || true
-      - echo "✅ Docker images removed"
-
-  # ============================================================================
-  # Clean
-  # ============================================================================
   clean:
-    desc: Clean Docusaurus cache and build
+    desc: Remove build artifacts and cache
     cmds:
-      - pnpm clear
-      - rm -rf build
-      - rm -rf .docusaurus
-
-  clean:all:
-    desc: Clean everything including node_modules
-    cmds:
-      - task: clean
-      - rm -rf node_modules
-
-  # ============================================================================
-  # Utilities
-  # ============================================================================
-  check:
-    desc: Run all checks (typecheck, build)
-    cmds:
-      - task: typecheck
-      - task: build
+      - "{{.PKG_MGR}} run clear"
