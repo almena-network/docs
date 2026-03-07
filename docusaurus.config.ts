@@ -15,7 +15,7 @@ const config: Config = {
   baseUrl: '/',
   trailingSlash: true,
 
-  organizationName: 'almena-id',
+  organizationName: 'almena-network',
   projectName: 'docs',
   deploymentBranch: 'gh-pages',
 
@@ -87,7 +87,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/almena-id',
+          href: 'https://github.com/almena-network',
           label: 'GitHub',
           position: 'right',
         },
@@ -118,7 +118,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/almena-id',
+              href: 'https://github.com/almena-network',
             },
           ],
         },
