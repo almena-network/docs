@@ -8,7 +8,7 @@ sidebar_position: 9
 
 ## Description
 
-The user logs into the web portal using the Almena ID wallet installed on a mobile device. The portal requests an authentication challenge from the backend, generates a QR code encoding a deep link (`almena://auth?challenge=...`), and displays it on screen. The user scans the QR with the mobile wallet, approves the challenge, and the wallet signs and sends the response to the backend. The QR auto-rotates every 30 seconds, generating a fresh challenge each time. The portal detects completion via polling.
+The user logs into the web portal using the Almena Network wallet installed on a mobile device. The portal requests an authentication challenge from the backend, generates a QR code encoding a deep link (`almena://auth?challenge=...`), and displays it on screen. The user scans the QR with the mobile wallet, approves the challenge, and the wallet signs and sends the response to the backend. The QR auto-rotates every 30 seconds, generating a fresh challenge each time. The portal detects completion via polling.
 
 ## Actors
 
@@ -27,7 +27,7 @@ The user logs into the web portal using the Almena ID wallet installed on a mobi
 
 ## Main Flow
 
-1. The user navigates to the login page and clicks the **Almena ID** login button
+1. The user navigates to the login page and clicks the **Almena Network** login button
 2. The portal calls `POST /api/v1/auth/challenge` with the portal's origin URL
 3. The backend generates a challenge (same as [UC-008](/docs/developers/use-cases/platform/uc-008-login-with-desktop-wallet)): `challenge_id`, `nonce`, `expires_at` (5 minutes), `callback_url`, `requested_proof`
 4. The backend returns the `ChallengeResponse` to the portal

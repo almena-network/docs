@@ -4,8 +4,8 @@ title: Integrators
 slug: /integrators
 ---
 
-# Almena ID for Integrators
+# Almena Network for Integrators
 
-Documentation for developers integrating Almena ID into their applications.
+Documentation for developers integrating Almena Network into their applications.
 
 Content will be added as APIs and integration guides are documented.

@@ -8,7 +8,7 @@ sidebar_position: 8
 
 ## Descripción
 
-El usuario inicia sesión en el portal web usando la wallet de Almena ID instalada en el mismo ordenador. El portal solicita un challenge de autenticación al backend, luego intenta entregarlo a la wallet mediante HTTP (`localhost:1421`) con fallback a un deep link (`almena://auth?challenge=...`). La wallet muestra una pantalla de consentimiento donde el usuario aprueba o rechaza. Al aprobar, la wallet firma el challenge con Ed25519 y envía por POST la respuesta a la callback URL del backend. El backend verifica la firma, crea o recupera el usuario, genera un JWT, y el portal detecta la finalización mediante polling.
+El usuario inicia sesión en el portal web usando la wallet de Almena Network instalada en el mismo ordenador. El portal solicita un challenge de autenticación al backend, luego intenta entregarlo a la wallet mediante HTTP (`localhost:1421`) con fallback a un deep link (`almena://auth?challenge=...`). La wallet muestra una pantalla de consentimiento donde el usuario aprueba o rechaza. Al aprobar, la wallet firma el challenge con Ed25519 y envía por POST la respuesta a la callback URL del backend. El backend verifica la firma, crea o recupera el usuario, genera un JWT, y el portal detecta la finalización mediante polling.
 
 ## Actores
 
@@ -27,7 +27,7 @@ El usuario inicia sesión en el portal web usando la wallet de Almena ID instala
 
 ## Flujo Principal
 
-1. El usuario navega a la página de login y hace clic en el botón **Almena ID**
+1. El usuario navega a la página de login y hace clic en el botón **Almena Network**
 2. El portal establece el estado de UI a "requesting" y llama a `POST /api/v1/auth/challenge` con la URL de origen del portal
 3. El backend genera un challenge:
    - `challenge_id`: UUID v4
@@ -75,7 +75,7 @@ El usuario inicia sesión en el portal web usando la wallet de Almena ID instala
 ### FA-1: Wallet no encontrada
 - En el paso 5, HTTP a `localhost:1421` falla
 - En el paso 7, el clic del deep link no abre la wallet (no hay handler registrado)
-- El portal muestra: "Wallet no encontrada. Asegúrate de que la wallet de Almena ID esté instalada y en ejecución."
+- El portal muestra: "Wallet no encontrada. Asegúrate de que la wallet de Almena Network esté instalada y en ejecución."
 
 ### FA-2: El usuario rechaza el challenge
 - En el paso 12, el usuario hace clic en **Rechazar** en la wallet

@@ -33,7 +33,7 @@ El usuario activa la autenticación biométrica (Touch ID / Face ID) desde los a
 4. La verificación devuelve `true` — el toggle biométrico se muestra habilitado e interactivo
 5. El usuario activa el interruptor de **Autenticación Biométrica** a ON
 6. La wallet invoca el comando Rust `authenticate_biometric` para verificar la biometría del usuario
-7. El SO muestra el prompt biométrico nativo con el mensaje: "Authenticate to enable biometric unlock for Almena ID"
+7. El SO muestra el prompt biométrico nativo con el mensaje: "Authenticate to enable biometric unlock for Almena Network"
 8. El usuario se autentica exitosamente (huella o rostro)
 9. El Rust backend devuelve éxito
 10. La wallet actualiza el auth store: `setBiometricEnabled(true)`

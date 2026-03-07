@@ -4,8 +4,8 @@ title: Desarrolladores
 slug: /developers
 ---
 
-# Almena ID para Desarrolladores
+# Almena Network para Desarrolladores
 
-Documentación para miembros del equipo que desarrollan los módulos de la plataforma Almena ID.
+Documentación para miembros del equipo que desarrollan los módulos de la plataforma Almena Network.
 
 El contenido se añadirá a medida que se documenten las guías de desarrollo.

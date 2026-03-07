@@ -7,7 +7,7 @@
 /* You can override the default Infima variables here. */
 /* You can override the default Infima variables here. */
 :root {
-  /* Almena ID Darker Orange Palette (Light Mode) */
+  /* Almena Network Darker Orange Palette (Light Mode) */
   --ifm-color-primary: #e67e00;
   --ifm-color-primary-dark: #cf7100;
   --ifm-color-primary-darker: #c46b00;
@@ -21,7 +21,7 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  /* Almena ID Darker Orange Palette (Dark Mode) */
+  /* Almena Network Darker Orange Palette (Dark Mode) */
   --ifm-color-primary: #e67e00;
   --ifm-color-primary-dark: #cf7100;
   --ifm-color-primary-darker: #c46b00;

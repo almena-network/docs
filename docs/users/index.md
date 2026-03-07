@@ -4,8 +4,8 @@ title: Users
 slug: /users
 ---
 
-# Almena ID for Users
+# Almena Network for Users
 
-Documentation for end users of the Almena ID platform.
+Documentation for end users of the Almena Network platform.
 
 Content will be added as features are documented.

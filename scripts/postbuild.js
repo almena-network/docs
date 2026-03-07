@@ -161,7 +161,7 @@ function updateLocaleDropdownInFile(filePath) {
   modified = modified.replace(
     /href="(https:\/\/docs\.almena\.id\/docs\/[^"]+)" hreflang="(en-US|x-default)"/g,
     (match, url, lang) => {
-      const newUrl = url.replace('docs.almena.id/docs/', 'docs.almena.id/en/docs/');
+      const newUrl = url.replace('docs.almena.network/docs/', 'docs.almena.network/en/docs/');
       return `href="${newUrl}" hreflang="${lang}"`;
     }
   );
@@ -178,13 +178,13 @@ const rootIndexHtml = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Almena ID - Redirecting...</title>
-  <meta name="description" content="Almena ID - Decentralized Identity Platform">
+  <title>Almena Network - Redirecting...</title>
+  <meta name="description" content="Almena Network - Decentralized Identity Platform">
   <link rel="icon" href="/img/favicon.ico">
-  <link rel="canonical" href="https://docs.almena.id/en/">
-  <link rel="alternate" hreflang="en" href="https://docs.almena.id/en/">
-  <link rel="alternate" hreflang="es" href="https://docs.almena.id/es/">
-  <link rel="alternate" hreflang="x-default" href="https://docs.almena.id/en/">
+  <link rel="canonical" href="https://docs.almena.network/en/">
+  <link rel="alternate" hreflang="en" href="https://docs.almena.network/en/">
+  <link rel="alternate" hreflang="es" href="https://docs.almena.network/es/">
+  <link rel="alternate" hreflang="x-default" href="https://docs.almena.network/en/">
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -262,7 +262,7 @@ const rootIndexHtml = `<!DOCTYPE html>
   </noscript>
   <div class="container">
     <div class="spinner"></div>
-    <h1>Almena ID</h1>
+    <h1>Almena Network</h1>
     <p>Redirecting to your language...</p>
     <p style="margin-top: 0.5rem; font-size: 0.9em;">Redirigiendo a tu idioma...</p>
     <div class="links">

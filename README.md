@@ -1,6 +1,6 @@
-# Documentation - Almena ID
+# Documentation - Almena Network
 
-Docusaurus documentation site for Almena ID platform.
+Docusaurus documentation site for Almena Network platform.
 
 ## Prerequisites
 
@@ -81,8 +81,8 @@ See [DOCUMENTATION_STRUCTURE.md](./DOCUMENTATION_STRUCTURE.md) for complete stru
 
 ### Audience Separation
 
-- **User Documentation**: How to use Almena ID
-- **Integrator Documentation**: How to integrate Almena ID into applications
+- **User Documentation**: How to use Almena Network
+- **Integrator Documentation**: How to integrate Almena Network into applications
 
 ## Important Rules
 

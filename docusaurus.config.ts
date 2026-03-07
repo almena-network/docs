@@ -3,7 +3,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Almena ID',
+  title: 'Almena Network',
   tagline: 'Decentralized Identifiers',
   favicon: 'img/favicon.ico',
 
@@ -11,7 +11,7 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://docs.almena.id',
+  url: 'https://docs.almena.network',
   baseUrl: '/',
   trailingSlash: true,
 
@@ -58,7 +58,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Almena ID',
+      title: 'Almena Network',
       logo: {
         alt: 'Almena Logo',
         src: 'img/logo.svg',
@@ -123,7 +123,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Almena ID. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Almena Network. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

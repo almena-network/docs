@@ -8,7 +8,7 @@ sidebar_position: 9
 
 ## Descripción
 
-El usuario inicia sesión en el portal web usando la wallet de Almena ID instalada en un dispositivo móvil. El portal solicita un challenge de autenticación al backend, genera un código QR que codifica un deep link (`almena://auth?challenge=...`), y lo muestra en pantalla. El usuario escanea el QR con la wallet móvil, aprueba el challenge, y la wallet firma y envía la respuesta al backend. El QR auto-rota cada 30 segundos, generando un challenge nuevo cada vez. El portal detecta la finalización mediante polling.
+El usuario inicia sesión en el portal web usando la wallet de Almena Network instalada en un dispositivo móvil. El portal solicita un challenge de autenticación al backend, genera un código QR que codifica un deep link (`almena://auth?challenge=...`), y lo muestra en pantalla. El usuario escanea el QR con la wallet móvil, aprueba el challenge, y la wallet firma y envía la respuesta al backend. El QR auto-rota cada 30 segundos, generando un challenge nuevo cada vez. El portal detecta la finalización mediante polling.
 
 ## Actores
 
@@ -27,7 +27,7 @@ El usuario inicia sesión en el portal web usando la wallet de Almena ID instala
 
 ## Flujo Principal
 
-1. El usuario navega a la página de login y hace clic en el botón **Almena ID**
+1. El usuario navega a la página de login y hace clic en el botón **Almena Network**
 2. El portal llama a `POST /api/v1/auth/challenge` con la URL de origen del portal
 3. El backend genera un challenge (igual que en [UC-008](/docs/developers/use-cases/platform/uc-008-login-with-desktop-wallet)): `challenge_id`, `nonce`, `expires_at` (5 minutos), `callback_url`, `requested_proof`
 4. El backend devuelve el `ChallengeResponse` al portal

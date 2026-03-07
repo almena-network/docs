@@ -8,7 +8,7 @@ sidebar_position: 8
 
 ## Description
 
-The user logs into the web portal using the Almena ID wallet installed on the same computer. The portal requests an authentication challenge from the backend, then attempts to deliver it to the wallet via HTTP (`localhost:1421`) with fallback to a deep link (`almena://auth?challenge=...`). The wallet displays a consent screen where the user approves or rejects. On approval, the wallet signs the challenge with Ed25519 and POSTs the response to the backend's callback URL. The backend verifies the signature, creates or retrieves the user, generates a JWT, and the portal detects the completion via polling.
+The user logs into the web portal using the Almena Network wallet installed on the same computer. The portal requests an authentication challenge from the backend, then attempts to deliver it to the wallet via HTTP (`localhost:1421`) with fallback to a deep link (`almena://auth?challenge=...`). The wallet displays a consent screen where the user approves or rejects. On approval, the wallet signs the challenge with Ed25519 and POSTs the response to the backend's callback URL. The backend verifies the signature, creates or retrieves the user, generates a JWT, and the portal detects the completion via polling.
 
 ## Actors
 
@@ -27,7 +27,7 @@ The user logs into the web portal using the Almena ID wallet installed on the sa
 
 ## Main Flow
 
-1. The user navigates to the login page and clicks the **Almena ID** login button
+1. The user navigates to the login page and clicks the **Almena Network** login button
 2. The portal sets the UI state to "requesting" and calls `POST /api/v1/auth/challenge` with the portal's origin URL
 3. The backend generates a challenge:
    - `challenge_id`: UUID v4
@@ -75,7 +75,7 @@ The user logs into the web portal using the Almena ID wallet installed on the sa
 ### AF-1: Wallet not found
 - At step 5, HTTP to `localhost:1421` fails
 - At step 7, deep link click does not open the wallet (no handler registered)
-- The portal shows: "Wallet not found. Please make sure the Almena ID wallet is installed and running."
+- The portal shows: "Wallet not found. Please make sure the Almena Network wallet is installed and running."
 
 ### AF-2: User rejects the challenge
 - At step 12, the user clicks **Reject** in the wallet

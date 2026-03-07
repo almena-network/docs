@@ -4,8 +4,8 @@ title: Developers
 slug: /developers
 ---
 
-# Almena ID for Developers
+# Almena Network for Developers
 
-Documentation for team members developing the Almena ID platform modules.
+Documentation for team members developing the Almena Network platform modules.
 
 Content will be added as development guides are documented.
