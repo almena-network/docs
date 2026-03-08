@@ -109,7 +109,6 @@ rpc ListPeers(ListPeersRequest) returns (ListPeersResponse);
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `peers` | `PeerInfo[]` | Lista de peers descubiertos |
-| `local_node_geo` | `GetGeolocationResponse` | Geolocalización del nodo local |
 
 #### PeerInfo
 
@@ -120,6 +119,7 @@ rpc ListPeers(ListPeersRequest) returns (ListPeersResponse);
 | `is_internal` | `bool` | `true` si el peer está en la red local (LAN) |
 | `is_connected` | `bool` | `true` si está actualmente conectado |
 | `is_self` | `bool` | `true` si esta entrada representa al daemon local |
+| `geo` | `GetGeolocationResponse?` | Geolocalización de este peer (cuando está disponible) |
 
 ---
 
@@ -173,7 +173,6 @@ message GetGeolocationResponse {
 message ListPeersRequest {}
 message ListPeersResponse {
   repeated PeerInfo peers = 1;
-  GetGeolocationResponse local_node_geo = 2;
 }
 
 message PeerInfo {
@@ -182,6 +181,7 @@ message PeerInfo {
   bool is_internal = 3;
   bool is_connected = 4;
   bool is_self = 5;
+  GetGeolocationResponse geo = 6;
 }
 ```
 
