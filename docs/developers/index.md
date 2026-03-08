@@ -20,13 +20,13 @@ Almena Network is a decentralized identity platform built on W3C standards (DIDs
 | [**Desktop**](./modules/desktop) | Tauri v2, React 19, TypeScript | Admin console for Issuers/Requesters | Login, Network map, Daemon control |
 | [**Wallet**](./modules/wallet) | Tauri v2, React 19, TypeScript | Mobile-first identity wallet for Holders | Onboarding, Password setup |
 | [**CLI**](./modules/cli) | Rust, ratatui, crossterm | Terminal interface to daemon | TUI with daemon management |
-| **Docs** | Docusaurus 3 | Documentation site (this site) | EN + ES, 29 use cases |
+| **Docs** | Docusaurus 3 | Documentation site (this site) | EN + ES |
 
 ## Quick Links
 
 - [**Getting Started**](./getting-started) — Set up your development environment.
 - [**Architecture**](./architecture) — System architecture and design decisions.
-- [**Use Cases**](./use-cases/wallet/uc-001-create-identity) — Detailed use case specifications.
+- [**Module Guides**](./modules/daemon) — Deep dive into each module's implementation.
 
 ## Tech Stack
 

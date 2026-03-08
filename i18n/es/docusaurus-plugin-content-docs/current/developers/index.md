@@ -20,13 +20,13 @@ Almena Network es una plataforma de identidad descentralizada construida sobre e
 | [**Desktop**](./modules/desktop) | Tauri v2, React 19, TypeScript | Consola de admin para Emisores/Solicitantes | Login, Mapa de red, Control del daemon |
 | [**Wallet**](./modules/wallet) | Tauri v2, React 19, TypeScript | Billetera de identidad mobile-first para Titulares | Onboarding, Configuración de contraseña |
 | [**CLI**](./modules/cli) | Rust, ratatui, crossterm | Interfaz de terminal para el daemon | TUI con gestión del daemon |
-| **Docs** | Docusaurus 3 | Sitio de documentación (este sitio) | EN + ES, 29 casos de uso |
+| **Docs** | Docusaurus 3 | Sitio de documentación (este sitio) | EN + ES |
 
 ## Enlaces Rápidos
 
 - [**Primeros Pasos**](./getting-started) — Configura tu entorno de desarrollo.
 - [**Arquitectura**](./architecture) — Arquitectura del sistema y decisiones de diseño.
-- [**Casos de Uso**](./use-cases/wallet/uc-001-create-identity) — Especificaciones detalladas de casos de uso.
+- [**Guías de Módulos**](./modules/daemon) — Análisis profundo de la implementación de cada módulo.
 
 ## Stack Tecnológico
 
