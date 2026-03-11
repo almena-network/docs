@@ -135,10 +135,14 @@ body,
   box-shadow: 0 6px 20px rgba(251, 146, 60, 0.45);
 }
 
-/* Navbar — backdrop blur */
+/* Navbar — backdrop blur (desktop only; backdrop-filter breaks mobile menu visibility) */
+@media (min-width: 997px) {
+  .navbar {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
 .navbar {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -147,10 +151,22 @@ body,
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Doc sidebar — glass-like */
+/* Doc sidebar — glass-like on desktop */
 .theme-doc-sidebar-container {
   background: rgba(12, 10, 9, 0.6);
   border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Mobile/tablet: solid background so menu content is visible (backdrop-filter on parents can make it invisible) */
+@media (max-width: 996px) {
+  .theme-doc-sidebar-container,
+  .navbar-sidebar {
+    background: #0c0a09 !important;
+  }
+
+  .navbar-sidebar__item {
+    color: #fafafa;
+  }
 }
 
 /* Links */
