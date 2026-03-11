@@ -4,18 +4,23 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Almena Network',
-  tagline: 'Decentralized Identifiers',
+  tagline: 'Decentralized Platform',
   favicon: 'img/favicon.ico',
 
   future: {
     v4: true,
   },
 
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   url: 'https://docs.almena.network',
   baseUrl: '/',
   trailingSlash: true,
 
-  organizationName: 'almena-id',
+  organizationName: 'almena-network',
   projectName: 'docs',
   deploymentBranch: 'gh-pages',
 
@@ -55,7 +60,9 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'Almena Network',
@@ -87,7 +94,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/almena-id',
+          href: 'https://github.com/almena-network',
           label: 'GitHub',
           position: 'right',
         },
@@ -118,7 +125,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/almena-id',
+              href: 'https://github.com/almena-network',
             },
           ],
         },
@@ -127,7 +134,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
     },
   } satisfies Preset.ThemeConfig,
 };

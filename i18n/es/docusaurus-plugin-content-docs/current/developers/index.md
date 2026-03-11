@@ -6,44 +6,71 @@ slug: /developers
 
 # Almena Network para Desarrolladores
 
-Documentación para miembros del equipo que desarrollan los módulos de la plataforma Almena Network.
+Documentacion para los miembros del equipo que desarrollan los modulos de la plataforma Almena Network.
 
-## Visión General de la Plataforma
+## Vision General de la Plataforma
 
-Almena Network es una plataforma de identidad descentralizada construida sobre estándares W3C (DIDs, Credenciales Verificables). El proyecto está organizado como un **monorepo con submódulos git**, donde cada módulo es un repositorio independiente que sigue la rama `develop`.
+Almena Network es una plataforma descentralizada construida sobre estándares W3C. La identidad (DIDs, Verifiable Credentials) es una de sus capacidades centrales; capacidades futuras incluyen aplicaciones descentralizadas, persistencia, mensajería, coordinación y consenso, y tiempo/ordenamiento. El proyecto está organizado como un **monorepo con git submodules**, donde cada módulo es un repositorio independiente que sigue la rama `develop`.
 
-## Módulos
+## Modulos
 
-| Módulo | Tecnología | Descripción | Estado |
+| Modulo | Tecnologia | Descripcion | Estado |
 |--------|-----------|-------------|--------|
-| [**Daemon**](./modules/daemon) | Rust, tonic, libp2p | Servidor gRPC y red P2P | 5 RPCs, descubrimiento mDNS |
-| [**Desktop**](./modules/desktop) | Tauri v2, React 19, TypeScript | Consola de admin para Emisores/Solicitantes | Login, Mapa de red, Control del daemon |
-| [**Wallet**](./modules/wallet) | Tauri v2, React 19, TypeScript | Billetera de identidad mobile-first para Titulares | Onboarding, Configuración de contraseña |
-| [**CLI**](./modules/cli) | Rust, ratatui, crossterm | Interfaz de terminal para el daemon | TUI con gestión del daemon |
-| **Docs** | Docusaurus 3 | Sitio de documentación (este sitio) | EN + ES, 29 casos de uso |
+| [**Daemon**](./modules/daemon) | Rust, tonic, libp2p | Servidor gRPC y red P2P | 5 RPCs, descubrimiento mDNS, REST API |
+| [**Desktop**](./modules/desktop) | Tauri v2, React 19, TypeScript | Consola de administracion para Issuers/Requesters | Dashboard, Mapa de red, Logs |
+| [**Wallet**](./modules/wallet) | Tauri v2, React 19, TypeScript | Wallet de identidad mobile-first para Holders | Onboarding de 6 pasos, recuperacion, biometria, respaldo en la nube |
+| [**CLI**](./modules/cli) | Rust, ratatui, crossterm | Interfaz de terminal para el daemon | TUI con gestion del daemon |
+| **Docs** | Docusaurus 3 | Sitio de documentacion (este sitio) | EN + ES |
 
-## Enlaces Rápidos
+```mermaid
+graph TB
+    subgraph "Frontend (TypeScript + React 19)"
+        Desktop[Desktop App]
+        Wallet[Wallet App]
+    end
+    subgraph "Rust"
+        Daemon[Daemon - gRPC + libp2p]
+        CLI[CLI - TUI]
+    end
+    subgraph "Tauri v2 Bridge"
+        DT[Desktop Tauri Backend]
+        WT[Wallet Tauri Backend]
+    end
+
+    Desktop --> DT
+    Wallet --> WT
+    DT -->|gRPC| Daemon
+    CLI -->|gRPC| Daemon
+    Daemon <-->|libp2p| Network[P2P Network]
+
+    style Desktop fill:#FB923C,color:#fff
+    style Wallet fill:#FB923C,color:#fff
+    style Daemon fill:#8B5CF6,color:#fff
+    style CLI fill:#8B5CF6,color:#fff
+```
+
+## Enlaces Rapidos
 
 - [**Primeros Pasos**](./getting-started) — Configura tu entorno de desarrollo.
-- [**Arquitectura**](./architecture) — Arquitectura del sistema y decisiones de diseño.
-- [**Casos de Uso**](./use-cases/wallet/uc-001-create-identity) — Especificaciones detalladas de casos de uso.
+- [**Arquitectura**](./architecture) — Arquitectura del sistema y decisiones de diseno.
+- [**Guias de Modulos**](./modules/daemon) — Profundiza en la implementacion de cada modulo.
 
-## Stack Tecnológico
+## Stack Tecnologico
 
-| Capa | Tecnología |
+| Capa | Tecnologia |
 |------|-----------|
 | Frontend | React 19, TypeScript 5.8, Vite 7 |
 | Framework de escritorio | Tauri v2 |
-| Backend | Rust edición 2021 |
+| Backend | Rust 2021 edition |
 | gRPC | tonic 0.12, prost 0.13 |
 | P2P | libp2p 0.56 |
 | CLI TUI | ratatui 0.29, crossterm 0.28 |
 | Gestores de paquetes | pnpm (Node), cargo (Rust) |
 | Task runner | [Taskfile](https://taskfile.dev/) |
-| Documentación | Docusaurus 3 |
+| Documentacion | Docusaurus 3 |
 
-## Esquema de Versiones
+## Esquema de Versionado
 
-Todos los módulos siguen versionado basado en fecha: `YYYY.MM.DD[-variante]`
+Todos los modulos siguen un versionado basado en fechas: `YYYY.MM.DD[-variant]`
 
 Ejemplos: `2026.3.5-alpha`, `2026.1.1-develop`

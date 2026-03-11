@@ -8,6 +8,21 @@ sidebar_label: gRPC API Reference
 
 The Almena daemon exposes a gRPC API defined in the `almena.daemon.v1` package. The default endpoint is `[::1]:50051` (IPv6 localhost).
 
+## Service Overview
+
+```mermaid
+graph LR
+    Client[gRPC Client] --> DS[DaemonService]
+    DS --> Ping
+    DS --> GetVersion
+    DS --> GetSystemInfo
+    DS --> GetGeolocation
+    DS --> ListPeers
+
+    style Client fill:#FB923C,color:#fff
+    style DS fill:#8B5CF6,color:#fff
+```
+
 ## Service: DaemonService
 
 ### Ping
@@ -109,7 +124,6 @@ rpc ListPeers(ListPeersRequest) returns (ListPeersResponse);
 | Field | Type | Description |
 |-------|------|-------------|
 | `peers` | `PeerInfo[]` | List of discovered peers |
-| `local_node_geo` | `GetGeolocationResponse` | Geolocation of the local node |
 
 #### PeerInfo
 
@@ -120,6 +134,7 @@ rpc ListPeers(ListPeersRequest) returns (ListPeersResponse);
 | `is_internal` | `bool` | `true` if the peer is on the local network (LAN) |
 | `is_connected` | `bool` | `true` if currently connected |
 | `is_self` | `bool` | `true` if this entry represents the local daemon |
+| `geo` | `GetGeolocationResponse?` | Geolocation for this peer (when available) |
 
 ---
 
@@ -173,7 +188,6 @@ message GetGeolocationResponse {
 message ListPeersRequest {}
 message ListPeersResponse {
   repeated PeerInfo peers = 1;
-  GetGeolocationResponse local_node_geo = 2;
 }
 
 message PeerInfo {
@@ -182,6 +196,7 @@ message PeerInfo {
   bool is_internal = 3;
   bool is_connected = 4;
   bool is_self = 5;
+  GetGeolocationResponse geo = 6;
 }
 ```
 

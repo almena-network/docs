@@ -20,7 +20,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className="button button--primary button--lg"
             to="/docs/users"
           >
             Get Started
@@ -36,7 +36,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Decentralized identity platform that gives you complete control over your digital identity"
+      description="Decentralized platform. Identity (DIDs, Verifiable Credentials) is one of its core capabilities; future capabilities include decentralized applications, persistence, messaging, coordination and consensus."
     >
       <HomepageHeader />
       <main>

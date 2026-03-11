@@ -8,37 +8,52 @@ sidebar_label: Referencia de API gRPC
 
 El daemon de Almena expone una API gRPC definida en el paquete `almena.daemon.v1`. El endpoint por defecto es `[::1]:50051` (localhost IPv6).
 
+## Descripción General del Servicio
+
+```mermaid
+graph LR
+    Client[gRPC Client] --> DS[DaemonService]
+    DS --> Ping
+    DS --> GetVersion
+    DS --> GetSystemInfo
+    DS --> GetGeolocation
+    DS --> ListPeers
+
+    style Client fill:#FB923C,color:#fff
+    style DS fill:#8B5CF6,color:#fff
+```
+
 ## Servicio: DaemonService
 
 ### Ping
 
-Verificación de salud para confirmar que el daemon está ejecutándose.
+Verificación de salud para confirmar que el daemon está en ejecución.
 
 ```protobuf
 rpc Ping(PingRequest) returns (PingResponse);
 ```
 
-**Solicitud**: Mensaje vacío.
+**Request**: Mensaje vacío.
 
-**Respuesta**:
+**Response**:
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
-| `message` | `string` | Siempre retorna `"pong"` |
+| `message` | `string` | Siempre devuelve `"pong"` |
 
 ---
 
 ### GetVersion
 
-Retorna la cadena de versión del daemon.
+Devuelve la cadena de versión del daemon.
 
 ```protobuf
 rpc GetVersion(GetVersionRequest) returns (GetVersionResponse);
 ```
 
-**Solicitud**: Mensaje vacío.
+**Request**: Mensaje vacío.
 
-**Respuesta**:
+**Response**:
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
@@ -48,34 +63,34 @@ rpc GetVersion(GetVersionRequest) returns (GetVersionResponse);
 
 ### GetSystemInfo
 
-Retorna información sobre el sistema operativo del host.
+Devuelve información sobre el sistema operativo del host.
 
 ```protobuf
 rpc GetSystemInfo(GetSystemInfoRequest) returns (GetSystemInfoResponse);
 ```
 
-**Solicitud**: Mensaje vacío.
+**Request**: Mensaje vacío.
 
-**Respuesta**:
+**Response**:
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `os_name` | `string` | Nombre del sistema operativo (ej., `"macOS"`) |
-| `os_version` | `string` | Versión del SO (ej., `"15.3.2"`) |
+| `os_version` | `string` | Cadena de versión del SO (ej., `"15.3.2"`) |
 
 ---
 
 ### GetGeolocation
 
-Retorna datos de geolocalización basados en la dirección IP pública del nodo. Los datos se obtienen de la API de ipapi.co.
+Devuelve datos de geolocalización basados en la dirección IP pública del nodo. Los datos se obtienen de la API de ipapi.co.
 
 ```protobuf
 rpc GetGeolocation(GetGeolocationRequest) returns (GetGeolocationResponse);
 ```
 
-**Solicitud**: Mensaje vacío.
+**Request**: Mensaje vacío.
 
-**Respuesta**:
+**Response**:
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
@@ -89,27 +104,26 @@ rpc GetGeolocation(GetGeolocationRequest) returns (GetGeolocationResponse);
 | `longitude` | `double` | Longitud geográfica |
 
 :::note
-Este endpoint requiere acceso a internet. Retornará un error gRPC si la API externa no está disponible.
+Este endpoint requiere acceso a internet. Devolverá un error gRPC si la API externa no está disponible.
 :::
 
 ---
 
 ### ListPeers
 
-Retorna todos los peers P2P descubiertos, incluyendo el nodo local.
+Devuelve todos los peers P2P descubiertos, incluyendo el nodo local.
 
 ```protobuf
 rpc ListPeers(ListPeersRequest) returns (ListPeersResponse);
 ```
 
-**Solicitud**: Mensaje vacío.
+**Request**: Mensaje vacío.
 
-**Respuesta**:
+**Response**:
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `peers` | `PeerInfo[]` | Lista de peers descubiertos |
-| `local_node_geo` | `GetGeolocationResponse` | Geolocalización del nodo local |
 
 #### PeerInfo
 
@@ -118,14 +132,15 @@ rpc ListPeers(ListPeersRequest) returns (ListPeersResponse);
 | `peer_id` | `string` | Identificador único del peer (libp2p PeerId) |
 | `addresses` | `string[]` | Multidirecciones donde este peer es alcanzable |
 | `is_internal` | `bool` | `true` si el peer está en la red local (LAN) |
-| `is_connected` | `bool` | `true` si está actualmente conectado |
-| `is_self` | `bool` | `true` si esta entrada representa al daemon local |
+| `is_connected` | `bool` | `true` si está conectado actualmente |
+| `is_self` | `bool` | `true` si esta entrada representa el daemon local |
+| `geo` | `GetGeolocationResponse?` | Geolocalización de este peer (cuando está disponible) |
 
 ---
 
 ## Archivo Proto
 
-La definición proto canónica se encuentra en:
+La definición canónica del proto se encuentra en:
 
 ```
 daemon/proto/almena/daemon/v1/service.proto
@@ -173,7 +188,6 @@ message GetGeolocationResponse {
 message ListPeersRequest {}
 message ListPeersResponse {
   repeated PeerInfo peers = 1;
-  GetGeolocationResponse local_node_geo = 2;
 }
 
 message PeerInfo {
@@ -182,12 +196,13 @@ message PeerInfo {
   bool is_internal = 3;
   bool is_connected = 4;
   bool is_self = 5;
+  GetGeolocationResponse geo = 6;
 }
 ```
 
 ## Server Reflection
 
-El daemon tiene habilitado **gRPC Server Reflection**. Herramientas compatibles (Postman, grpcurl, BloomRPC) pueden descubrir todos los servicios y métodos disponibles automáticamente sin necesitar el archivo proto.
+El daemon tiene habilitado **gRPC Server Reflection**. Las herramientas compatibles (Postman, grpcurl, BloomRPC) pueden descubrir todos los servicios y métodos disponibles automáticamente sin necesidad del archivo proto.
 
 ## Ejemplos de Conexión
 
@@ -197,7 +212,7 @@ El daemon tiene habilitado **gRPC Server Reflection**. Herramientas compatibles 
 # Listar todos los servicios
 grpcurl -plaintext '[::1]:50051' list
 
-# Llamar Ping
+# Llamar a Ping
 grpcurl -plaintext '[::1]:50051' almena.daemon.v1.DaemonService/Ping
 
 # Obtener versión
@@ -212,7 +227,7 @@ grpcurl -plaintext '[::1]:50051' almena.daemon.v1.DaemonService/ListPeers
 ```rust
 use tonic::transport::Channel;
 
-// Generado desde proto
+// Generated from proto
 pub mod daemon {
     tonic::include_proto!("almena.daemon.v1");
 }
@@ -229,7 +244,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut client = DaemonServiceClient::new(channel);
     let response = client.ping(PingRequest {}).await?;
 
-    println!("Respuesta: {}", response.into_inner().message);
+    println!("Response: {}", response.into_inner().message);
     Ok(())
 }
 ```

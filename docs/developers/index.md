@@ -10,23 +10,50 @@ Documentation for team members developing the Almena Network platform modules.
 
 ## Platform Overview
 
-Almena Network is a decentralized identity platform built on W3C standards (DIDs, Verifiable Credentials). The project is organized as a **monorepo with git submodules**, where each module is an independent repository tracking the `develop` branch.
+Almena Network is a decentralized platform built on W3C standards. Identity (DIDs, Verifiable Credentials) is one of its core capabilities; future capabilities include decentralized applications, persistence, messaging, coordination and consensus, and time/ordering. The project is organized as a **monorepo with git submodules**, where each module is an independent repository tracking the `develop` branch.
 
 ## Modules
 
 | Module | Technology | Description | Status |
 |--------|-----------|-------------|--------|
-| [**Daemon**](./modules/daemon) | Rust, tonic, libp2p | gRPC server and P2P networking | 5 RPCs, mDNS discovery |
-| [**Desktop**](./modules/desktop) | Tauri v2, React 19, TypeScript | Admin console for Issuers/Requesters | Login, Network map, Daemon control |
-| [**Wallet**](./modules/wallet) | Tauri v2, React 19, TypeScript | Mobile-first identity wallet for Holders | Onboarding, Password setup |
+| [**Daemon**](./modules/daemon) | Rust, tonic, libp2p | gRPC server and P2P networking | 5 RPCs, mDNS discovery, REST API |
+| [**Desktop**](./modules/desktop) | Tauri v2, React 19, TypeScript | Admin console for Issuers/Requesters | Dashboard, Network map, Logs |
+| [**Wallet**](./modules/wallet) | Tauri v2, React 19, TypeScript | Mobile-first identity wallet for Holders | 6-step onboarding, recovery, biometrics, cloud backup |
 | [**CLI**](./modules/cli) | Rust, ratatui, crossterm | Terminal interface to daemon | TUI with daemon management |
-| **Docs** | Docusaurus 3 | Documentation site (this site) | EN + ES, 29 use cases |
+| **Docs** | Docusaurus 3 | Documentation site (this site) | EN + ES |
+
+```mermaid
+graph TB
+    subgraph "Frontend (TypeScript + React 19)"
+        Desktop[Desktop App]
+        Wallet[Wallet App]
+    end
+    subgraph "Rust"
+        Daemon[Daemon - gRPC + libp2p]
+        CLI[CLI - TUI]
+    end
+    subgraph "Tauri v2 Bridge"
+        DT[Desktop Tauri Backend]
+        WT[Wallet Tauri Backend]
+    end
+
+    Desktop --> DT
+    Wallet --> WT
+    DT -->|gRPC| Daemon
+    CLI -->|gRPC| Daemon
+    Daemon <-->|libp2p| Network[P2P Network]
+
+    style Desktop fill:#FB923C,color:#fff
+    style Wallet fill:#FB923C,color:#fff
+    style Daemon fill:#8B5CF6,color:#fff
+    style CLI fill:#8B5CF6,color:#fff
+```
 
 ## Quick Links
 
 - [**Getting Started**](./getting-started) — Set up your development environment.
 - [**Architecture**](./architecture) — System architecture and design decisions.
-- [**Use Cases**](./use-cases/wallet/uc-001-create-identity) — Detailed use case specifications.
+- [**Module Guides**](./modules/daemon) — Deep dive into each module's implementation.
 
 ## Tech Stack
 

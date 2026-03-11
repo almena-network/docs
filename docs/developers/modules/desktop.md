@@ -32,9 +32,9 @@ desktop/
 │   │   ├── Dock.tsx              # Bottom navigation with SVG icons
 │   │   └── Footer.tsx            # Version and GitHub link
 │   ├── pages/
-│   │   ├── Login.tsx             # QR code authentication
-│   │   ├── Network.tsx           # World map + peer list
-│   │   ├── Dashboard.tsx         # Overview (skeleton)
+│   │   ├── Dashboard.tsx         # Node overview + world map
+│   │   ├── Network.tsx           # Peer list with status
+│   │   ├── Logs.tsx              # Application log viewer
 │   │   └── Settings.tsx          # Placeholder
 │   └── i18n/                     # English and Spanish translations
 │
@@ -53,21 +53,46 @@ desktop/
 └── Taskfile.yml                  # Task orchestration
 ```
 
+## Application Flow
+
+```mermaid
+graph TD
+    App[App Shell] --> Header[AppHeader + DaemonStatus]
+    App --> Dock[Navigation Dock]
+    App --> Content[Content Area]
+    Content --> Dashboard
+    Content --> Network
+    Content --> Logs
+    Content --> Settings
+
+    Dashboard -->|gRPC| Daemon[almenad]
+    Network -->|gRPC| Daemon
+
+    style App fill:#FB923C,color:#fff
+    style Daemon fill:#8B5CF6,color:#fff
+```
+
 ## Implemented Features
 
-### Login Page
+### Dashboard
 
-- QR code that rotates every **30 seconds** with a new challenge
-- QR payload: `almena:login:{timestamp}:{UUID}`
-- Skip button for development/testing
-- i18n support (English/Spanish)
+- Daemon status, version, and node ID display
+- Public IP and geolocation information
+- Interactive **world map** (react-simple-maps) centered on the local node
+- Peer markers: orange (local node, 6px), violet (peers, 4px)
+- Real-time polling every 5 seconds
 
 ### Network Explorer
 
-- Interactive **world map** (react-simple-maps) centered on the local node
-- Peer markers with connection status (green = connected, gray = disconnected)
-- Peer list showing: truncated Peer ID, LAN/Internet type, address count
-- Real-time data from daemon's `ListPeers` and `GetGeolocation` RPCs
+- Peer list showing: truncated Peer ID, connection status, LAN/Internet type, geolocation, address count
+- Local node marked with "This node" badge
+- Auto-refreshes every 5 seconds
+
+### Application Logs
+
+- Rotating log file viewer (`almena-desktop.log` and date-stamped files)
+- Manual refresh button
+- Auto-scroll to latest entries
 
 ### Daemon Control
 
@@ -79,7 +104,7 @@ desktop/
 
 - Supported languages: English (en), Spanish (es)
 - Auto-detects OS language preference
-- Resource keys organized by domain: `app.*`, `nav.*`, `login.*`, `daemon.*`, `network.*`
+- Resource keys organized by domain: `app.*`, `nav.*`, `daemon.*`, `network.*`
 
 ## Tauri Commands
 
@@ -149,7 +174,6 @@ task proto:client   # Rebuild gRPC client
 
 ## Pending Implementation
 
-- **Dashboard** — Currently a skeleton with empty grid
 - **Settings** — Placeholder page
 - **Credential issuance** workflows
 - **Presentation request** handling
