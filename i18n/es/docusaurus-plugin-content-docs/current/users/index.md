@@ -6,46 +6,63 @@ slug: /users
 
 # Almena Network para Usuarios
 
-Almena Network es una plataforma de identidad descentralizada que te da el control total sobre tu identidad digital. A diferencia de los sistemas tradicionales donde una empresa es dueña de tu cuenta, aquí **tú eres dueño de tu identidad**.
+Almena Network es una plataforma de identidad descentralizada que te da control total sobre tu identidad digital. A diferencia de los sistemas tradicionales donde una empresa es dueña de tu cuenta, aquí **tú eres dueño de tu identidad**.
 
 ## ¿Qué es Almena Network?
 
-Almena Network está construida sobre estándares abiertos (W3C) y se compone de dos aplicaciones principales:
+Almena Network está construida sobre estándares abiertos ([W3C](https://www.w3.org/)) y consta de dos aplicaciones principales:
 
-- **Wallet** — Tu billetera de identidad personal donde creas y gestionas tu identidad descentralizada (DID).
+- **Wallet** — Tu billetera personal de identidad donde creas y gestionas tu identidad descentralizada (DID). Diseñada como experiencia mobile-first.
 - **Desktop** — Una consola de administración para organizaciones que emiten o solicitan credenciales verificables.
 
 Ambas aplicaciones se conectan a un servicio en segundo plano llamado **Daemon**, que gestiona la red peer-to-peer y la comunicación entre nodos.
+
+```mermaid
+graph LR
+    A[Wallet<br/>Titulares] -->|gRPC| D[Daemon<br/>Nodo P2P]
+    B[Desktop<br/>Emisores / Solicitantes] -->|gRPC| D
+    C[CLI<br/>Administradores] -->|gRPC| D
+    D <-->|libp2p| E[Otros Nodos]
+```
+
+## Roles en la Red
+
+| Rol | Aplicación | Descripción |
+|-----|-----------|-------------|
+| **Titular** | Wallet | Individuos que poseen y controlan su identidad digital y credenciales |
+| **Emisor** | Desktop | Organizaciones que crean y firman credenciales verificables |
+| **Solicitante** | Desktop | Organizaciones que solicitan y verifican credenciales |
+| **Administrador** | CLI / Desktop | Gestiona nodos daemon e infraestructura de red |
 
 ## Funcionalidades Disponibles
 
 ### Wallet
 
-La billetera se encuentra actualmente en su fase inicial. Puedes:
+La wallet proporciona una experiencia completa de gestión de identidad:
 
-- **Crear una nueva cuenta** — Configura tu identidad con una contraseña segura.
-- **Validación de contraseña** — Retroalimentación en tiempo real que asegura que tu contraseña cumple los requisitos de seguridad (mínimo 8 caracteres, mayúsculas, minúsculas y dígitos).
-
-:::info Próximamente
-La generación de frase de recuperación, gestión de credenciales y autenticación biométrica están planificadas para futuras versiones.
-:::
+- **Creación de cuenta** — Onboarding guiado en 6 pasos para crear tu identidad descentralizada (DID).
+- **Protección por contraseña** — Contraseña segura con validación en tiempo real (8+ caracteres, mayúsculas, minúsculas, dígitos).
+- **Generación de identidad** — Creación automática de DID con derivación de claves criptográficas.
+- **Autenticación biométrica** — Configuración opcional de huella dactilar o Face ID para desbloqueo rápido.
+- **Respaldo en la nube** — Respaldo cifrado en Google Drive o iCloud para recuperación de identidad.
+- **Recuperación de cuenta** — Flujo completo de 6 pasos para restaurar tu identidad desde un respaldo en la nube.
+- **Pantalla de bloqueo** — Bloqueo biométrico o por contraseña con tiempo de inactividad.
+- **Escaneo de códigos QR** — Escanea códigos QR para intercambio de credenciales.
+- **Multi-idioma** — Disponible en inglés y español.
 
 ### Desktop (Consola de Administración)
 
 La aplicación de escritorio proporciona herramientas para la administración de la red:
 
-- **Explorador de Red** — Mapa mundial interactivo que muestra los peers conectados en la red P2P, con estado de conexión en tiempo real y datos de geolocalización.
-- **Control del Daemon** — Inicia, detén y monitorea el servicio daemon directamente desde la interfaz.
-- **Inicio de Sesión** — Autenticación mediante códigos QR rotativos (ciclo de actualización de 30 segundos).
-- **Multi-idioma** — Disponible en inglés y español, detectado automáticamente desde el idioma de tu sistema.
-
-:::info Próximamente
-Panel de resumen, gestión de configuración y flujos de emisión de credenciales están planificados para futuras versiones.
-:::
+- **Explorador de Red** — Mapa mundial interactivo mostrando peers conectados en la red P2P, con estado de conexión en tiempo real y datos de geolocalización.
+- **Control del Daemon** — Inicia, detiene y monitorea el servicio daemon directamente desde la interfaz.
+- **Logs de la Aplicación** — Visualiza y filtra archivos de log rotativos de la aplicación.
+- **Multi-idioma** — Disponible en inglés y español, autodetectado desde el idioma del sistema.
 
 ## Primeros Pasos
 
 Elige tu aplicación para comenzar:
 
 - [**Wallet — Primeros Pasos**](./wallet-getting-started) — Crea tu primera identidad.
+- [**Wallet — Recuperación**](./wallet-recovery) — Restaura una identidad existente desde un respaldo en la nube.
 - [**Desktop — Explorador de Red**](./desktop-network) — Explora la red peer-to-peer.

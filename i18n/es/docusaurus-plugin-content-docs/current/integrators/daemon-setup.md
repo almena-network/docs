@@ -28,7 +28,7 @@ task build
 
 El binario de release se encuentra en `target/release/almenad`.
 
-## Ejecutando el Daemon
+## Ejecución del Daemon
 
 ### Modo Desarrollo
 
@@ -39,7 +39,7 @@ task dev
 Esto inicia el daemon con:
 - Logging de depuración habilitado
 - Datos almacenados en el directorio `./workspace/`
-- Recarga en caliente vía `cargo watch`
+- Hot reload mediante `cargo watch`
 - Servidor gRPC en `[::1]:50051` (localhost IPv6)
 
 ### Modo Producción
@@ -66,7 +66,7 @@ O con configuración personalizada:
 
 | Variable | Descripción |
 |----------|-------------|
-| `RUST_LOG` | Nivel de log (`trace`, `debug`, `info`, `warn`, `error`) |
+| `RUST_LOG` | Anulación del nivel de log (`trace`, `debug`, `info`, `warn`, `error`) |
 | `GRPC_ADDR` | Alternativa al flag `--grpc-addr` |
 | `ALMENAD_DATA_DIR` | Directorio de datos personalizado (solo modo desarrollo) |
 
@@ -82,21 +82,21 @@ El daemon almacena sus datos en ubicaciones específicas de cada plataforma:
 
 En modo desarrollo (`--dev`), todos los datos se almacenan en el directorio local `./workspace/`.
 
-## Instaladores de Plataforma
+## Instaladores por Plataforma
 
-Instaladores precompilados están disponibles para cada plataforma:
+Hay instaladores preconstruidos disponibles para cada plataforma:
 
-| Plataforma | Formato | Comando |
-|------------|---------|---------|
+| Plataforma | Formato | Comando de Build |
+|------------|---------|------------------|
 | macOS | `.pkg` (firmado y notarizado) | `task package:darwin` |
 | Linux | `.deb` | `task package:linux` |
 | Windows | `.msi` | `task package:windows` |
 
-El instalador de macOS registra el daemon como **LaunchAgent** (se inicia automáticamente al iniciar sesión). En Linux, se crea un servicio de usuario **systemd**. En Windows, se ejecuta como **Servicio de Windows**.
+El instalador de macOS registra el daemon como un **LaunchAgent** (se inicia automáticamente al iniciar sesión). En Linux, se crea un servicio de usuario **systemd**. En Windows, se ejecuta como un **Windows Service**.
 
-## Verificando la Instalación
+## Verificación de la Instalación
 
-Una vez que el daemon esté ejecutándose, verifica la conectividad con cualquier cliente gRPC:
+Una vez que el daemon está en ejecución, verifica la conectividad con cualquier cliente gRPC:
 
 ```bash
 # Usando grpcurl
@@ -113,17 +113,49 @@ Respuesta esperada:
 
 El daemon también soporta **gRPC Server Reflection**, por lo que herramientas como Postman y grpcurl pueden descubrir todos los métodos disponibles automáticamente.
 
+## API REST
+
+El daemon también expone una API REST para verificaciones rápidas de estado:
+
+```bash
+# Endpoint REST por defecto
+curl http://127.0.0.1:8080/status
+
+# Swagger UI
+open http://127.0.0.1:8080/swagger-ui/
+```
+
+La dirección REST es configurable mediante `--rest-addr`.
+
 ## Red P2P
 
 El daemon descubre automáticamente otros nodos de Almena en tu red local usando **mDNS** (DNS multicast). Los peers descubiertos aparecen en la respuesta de `ListPeers`.
 
-Capacidades P2P actuales:
-- **Transporte**: TCP
-- **Cifrado**: Protocolo Noise
-- **Multiplexación**: Yamux
-- **Descubrimiento**: mDNS (solo LAN)
-- **Timeout de inactividad**: 60 segundos
+```mermaid
+graph LR
+    subgraph Local Network
+        A[Node A] <-->|mDNS Discovery| B[Node B]
+        A <-->|mDNS Discovery| C[Node C]
+        B <-->|mDNS Discovery| C
+    end
+    subgraph Internet
+        A -.->|Bootstrap Peers| D[Remote Node]
+    end
+
+    style A fill:#FB923C,color:#fff
+    style D fill:#8B5CF6,color:#fff
+```
+
+| Capa | Tecnología | Detalles |
+|------|-----------|----------|
+| **Transporte** | TCP | Soporte IPv4 + IPv6 |
+| **Cifrado** | Noise protocol | Todo el tráfico P2P cifrado |
+| **Multiplexación** | Yamux | Múltiples streams por conexión |
+| **Descubrimiento** | mDNS | Peers en LAN (intervalo de consulta de 5 segundos) |
+| **Protocolo personalizado** | `/almena/geo/1.0` | Intercambio de datos de geolocalización entre peers |
+
+Los peers de bootstrap se pueden configurar mediante la variable de entorno `BOOTSTRAP_PEERS` para descubrimiento por internet.
 
 :::info Próximamente
-El descubrimiento de peers por internet (más allá de LAN) y conectividad basada en relays están planificados para futuras versiones.
+La conectividad basada en relay para traversal de NAT está planificada para futuras versiones.
 :::

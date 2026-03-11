@@ -113,17 +113,49 @@ Expected response:
 
 The daemon also supports **gRPC Server Reflection**, so tools like Postman and grpcurl can discover all available methods automatically.
 
+## REST API
+
+The daemon also exposes a REST API for quick status checks:
+
+```bash
+# Default REST endpoint
+curl http://127.0.0.1:8080/status
+
+# Swagger UI
+open http://127.0.0.1:8080/swagger-ui/
+```
+
+The REST address is configurable via `--rest-addr`.
+
 ## P2P Networking
 
 The daemon automatically discovers other Almena nodes on your local network using **mDNS** (multicast DNS). Discovered peers appear in the `ListPeers` response.
 
-Current P2P capabilities:
-- **Transport**: TCP
-- **Encryption**: Noise protocol
-- **Multiplexing**: Yamux
-- **Discovery**: mDNS (LAN only)
-- **Idle timeout**: 60 seconds
+```mermaid
+graph LR
+    subgraph Local Network
+        A[Node A] <-->|mDNS Discovery| B[Node B]
+        A <-->|mDNS Discovery| C[Node C]
+        B <-->|mDNS Discovery| C
+    end
+    subgraph Internet
+        A -.->|Bootstrap Peers| D[Remote Node]
+    end
+
+    style A fill:#FB923C,color:#fff
+    style D fill:#8B5CF6,color:#fff
+```
+
+| Layer | Technology | Details |
+|-------|-----------|---------|
+| **Transport** | TCP | IPv4 + IPv6 support |
+| **Encryption** | Noise protocol | All P2P traffic encrypted |
+| **Multiplexing** | Yamux | Multiple streams per connection |
+| **Discovery** | mDNS | LAN peers (5-second query interval) |
+| **Custom protocol** | `/almena/geo/1.0` | Geolocation data exchange between peers |
+
+Bootstrap peers can be configured via the `BOOTSTRAP_PEERS` environment variable for internet discovery.
 
 :::info Coming Soon
-Internet peer discovery (beyond LAN) and relay-based connectivity are planned for future releases.
+Relay-based connectivity for NAT traversal is planned for future releases.
 :::

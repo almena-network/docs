@@ -24,7 +24,9 @@ The daemon is the core background service of Almena Network. It provides the gRP
 daemon/
 ├── src/
 │   ├── main.rs          # gRPC server, CLI args, service handlers
-│   ├── p2p.rs           # libp2p swarm, mDNS discovery, PeerStore
+│   ├── p2p.rs           # libp2p swarm, mDNS discovery, PeerStore, geo exchange
+│   ├── rest.rs          # Axum REST router, Swagger UI
+│   ├── geolocation.rs   # Geo cache serialization/deserialization
 │   └── path.rs          # Platform-specific data directories
 ├── proto/
 │   └── almena/daemon/v1/
@@ -68,6 +70,16 @@ The `DaemonServiceImpl` struct implements 5 RPC handlers:
 
 The server starts with gRPC reflection enabled, allowing tools like Postman and grpcurl to discover methods automatically.
 
+### REST API (`rest.rs`)
+
+An Axum HTTP router provides lightweight REST endpoints:
+
+- `GET /status` — Daemon status, version, gRPC/REST addresses
+- `GET /api/v1/status` — Same (versioned)
+- `GET /swagger-ui/` — OpenAPI 3.0 interactive documentation
+
+Default address: `127.0.0.1:8080` (configurable via `--rest-addr`).
+
 ### P2P Networking (`p2p.rs`)
 
 The P2P layer uses libp2p with:
@@ -75,7 +87,7 @@ The P2P layer uses libp2p with:
 - **Transport:** TCP
 - **Encryption:** Noise protocol
 - **Multiplexing:** Yamux
-- **Behaviours:** Ping + mDNS (LAN peer discovery)
+- **Behaviours:** Ping + mDNS (LAN peer discovery) + custom `/almena/geo/1.0` protocol
 
 The `PeerStore` is a thread-safe `Arc<RwLock<HashMap<PeerId, PeerEntry>>>` shared between the gRPC handlers and the swarm event loop.
 

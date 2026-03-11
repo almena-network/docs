@@ -8,6 +8,21 @@ sidebar_label: gRPC API Reference
 
 The Almena daemon exposes a gRPC API defined in the `almena.daemon.v1` package. The default endpoint is `[::1]:50051` (IPv6 localhost).
 
+## Service Overview
+
+```mermaid
+graph LR
+    Client[gRPC Client] --> DS[DaemonService]
+    DS --> Ping
+    DS --> GetVersion
+    DS --> GetSystemInfo
+    DS --> GetGeolocation
+    DS --> ListPeers
+
+    style Client fill:#FB923C,color:#fff
+    style DS fill:#8B5CF6,color:#fff
+```
+
 ## Service: DaemonService
 
 ### Ping
