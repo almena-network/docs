@@ -1,33 +1,165 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Almena Network Documentation — Design system alignment
+ * Dark mode only. Colors match desktop/wallet (glassmorphism, orange primary, violet secondary)
  */
 
-/* You can override the default Infima variables here. */
-/* You can override the default Infima variables here. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ========== Dark Mode (only) ========== */
 :root {
-  /* Almena Network Darker Orange Palette (Light Mode) */
-  --ifm-color-primary: #e67e00;
-  --ifm-color-primary-dark: #cf7100;
-  --ifm-color-primary-darker: #c46b00;
-  --ifm-color-primary-darkest: #a15800;
-  --ifm-color-primary-light: #ff8f0a;
-  --ifm-color-primary-lighter: #ff981f;
-  --ifm-color-primary-lightest: #ffb25e;
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+
+  /* Primary — orange tone 400 for contrast on dark */
+  --ifm-color-primary: #fb923c;
+  --ifm-color-primary-dark: #f97316;
+  --ifm-color-primary-darker: #ea580c;
+  --ifm-color-primary-darkest: #c2410c;
+  --ifm-color-primary-light: #fdba74;
+  --ifm-color-primary-lighter: #fed7aa;
+  --ifm-color-primary-lightest: #ffedd5;
+  --ifm-color-primary-contrast-background: #1c1917;
+  --ifm-color-primary-contrast-foreground: #fafafa;
+
+  /* Background — deep dark with warm tones */
+  --ifm-background-color: #0c0a09;
+  --ifm-background-surface-color: #1c1917;
+
+  /* Content colors */
+  --ifm-font-color-base: #fafafa;
+  --ifm-font-color-base-inverse: #0c0a09;
+  --ifm-font-color-secondary: #a3a3a3;
+
+  /* Typography */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-global-radius: 0.5rem;
+
+  /* Navbar — glass-like over dark gradient */
+  --ifm-navbar-background-color: rgba(12, 10, 9, 0.85);
+  --ifm-navbar-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* Footer */
+  --ifm-footer-background-color: #0c0a09;
+  --ifm-footer-color: #a3a3a3;
+  --ifm-footer-link-color: #fafafa;
+  --ifm-footer-link-hover-color: #fb923c;
+
+  /* Hero */
+  --ifm-hero-background-color: transparent;
+  --ifm-hero-text-color: #fafafa;
+
+  /* Menu / sidebar */
+  --ifm-menu-color: #a3a3a3;
+  --ifm-menu-color-active: #fb923c;
+  --ifm-menu-color-background-active: rgba(251, 146, 60, 0.12);
+  --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.06);
+
+  /* Cards and surfaces */
+  --ifm-card-background-color: rgba(28, 25, 23, 0.6);
+  --ifm-code-background: rgba(28, 25, 23, 0.8);
+  --ifm-pre-background: rgba(28, 25, 23, 0.9);
+
+  /* Borders */
+  --ifm-toc-border-color: rgba(255, 255, 255, 0.08);
+  --ifm-color-emphasis-300: rgba(255, 255, 255, 0.2);
+
+  /* Code blocks */
+  --docusaurus-highlighted-code-line-bg: rgba(251, 146, 60, 0.15);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  /* Almena Network Darker Orange Palette (Dark Mode) */
-  --ifm-color-primary: #e67e00;
-  --ifm-color-primary-dark: #cf7100;
-  --ifm-color-primary-darker: #c46b00;
-  --ifm-color-primary-darkest: #a15800;
-  --ifm-color-primary-light: #ff8f0a;
-  --ifm-color-primary-lighter: #ff981f;
-  --ifm-color-primary-lightest: #ffb25e;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* Body & main — background gradient */
+body,
+.main-wrapper {
+  background: linear-gradient(135deg, #1c1917 0%, #292524 50%, #1e1b4b 100%);
+  background-attachment: fixed;
+}
+
+/* Hero section */
+.hero--primary {
+  background: linear-gradient(135deg, #1c1917 0%, #292524 40%, #1e1b4b 100%);
+  position: relative;
+}
+
+.hero--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%);
+  pointer-events: none;
+}
+
+/* Hero — title "Almena Network" */
+.hero .hero__title {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+  color: #fafafa;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Hero — subtitle "Decentralized Platform" */
+.hero .hero__subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 500;
+  opacity: 0.9;
+  max-width: 28ch;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  color: #e7e5e4;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero — Get Started button */
+.hero .button--primary,
+.hero .button--secondary {
+  --ifm-button-background-color: var(--ifm-color-primary);
+  --ifm-button-border-color: var(--ifm-color-primary);
+  --ifm-button-color: var(--ifm-color-primary-contrast-foreground);
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+  border-radius: var(--ifm-global-radius);
+  box-shadow: 0 4px 14px rgba(251, 146, 60, 0.35);
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.hero .button--primary:hover,
+.hero .button--secondary:hover {
+  --ifm-button-background-color: #fdba74;
+  --ifm-button-border-color: #fdba74;
+  --ifm-button-color: #0c0a09;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(251, 146, 60, 0.45);
+}
+
+/* Navbar — backdrop blur */
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Doc sidebar — glass-like */
+.theme-doc-sidebar-container {
+  background: rgba(12, 10, 9, 0.6);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Links */
+a {
+  transition: color 200ms ease-out;
+}
+
+/* Admonitions — violet accent */
+.theme-admonition-info {
+  --ifm-alert-background-color: rgba(139, 92, 246, 0.12);
+  border-left-color: #8b5cf6;
 }
