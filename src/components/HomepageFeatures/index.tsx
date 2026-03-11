@@ -48,7 +48,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/undraw_document-ready_o5d5.svg").default,
     description: (
       <Translate id="homepage.features.interoperability.description">
-        For decentralized identity to be useful, it cannot depend on a single
+        For decentralized systems to be useful, they cannot depend on a single
         company or proprietary technology.
       </Translate>
     ),

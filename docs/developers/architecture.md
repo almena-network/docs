@@ -115,7 +115,7 @@ graph LR
 
 ### Wallet
 
-The wallet is a mobile-first application for **Holders** — individuals who own and manage their decentralized identity.
+The wallet is a mobile-first application for **Holders** — individuals who own and manage their digital identity (one of the platform's core capabilities).
 
 **Responsibilities:**
 - Create and manage decentralized identities (DIDs)
@@ -221,7 +221,7 @@ Each daemon maintains a `PeerStore` — a thread-safe map of discovered peers wi
 
 ### Wallet Communication
 
-The wallet currently operates independently without daemon gRPC. Identity operations happen locally in the Tauri Rust backend.
+The wallet currently operates independently without daemon gRPC. DID and credential operations happen locally in the Tauri Rust backend.
 
 ## Data Storage
 

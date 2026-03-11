@@ -6,7 +6,7 @@ slug: /users
 
 # Almena Network for Users
 
-Almena Network is a decentralized identity platform that gives you complete control over your digital identity. Unlike traditional systems where a company owns your account, here **you own your identity**.
+Almena Network is a decentralized platform. Identity is one of its core capabilities: you can create and manage your digital identity (DID) and credentials without central gatekeepers. Unlike traditional systems where a company owns your account, here **you own your identity**.
 
 ## What is Almena Network?
 

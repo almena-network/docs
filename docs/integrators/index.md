@@ -67,7 +67,7 @@ A lightweight REST API with Swagger UI for quick status checks. Default endpoint
 
 ## Protocol & Standards
 
-Almena Network follows W3C standards for decentralized identity:
+Almena Network follows W3C standards. Identity (DIDs, VCs) is one of its current focus areas:
 
 - **DIDs** ([Decentralized Identifiers](https://www.w3.org/TR/did-1.0/)) v1.0
 - **Verifiable Credentials** ([Data Model](https://www.w3.org/TR/vc-data-model-2.0/)) v2.0

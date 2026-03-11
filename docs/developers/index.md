@@ -10,7 +10,7 @@ Documentation for team members developing the Almena Network platform modules.
 
 ## Platform Overview
 
-Almena Network is a decentralized identity platform built on W3C standards (DIDs, Verifiable Credentials). The project is organized as a **monorepo with git submodules**, where each module is an independent repository tracking the `develop` branch.
+Almena Network is a decentralized platform built on W3C standards. Identity (DIDs, Verifiable Credentials) is one of its core capabilities; future capabilities include decentralized applications, persistence, messaging, coordination and consensus, and time/ordering. The project is organized as a **monorepo with git submodules**, where each module is an independent repository tracking the `develop` branch.
 
 ## Modules
 

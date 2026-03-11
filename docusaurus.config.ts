@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Almena Network',
-  tagline: 'Decentralized Identifiers',
+  tagline: 'Decentralized Platform',
   favicon: 'img/favicon.ico',
 
   future: {

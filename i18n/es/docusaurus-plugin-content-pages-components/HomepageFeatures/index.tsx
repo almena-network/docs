@@ -38,8 +38,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/undraw_document-ready_o5d5.svg").default,
     description: (
       <>
-        Para que la identidad descentralizada sea útil, no puede depender de
-        una sola empresa o tecnología propietaria.
+        Para que los sistemas descentralizados sean útiles, no pueden depender
+        de una sola empresa o tecnología propietaria.
       </>
     ),
   },

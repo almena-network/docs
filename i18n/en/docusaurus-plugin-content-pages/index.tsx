@@ -36,7 +36,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Decentralized identity platform that gives you complete control over your digital identity"
+      description="Decentralized platform. Identity (DIDs, Verifiable Credentials) is one of its core capabilities; future capabilities include decentralized applications, persistence, messaging, coordination and consensus."
     >
       <HomepageHeader />
       <main>

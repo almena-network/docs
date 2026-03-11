@@ -10,7 +10,7 @@ Documentacion para los miembros del equipo que desarrollan los modulos de la pla
 
 ## Vision General de la Plataforma
 
-Almena Network es una plataforma de identidad descentralizada construida sobre estandares W3C (DIDs, Verifiable Credentials). El proyecto esta organizado como un **monorepo con git submodules**, donde cada modulo es un repositorio independiente que sigue la rama `develop`.
+Almena Network es una plataforma descentralizada construida sobre estándares W3C. La identidad (DIDs, Verifiable Credentials) es una de sus capacidades centrales; capacidades futuras incluyen aplicaciones descentralizadas, persistencia, mensajería, coordinación y consenso, y tiempo/ordenamiento. El proyecto está organizado como un **monorepo con git submodules**, donde cada módulo es un repositorio independiente que sigue la rama `develop`.
 
 ## Modulos
 

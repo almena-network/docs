@@ -67,7 +67,7 @@ Una API REST ligera con Swagger UI para verificaciones rápidas de estado. Endpo
 
 ## Protocolo y Estándares
 
-Almena Network sigue los estándares W3C para identidad descentralizada:
+Almena Network sigue los estándares W3C. La identidad (DIDs, VCs) es una de sus áreas de enfoque actuales:
 
 - **DIDs** ([Identificadores Descentralizados](https://www.w3.org/TR/did-1.0/)) v1.0
 - **Credenciales Verificables** ([Modelo de Datos](https://www.w3.org/TR/vc-data-model-2.0/)) v2.0
