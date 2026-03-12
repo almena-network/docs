@@ -6,9 +6,9 @@ Docusaurus documentation site for Almena Network platform.
 
 | Tool | Version | Purpose |
 |------|---------|---------|
-| **Task** | 3.x | Task runner |
-| **Node.js** | 20+ | Docusaurus, build |
-| **pnpm** | Latest | Package manager |
+| [**Task**](https://taskfile.dev/) | 3.x | Task runner |
+| [**Node.js**](https://nodejs.org/) | 20+ | Docusaurus, build |
+| [**pnpm**](https://pnpm.io/) | Latest | Package manager |
 
 ## Setup
 
