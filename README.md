@@ -4,25 +4,11 @@ Docusaurus documentation site for Almena Network platform.
 
 ## Prerequisites
 
-### Required
-
-- **Node.js**: >= 20.0.0
-- **pnpm**: Latest version
-
-### Installation
-
-```bash
-# Install Node.js (if not installed)
-# macOS: brew install node@24
-# Linux: curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-
-# Install pnpm
-npm install -g pnpm
-
-# Verify
-node --version    # v24.0.0+
-pnpm --version    # Latest
-```
+| Tool | Version | Purpose |
+|------|---------|---------|
+| **Task** | 3.x | Task runner |
+| **Node.js** | 20+ | Docusaurus, build |
+| **pnpm** | Latest | Package manager |
 
 ## Setup
 
