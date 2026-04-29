@@ -1,0 +1,52 @@
+version: '3'
+silent: true
+
+# Docs — Almena Network documentation (Docusaurus)
+# Run: task (lists options) or task <name>
+
+vars:
+  PKG_MGR: pnpm
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - echo "[docs] default = listar tareas"
+      - task --list
+
+  install:
+    desc: Install dependencies
+    cmds:
+      - echo "[docs] install = pnpm (solo si hace falta)"
+      - |
+        if {{.PKG_MGR}} install --frozen-lockfile; then
+          echo "[docs] lockfile ya satisfecho"
+        else
+          {{.PKG_MGR}} install
+        fi
+
+  build:
+    desc: Build static site
+    cmds:
+      - echo "[docs] build = Docusaurus static site"
+      - "{{.PKG_MGR}} run build"
+
+  serve:
+    desc: Serve built site locally (port 3001)
+    cmds:
+      - echo "[docs] serve = local preview (puerto 3001)"
+      - "{{.PKG_MGR}} run serve"
+
+  clean:
+    desc: Remove build artifacts, Docusaurus cache, and node_modules
+    cmds:
+      - echo "[docs] clean = clear cache y node_modules"
+      - '[ ! -d node_modules ] || {{.PKG_MGR}} run clear'
+      - rm -rf node_modules
+
+  clean:all:
+    desc: Run clean and remove local .env
+    deps: [clean]
+    cmds:
+      - echo "[docs] clean:all = eliminar .env"
+      - rm -f .env
