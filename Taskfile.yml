@@ -25,6 +25,12 @@ tasks:
           {{.PKG_MGR}} install
         fi
 
+  dev:
+    desc: Start Docusaurus dev server on port 3001
+    cmds:
+      - echo "[docs] dev = Docusaurus dev (puerto 3001)"
+      - "{{.PKG_MGR}} run start"
+
   build:
     desc: Build static site
     cmds:
