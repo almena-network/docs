@@ -12,7 +12,7 @@ In scope for coordinated disclosure:
 
 Out of scope (report through the appropriate project instead):
 
-- Vulnerabilities limited to application code in **`almena/`**, **`wallet/`**, or **`issuer/`**—use those repositories’ security policies.
+- Vulnerabilities limited to application code in **`almena/`**, **`wallet/`**, or **`registry/`**—use those repositories’ security policies.
 - Purely **content** disagreements or typos (use issues or PRs; not secrets handling).
 - Third-party hosting, DNS, or CDN misconfiguration you operate outside this codebase unless documented here as the recommended deployment path.
 
