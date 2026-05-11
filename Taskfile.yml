@@ -1,8 +1,8 @@
 version: '3'
 silent: true
 
-# Docs — Almena Network documentation (Docusaurus)
-# Run: task (lists options) or task <name>
+# Docusaurus site: `dir` + `pnpm --dir` keep tooling rooted in `docs/` so `.env` (if present)
+# resolves from this directory. Task does not support `dotenv:` in included Taskfiles.
 
 vars:
   PKG_MGR: pnpm
@@ -10,49 +10,56 @@ vars:
 tasks:
   default:
     desc: List available tasks
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
-      - echo "[docs] default = listar tareas"
+      - echo "[docs] list tasks"
       - task --list
 
   install:
     desc: Install dependencies
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
-      - echo "[docs] install = pnpm (solo si hace falta)"
+      - echo "[docs] pnpm install"
       - |
-        if {{.PKG_MGR}} install --frozen-lockfile; then
-          echo "[docs] lockfile ya satisfecho"
+        if {{.PKG_MGR}} --dir "{{.TASKFILE_DIR}}" install --frozen-lockfile; then
+          echo "[docs] lockfile already satisfied"
         else
-          {{.PKG_MGR}} install
+          {{.PKG_MGR}} --dir "{{.TASKFILE_DIR}}" install
         fi
 
   dev:
     desc: Start Docusaurus dev server on port 3001
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
-      - echo "[docs] dev = Docusaurus dev (puerto 3001)"
-      - "{{.PKG_MGR}} run start"
+      - echo "[docs] Docusaurus dev (port 3001)"
+      - '{{.PKG_MGR}} --dir "{{.TASKFILE_DIR}}" run start'
 
   build:
     desc: Build static site
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
-      - echo "[docs] build = Docusaurus static site"
-      - "{{.PKG_MGR}} run build"
+      - echo "[docs] Docusaurus build"
+      - '{{.PKG_MGR}} --dir "{{.TASKFILE_DIR}}" run build'
 
   serve:
     desc: Serve built site locally (port 3001)
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
-      - echo "[docs] serve = local preview (puerto 3001)"
-      - "{{.PKG_MGR}} run serve"
+      - echo "[docs] Docusaurus serve preview"
+      - '{{.PKG_MGR}} --dir "{{.TASKFILE_DIR}}" run serve'
 
   clean:
     desc: Remove build artifacts, Docusaurus cache, and node_modules
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
-      - echo "[docs] clean = clear cache y node_modules"
-      - '[ ! -d node_modules ] || {{.PKG_MGR}} run clear'
+      - echo "[docs] clean build output and node_modules"
+      - '[ ! -d node_modules ] || {{.PKG_MGR}} --dir "{{.TASKFILE_DIR}}" run clear'
       - rm -rf node_modules
 
   clean:all:
     desc: Run clean and remove local .env
+    dir: "{{.TASKFILE_DIR}}"
     deps: [clean]
     cmds:
-      - echo "[docs] clean:all = eliminar .env"
+      - echo "[docs] remove .env if present"
       - rm -f .env
